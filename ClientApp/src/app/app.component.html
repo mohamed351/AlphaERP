@@ -1,0 +1,48 @@
+<body>
+
+    <mat-sidenav-container  class="sidenav-container">
+      <mat-sidenav id="sidevarContainer" #drawer class="sidenav" fixedInViewport
+          [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+          [mode]="(isHandset$ | async) ? 'over' : 'side'"
+          [opened]="(isHandset$ | async) === false">
+        <mat-toolbar color="primary">
+          <mat-toolbar-row style="width: 200px;">
+            <img src="../assets/logo.png" width="50" />
+        </mat-toolbar-row>
+        </mat-toolbar>
+        <mat-nav-list>
+          <mat-accordion>
+            <a mat-list-item routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"routerLink="/"> <mat-icon>home</mat-icon> Home</a>
+            <a mat-list-item routerLinkActive="active"  routerLink="/customers"> <mat-icon> people</mat-icon> Customers</a>
+            <a mat-list-item routerLinkActive="active" routerLink="/suppliers"><mat-icon>person_pin_circle</mat-icon> Suppliers</a>
+            <a mat-list-item routerLinkActive="active" routerLink="/categories"><mat-icon>category</mat-icon> Products Cateogry</a>
+            </mat-accordion>  
+    
+       
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <mat-toolbar color="primary">
+          <button
+            type="button"
+            aria-label="Toggle sidenav"
+            mat-icon-button
+            (click)="drawer.toggle()"
+           >
+            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+          </button>
+         <div class="flex-end">
+           
+         
+         </div>
+        </mat-toolbar>
+        <div class="padding-10">
+          <router-outlet></router-outlet>
+        </div>
+    
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  
+
+    
+</body>

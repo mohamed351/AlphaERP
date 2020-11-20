@@ -1,0 +1,52 @@
+<ng-container *ngIf="dataTable.data != null then data else loading">
+
+</ng-container>
+
+<ng-template #loading>
+  <div class="mat-spinner-center">
+  <mat-spinner></mat-spinner>
+</div>
+</ng-template>
+<ng-template #data>
+  
+  <mat-table [dataSource]="this.dataTable">
+  
+    <ng-container *ngFor="let item of columnsName" [matColumnDef]="item.columnName">
+      <mat-header-cell *matHeaderCellDef > 
+        <ng-container *ngIf="item.columnType != ColumnType.Buttons">
+         {{item.columnName}}
+        </ng-container>
+        </mat-header-cell>
+      <mat-cell *matCellDef="let row"> 
+        <ng-container *ngIf="item.columnType === this.ColumnType.None">
+        {{row[item.columnName]}}
+      </ng-container>
+
+      <ng-container *ngIf="item.columnType === this.ColumnType.Buttons">
+       <a mat-flat-button color="primary" [routerLink]="['edit', row[item.columnName]]" >Edit</a> |
+       <a mat-flat-button color="accent" [routerLink]="['details' , row[item.columnName]]"> Details</a> |
+       <a mat-flat-button color="warn" >Delete</a> 
+      </ng-container>
+      </mat-cell>
+    </ng-container> 
+
+  
+
+    
+    <mat-header-row *matHeaderRowDef="Allcolumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: Allcolumns;">
+    </mat-row>
+
+</mat-table>
+
+</ng-template>
+
+
+<mat-paginator #paginator
+[length]="this.tableSize"
+[pageIndex]="0"
+[pageSize]="10"
+(page)="GetData($event)"
+
+>
+</mat-paginator> 

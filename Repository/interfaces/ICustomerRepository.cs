@@ -6,7 +6,7 @@ namespace RealApplication.Repository.interfaces
 {
     public interface ICustomerRepository:IRepository<Customer,string>
     {
-         Task<Customer> GetAllCustomers(string ID);
-         
+         Task<Customer> GetAllCustomerData(string ID);
+         Task EditCustomerWithTheirPhonesAndAddrss(string ID, Customer customer);
     }
 }

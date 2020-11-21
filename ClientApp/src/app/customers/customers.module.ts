@@ -6,6 +6,8 @@ import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import {CustomersRoutingModule} from './customers-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import {AlphaDataTableModule} from '../components/alpha-data-table/alpha-data-table.module';
+import {MatButtonModule} from '@angular/material/button';
+import {ReactiveFormsModule} from '@angular/forms';
 @NgModule({
   declarations: [ListCustomersComponent, 
     CreateCustomerComponent, 
@@ -16,8 +18,9 @@ import {AlphaDataTableModule} from '../components/alpha-data-table/alpha-data-ta
     CommonModule,
     CustomersRoutingModule,
     HttpClientModule,
-    AlphaDataTableModule
-    
+    AlphaDataTableModule,
+    MatButtonModule,
+    ReactiveFormsModule
   
   ],
   providers:[

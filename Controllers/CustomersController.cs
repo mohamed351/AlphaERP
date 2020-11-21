@@ -30,7 +30,7 @@ namespace RealApplication.Controllers
             search = search == null ? "" :search.ToLower();
             var model = new DataTableDTO<CustomerDTO>()
             {
-                Data = mapper.Map<IEnumerable<CustomerDTO>>(unitOfWork.Customers.GetEntityDataTable(start, pageSize, async => async.CustomerName.ToLower().Contains(search), async => async.CustomerName)),
+                Data = mapper.Map<IEnumerable<CustomerDTO>>(unitOfWork.Customers.GetEntityDataTable(start, pageSize, async => async.CustomerName.ToLower().Contains(search) &&async.IsDeleted == false, async => async.CustomerName) )  ,
                 TotalCount = unitOfWork.Customers.GetCount(async => async.CustomerName.Contains(""))
             };
             return Ok(model);
@@ -60,14 +60,14 @@ namespace RealApplication.Controllers
             return  Ok(customerDTO);
         }
         [HttpPut(template:"{ID}")]
-        public IActionResult Put(string ID , CustomerCreateDTO customerCreateDTO){
+        public async Task< IActionResult> Put(string ID , CustomerCreateDTO customerCreateDTO){
             if(!ModelState.IsValid){
                 return BadRequest("The Customer Data is not Valid");
 
             }
             var customer = this.mapper.Map<Customer>(customerCreateDTO);
             customer.ID = ID;
-            this.unitOfWork.Customers.EditCustomerWithTheirPhonesAndAddrss(ID,customer);
+           await this.unitOfWork.Customers.EditCustomerWithTheirPhonesAndAddrss(ID,customer);
             this.unitOfWork.Complete();
             this.mapper.Map<CustomerCreateDTO>(customer);
             return Ok(customer);

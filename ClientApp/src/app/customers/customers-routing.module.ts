@@ -16,7 +16,7 @@ const routes: Routes = [
       component:CreateCustomerComponent
   },
   {
-      path:"edit",
+      path:"edit/:id",
       component:EditCustomerComponent
   }
   

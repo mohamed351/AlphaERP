@@ -8,6 +8,12 @@ import { HttpClientModule } from '@angular/common/http';
 import {AlphaDataTableModule} from '../components/alpha-data-table/alpha-data-table.module';
 import {MatButtonModule} from '@angular/material/button';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MatCardModule} from "@angular/material/card";
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material';
+
 @NgModule({
   declarations: [ListCustomersComponent, 
     CreateCustomerComponent, 
@@ -20,7 +26,12 @@ import {ReactiveFormsModule} from '@angular/forms';
     HttpClientModule,
     AlphaDataTableModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatProgressSpinnerModule
   
   ],
   providers:[

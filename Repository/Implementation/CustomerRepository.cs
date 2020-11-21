@@ -22,7 +22,7 @@ namespace RealApplication.Repository.Implementation
         public async Task<Customer> GetAllCustomerData(string ID)
         {
            return await dbContext.Set<Customer>().Include(a=>a.CustomerAddresses)
-           .Include(async=>async.CustomerAddresses).FirstOrDefaultAsync(async=>async.ID == ID);
+           .Include(async=>async.Phones).FirstOrDefaultAsync(async=>async.ID == ID);
         }
 
 

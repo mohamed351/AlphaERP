@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Customer } from 'src/app/models/customers/customer';
 import { RestService } from 'src/app/services/rest-service.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class CreateCustomerComponent implements OnInit {
   });
   constructor(private router:Router, private customerService:RestService , private toastr: ToastrService) { }
 
-  get supplierName(){
+  get CustomerName(){
     return this.forms.get("customerName")
   }
   get Phones(){
@@ -64,12 +65,12 @@ export class CreateCustomerComponent implements OnInit {
 
 
   OnSubmitForm(){
-     /*this.supplierServer.PostData<Supplier>("/api/Supplier",this.forms.value).subscribe(a=>{
+     this.customerService.PostData<Customer>("/api/Customers",this.forms.value).subscribe(a=>{
       console.log(a);
-      this.router.navigate(["/suppliers"]);
-      this.toastr.success("Successfull Creating Supplier","Create Operation");
+      this.router.navigate(["/customers"]);
+      this.toastr.success("Successfull Creating Customers","Create Operation");
      });
-     */
+     
   }
 
   ngOnInit() {

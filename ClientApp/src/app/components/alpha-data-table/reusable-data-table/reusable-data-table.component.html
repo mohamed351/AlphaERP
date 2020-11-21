@@ -8,7 +8,13 @@
 </div>
 </ng-template>
 <ng-template #data>
-  
+  <mat-form-field class="search-field">
+    <mat-label>Search</mat-label>
+    <input matInput type="text" #searchText  (keydown)="Searchbout(searchText)" (change)="Searchbout(searchText)"  >
+    <button mat-button   matSuffix mat-icon-button aria-label="Clear" (click)="searchText.value = '';Searchbout(searchText)">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
   <mat-table [dataSource]="this.dataTable">
   
     <ng-container *ngFor="let item of columnsName" [matColumnDef]="item.columnName">
@@ -25,7 +31,7 @@
       <ng-container *ngIf="item.columnType === this.ColumnType.Buttons">
        <a mat-flat-button color="primary" [routerLink]="['edit', row[item.columnName]]" >Edit</a> |
        <a mat-flat-button color="accent" [routerLink]="['details' , row[item.columnName]]"> Details</a> |
-       <a mat-flat-button color="warn" >Delete</a> 
+       <a mat-flat-button color="warn" (click)="OnDeleteClick(row[item.columnName])">Delete</a> 
       </ng-container>
       </mat-cell>
     </ng-container> 
@@ -47,6 +53,5 @@
 [pageIndex]="0"
 [pageSize]="10"
 (page)="GetData($event)"
-
 >
 </mat-paginator> 

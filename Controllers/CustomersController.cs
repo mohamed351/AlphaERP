@@ -24,11 +24,12 @@ namespace RealApplication.Controllers
         }
     
         [HttpGet]
-        public IActionResult Get([FromQuery] int pageSize, [FromQuery] int start)
+        public IActionResult Get([FromQuery] int pageSize, [FromQuery] int start, [FromQuery] string search)
         {
+            search = search == null ? "" :search.ToLower();
             var model = new DataTableDTO<CustomerDTO>()
             {
-                Data = mapper.Map<IEnumerable<CustomerDTO>>(unitOfWork.Customers.GetEntityDataTable(start, pageSize, async => async.CustomerName.Contains(""), async => async.CustomerName)),
+                Data = mapper.Map<IEnumerable<CustomerDTO>>(unitOfWork.Customers.GetEntityDataTable(start, pageSize, async => async.CustomerName.ToLower().Contains(search), async => async.CustomerName)),
                 TotalCount = unitOfWork.Customers.GetCount(async => async.CustomerName.Contains(""))
             };
             return Ok(model);

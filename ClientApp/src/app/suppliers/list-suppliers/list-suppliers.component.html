@@ -2,5 +2,7 @@
 
 <alpha-dataTable [columnsName]="columnNames" 
 [endPoint]="'/api/Supplier'" 
-[componentName]="'suppliers'">
+[componentName]="'suppliers'"
+[endPointDelete]="'/api/Supplier'" 
+ (afterDeleteMethod)="OnDeleteSuccess($event)">
 </alpha-dataTable>

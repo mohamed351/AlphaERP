@@ -1,4 +1,17 @@
-<mat-card>
+
+<ng-container *ngIf="this.supplier != null then data else loading">
+
+
+</ng-container>
+
+<ng-template #loading>
+ <div class="mat-spinner-style">
+  <mat-spinner></mat-spinner>
+ </div>
+</ng-template>
+
+<ng-template #data>
+  <mat-card>
     <h3 class="display-5"> Edit Supplier</h3>
 <form [formGroup]="forms" (submit)="OnSubmitForm()">
     <div class="full-width">
@@ -57,3 +70,4 @@
 
 
 </mat-card>
+</ng-template>

@@ -1,11 +1,14 @@
 import { DataSource } from '@angular/cdk/table';
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTable } from '@angular/material';
+import { AfterViewInit, Component, Inject, Input, OnInit, Output, ViewChild  , EventEmitter} from '@angular/core';
+import { MatDialog, MatDialogRef, MatPaginator, MatTable, MAT_DIALOG_DATA } from '@angular/material';
 import { Customer } from 'src/app/models/customers/customer';
 import { DataTable } from 'src/app/models/datatable';
 import { DataTableService } from 'src/app/services/data-table.service';
 import { RestService } from 'src/app/services/rest-service.service';
 import {TypeOfColumn,ColumnType} from './columnType';
+import {delay} from 'rxjs/operators'; 
+import {ReusableDailogBoxComponent,DialogData} from '../reusable-dailog-box/reusable-dailog-box.component'
+
 @Component({
   selector: 'alpha-dataTable',
   templateUrl: './reusable-data-table.component.html',
@@ -18,8 +21,13 @@ export class ReusableDataTableComponent implements OnInit , AfterViewInit  {
   @Input("endPoint") endPoint:string;
   @Input("columnsName") columnsName:ColumnType[];
   @Input("componentName") compoentName:string;
+  @Input("endPointDelete") endPointDelete:string;
+  @Output("afterDeleteMethod") afterDelete:EventEmitter<any> = new EventEmitter();
   displayName= ["customerName"];
-  constructor(public restAPI:RestService , public dataTable:DataTableService<Customer> ) { 
+  
+  constructor(public restAPI:RestService ,
+     public dataTable:DataTableService<Customer> 
+     , public dailog:MatDialog) { 
     
     
   }
@@ -29,10 +37,23 @@ export class ReusableDataTableComponent implements OnInit , AfterViewInit  {
   get Allcolumns(){
     return this.columnsName.map((a)=>a.columnName)
   }
-
+  Searchbout(event){
+    this.restAPI.GetDataTable<DataTable<any>>(10, 0,this.endPoint,event.value).pipe(
+      delay(150)
+    ).subscribe(a=>{
+      this.dataTable = new DataTableService<any>();
+      this.dataTable.data = a.data;
+      this.tableSize = a.totalCount;
+      this.dataTable.paginator = this.paginator;
+    
+    });
+  
+  }
   ngAfterViewInit() {
-    this.restAPI.GetDataTable<DataTable<Customer>>(10, 0,this.endPoint).subscribe(a=>{
-      this.dataTable = new DataTableService<Customer>();
+    this.restAPI.GetDataTable<DataTable<any>>(10, 0,this.endPoint,"").pipe(
+      delay(150)
+    ).subscribe(a=>{
+      this.dataTable = new DataTableService<any>();
       this.dataTable.data = a.data;
       this.tableSize = a.totalCount;
       this.dataTable.paginator = this.paginator;
@@ -43,20 +64,56 @@ export class ReusableDataTableComponent implements OnInit , AfterViewInit  {
   public tableSize: number = 0;
   
   ngOnInit() {
-    
+     
   
   }
 
   GetData(data: any) {
-    this.restAPI.GetDataTable<DataTable<Customer>>(data.pageSize, data.pageIndex,this.endPoint).subscribe(a=>{
-      console.log(a)
-      this.dataTable = new DataTableService<Customer>();
+    console.log(data);
+    this.restAPI.GetDataTable<DataTable<any>>(data.pageSize, data.pageIndex,this.endPoint,"").pipe(
+      delay(150)
+    ).subscribe(a=>{
+      this.dataTable = new DataTableService<any>();
       this.dataTable.data = a.data;
       this.tableSize = a.totalCount;
       this.dataTable.paginator = this.paginator;
     
     });
   }
+ GetAllData(){
+  this.restAPI.GetDataTable<DataTable<any>>(10, 0,this.endPoint,"").pipe(
+    delay(150)
+  ).subscribe(a=>{
+    this.dataTable = new DataTableService<any>();
+    this.dataTable.data = a.data;
+    this.tableSize = a.totalCount;
+    this.dataTable.paginator = this.paginator;
+  
+  });
+ }
+
+  OnDeleteClick(data:any){
+    console.log(data);
+    console.log(this.endPointDelete);
+    let message:DialogData ={
+      message:"Are you sure that you want to Delete ?"
+    }
+   this.dailog.open(ReusableDailogBoxComponent,{
+     width:"500px",
+     data:message
+   }).afterClosed().subscribe(result =>{
+       if(result.type == 0){
+        this.restAPI.DeleteData(this.endPointDelete,data).subscribe(a=>{
+          this.GetAllData();
+          this.afterDelete.emit({message:"successfull deleting" , id:data})
+        });
+
+        
+       }
+   });
+  }
   
 
 }
+
+

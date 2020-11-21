@@ -26,16 +26,17 @@ namespace RealApplication.Controllers
 
         }
         [HttpGet]
-        public IActionResult Get([FromQuery] int pageSize, [FromQuery] int start)
+        public IActionResult Get([FromQuery] int pageSize, [FromQuery] int start ,[FromQuery]string search ="")
         {
+            search  = search == null ? "" :search.ToLower();
             var model = new DataTableDTO<SupplierDTO>()
             {
                 Data = mapper.Map<IEnumerable<SupplierDTO>>
                 (unitOfWork.Suppliers.GetEntityDataTable(start,
                  pageSize, 
-                 async => async.Name.Contains("") && async.IsDeleted == false
+                 async => async.Name.ToLower().Contains(search) && async.IsDeleted == false
                  , async => async.Name)),
-                TotalCount = unitOfWork.Suppliers.GetCount(async => async.Name.Contains("") & async.IsDeleted == false)
+                TotalCount = unitOfWork.Suppliers.GetCount(async => async.Name.Contains(search) & async.IsDeleted == false)
             };
             return Ok(model);
         }

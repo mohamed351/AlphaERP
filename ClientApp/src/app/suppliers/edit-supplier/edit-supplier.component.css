@@ -11,3 +11,9 @@
     margin-bottom: 1px;
      
 }
+.mat-spinner-style{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}

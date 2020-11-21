@@ -18,16 +18,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { ReusableDailogBoxComponent } from './components/reusable-dailog-box/reusable-dailog-box.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator'
 import { ToastrModule } from 'ngx-toastr';
+import {ReusableDailogBoxComponent} from './components/alpha-data-table/reusable-dailog-box/reusable-dailog-box.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ReusableDailogBoxComponent,
  ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -48,6 +47,7 @@ import { ToastrModule } from 'ngx-toastr';
     
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Deleteing Confirmation</h1>
+<div mat-dialog-content>
+    {{this.data.message}}
+</div>
+<div mat-dialog-actions class="mt-2 mb-3">
+    <button mat-flat-button color="primary" (click)="OKClicked()">OK</button>
+    <button mat-flat-button color="warn" (click)="CancelClicked()">Cancel</button>
+</div>

@@ -11,6 +11,10 @@ namespace RealApplication.Models
         public string ID { get; set; }
         public string Name { get; set; }
 
+        public string CategoryID { get; set; }
+
+        [ForeignKey(nameof(CategoryID))]
+        public Category ChildCategory {get;set;}
         public ICollection<Product> Products { get; set; }
 
 

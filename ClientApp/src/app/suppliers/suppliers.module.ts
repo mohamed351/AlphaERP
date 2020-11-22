@@ -13,10 +13,11 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material';
+import { SupplierDetailsComponent } from './supplier-details/supplier-details.component';
 
 
 @NgModule({
-  declarations: [ListSuppliersComponent, CreateSupplierComponent, EditSupplierComponent],
+  declarations: [ListSuppliersComponent, CreateSupplierComponent, EditSupplierComponent, SupplierDetailsComponent],
   imports: [
     CommonModule,
     SuppliersRoutingModule,

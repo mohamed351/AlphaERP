@@ -7,17 +7,18 @@ import {CustomersRoutingModule} from './customers-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import {AlphaDataTableModule} from '../components/alpha-data-table/alpha-data-table.module';
 import {MatButtonModule} from '@angular/material/button';
-import {ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule , FormsModule} from '@angular/forms';
 import {MatCardModule} from "@angular/material/card";
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material';
+import { DetailsCustomerComponent } from './details-customer/details-customer.component';
 
 @NgModule({
   declarations: [ListCustomersComponent, 
     CreateCustomerComponent, 
-    EditCustomerComponent ,
+    EditCustomerComponent, DetailsCustomerComponent ,
   
    ],
   imports: [
@@ -31,8 +32,8 @@ import { MatProgressSpinnerModule } from '@angular/material';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatProgressSpinnerModule
-  
+    MatProgressSpinnerModule,
+    FormsModule
   ],
   providers:[
    

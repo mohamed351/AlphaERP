@@ -16,6 +16,7 @@ export class ListCustomersComponent implements OnInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatTable, {static: false}) table: MatTable<Customer>;
   */
+    
     columnNames:ColumnType[] = [
     {columnName:"customerName",columnType: TypeOfColumn.None}, 
     {columnName:"id",columnType: TypeOfColumn.Buttons}]

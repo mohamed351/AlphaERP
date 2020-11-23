@@ -15,6 +15,9 @@ export class RestService{
   PostData<T>(endPoint:string,data:T){
     return this.httpClient.post<T>(endPoint,data);
   }
+  GetAll<T>(endPoint:string){
+    return this.httpClient.get<T>(`${endPoint}`);
+  }
   GetByID<T>(endPoint:string,id:any){
     return this.httpClient.get<T>(`${endPoint}/${id}`);
   }

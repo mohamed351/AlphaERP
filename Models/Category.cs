@@ -14,7 +14,7 @@ namespace RealApplication.Models
         public string CategoryID { get; set; }
 
         [ForeignKey(nameof(CategoryID))]
-        public Category ChildCategory {get;set;}
+        public ICollection<Category> ChildCategory {get;set;}
         public ICollection<Product> Products { get; set; }
 
 

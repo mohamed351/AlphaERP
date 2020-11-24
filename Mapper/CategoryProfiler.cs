@@ -12,6 +12,8 @@ namespace RealApplication.Mapper
             .ForMember(a=>a.CategoryID, async=>async.MapFrom(async=>async.CategoryID))
             .ForMember(a=>a.ID , async=>async.MapFrom(async=>async.ID))
             .ForMember(a=>a.Name , async=>async.MapFrom(async=>async.Name));
+            
+            
 
             this.CreateMap<CategoryInfoDTO,Category>()
             .ForMember(async=>async.CategoryID, async=>async.MapFrom(async=>async.CategoryID))

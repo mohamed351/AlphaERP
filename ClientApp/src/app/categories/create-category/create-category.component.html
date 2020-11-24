@@ -9,7 +9,7 @@
         <h4>Category</h4>
         <div>
            
-            <form [formGroup]="form">
+            <form [formGroup]="form" (submit)="SubmitMainForm()">
 
         <mat-form-field class="full-width-control">
             <mat-label>CateogryName</mat-label>
@@ -22,9 +22,9 @@
           <ng-container *ngIf="CateogryData.categoryID != null">
           <mat-form-field class="full-width-control">
             <mat-label>Sub Category</mat-label>
-              <mat-select>
-               
-              </mat-select>
+            <mat-select formControlName="categoryID">
+              <mat-option  *ngFor="let item of CategoryList" [value]="item.id">{{item.name}} </mat-option >
+            </mat-select>
           </mat-form-field>
         </ng-container>
 

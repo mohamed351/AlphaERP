@@ -16,20 +16,18 @@ interface ExampleFlatNode {
 export class ListCategoriesComponent implements OnInit {
 
   SelectedCategoryID:string = null;
-  CategoryList:Category[] = null;
+  public CategoryList:Category[] = [];
   SelectCategory(categoryID:any){
     this.SelectedCategoryID = categoryID.id;
   }
   RefreshTree(data){
     this.serviceAPI.GetAll<Category[]>("/api/Categories").subscribe(a=>{
-    
+     
       this.dataSource.data = a;
-      this.CategoryList = a;
-      
-      
       
     });
   }
+
 
   private _transformer = (node: Category, level: number) => {
     return {
@@ -55,8 +53,10 @@ export class ListCategoriesComponent implements OnInit {
 
   ngOnInit() {
     this.serviceAPI.GetAll<Category[]>("/api/Categories").subscribe(a=>{
+    
       this.dataSource.data = a;
       this.CategoryList = a;
+      console.log(this.CategoryList);
     });
 
   }

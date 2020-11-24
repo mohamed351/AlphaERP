@@ -13,6 +13,7 @@ export class CreateCategoryComponent implements OnInit {
   public CateogryData:Category = null;
    @Output("onDataAdded") onDataAdded:EventEmitter<any> = new EventEmitter();
   @Input("CatrogyID") categoryID:string  = null;
+  public CategoryList:Category[]= [];
   form = new FormGroup({
     id:new FormControl('',[Validators.required]),
     name:new FormControl('',[Validators.required]),
@@ -34,7 +35,7 @@ export class CreateCategoryComponent implements OnInit {
    
   }
   ngOnChanges(){
- 
+    
     if(this.categoryID != null){
      console.log(this.categoryID);
       this.restaAPI.GetByID<Category>("/api/Categories", this.categoryID).subscribe(a=>{
@@ -42,12 +43,25 @@ export class CreateCategoryComponent implements OnInit {
         console.log(a);
         this.MapObjectToControls();
       });
+
+      this.restaAPI.GetAll<Category[]>("/api/Categories/flat").subscribe(a=>{
+          this.CategoryList =a;
+      });
     }
   }
 
   SubmitSubForm(){
     this.restaAPI.PostData<Category>("/api/Categories",this.subForm.value).subscribe(a=>{
        this.onDataAdded.emit(a);
+      this.categoryID = null;
+      this.CateogryData = null;
+      this.form.reset();
+      this.subForm.reset();
+    });
+  }
+  SubmitMainForm(){
+    this.restaAPI.PutData<Category>("/api/Categories",this.categoryID,this.form.value).subscribe(a=>{
+      this.onDataAdded.emit(a);
       this.categoryID = null;
       this.CateogryData = null;
       this.form.reset();

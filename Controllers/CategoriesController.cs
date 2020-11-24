@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using RealApplication.DTO.CategoriesDTOS;
 using RealApplication.Models;
 using RealApplication.Repository.UnitOfWork;
+using System.Collections.Generic;
 
 namespace RealApplication.Controllers
 {
@@ -23,6 +24,10 @@ namespace RealApplication.Controllers
 
                
             return Ok(this.unitOfWork.Categories.GetCategories());
+        }
+        [HttpGet(template:"/api/[controller]/flat")]
+        public IActionResult GetFlatCategories(){
+            return Ok(this.mapper.Map<IEnumerable<CategoryInfoDTO>>(unitOfWork.Categories.GetAll()));
         }
         [HttpGet(template:"{ID}")]
         public IActionResult GetByID(string ID){
@@ -54,7 +59,9 @@ namespace RealApplication.Controllers
                 return BadRequest("The Request is not valid");
             }
            var category =  this.mapper.Map<Category>(infoDTO);
+           category.ID = ID;
            unitOfWork.Categories.Edit(category);
+           unitOfWork.Complete();
            return Ok(category);
         }
         [HttpDelete(template:"{ID}")]

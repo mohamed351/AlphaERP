@@ -8,6 +8,8 @@ namespace RealApplication.Repository.UnitOfWork
         public ISupplierRepository Suppliers { get; }
         public ICustomerRepository Customers { get; }
         public ICategoryRepository Categories { get; }
+
+        public IProductRepository Products {get;}
         int Complete();
     }
 }

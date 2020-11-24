@@ -14,13 +14,13 @@ namespace RealApplication.Repository.UnitOfWork
             this.Suppliers = new SupplierRepository(context);
             this.Customers = new CustomerRepository(context);
             this.Categories = new CategoryRepository(context);
-           
+            this.Products = new ProductRepository(context);
         }
         public ISupplierRepository Suppliers { get; }
         public ICustomerRepository Customers { get; }
         public ICategoryRepository Categories { get; }
 
-
+        public IProductRepository Products {get;}
 
         public int Complete()
         {

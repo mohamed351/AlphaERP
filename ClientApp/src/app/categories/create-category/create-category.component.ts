@@ -45,7 +45,14 @@ export class CreateCategoryComponent implements OnInit {
       });
 
       this.restaAPI.GetAll<Category[]>("/api/Categories/flat").subscribe(a=>{
-          this.CategoryList =a;
+          this.CategoryList =  a.filter(item=>{
+            if(item.id != this.categoryID){
+              return item;
+            }
+         });
+        
+          
+          
       });
     }
   }

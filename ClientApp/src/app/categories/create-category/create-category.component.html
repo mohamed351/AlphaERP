@@ -1,1 +1,72 @@
-<p>create-category works!</p>
+<mat-card>
+
+    <div [ngClass]="{'d-flex':categoryID == null || CateogryData == null}" class="justify-content-center align-items-center">
+    <p *ngIf="categoryID == null">Please Select Category </p>
+    <mat-spinner *ngIf="categoryID != null && this.CateogryData== null"></mat-spinner>
+
+
+    <ng-container *ngIf="CateogryData != null">
+        <h4>Category</h4>
+        <div>
+           
+            <form [formGroup]="form">
+
+        <mat-form-field class="full-width-control">
+            <mat-label>CateogryName</mat-label>
+            <input matInput formControlName="name" placeholder="Placeholder" >
+            <mat-error *ngIf="getMainFormName.invalid && getMainFormName.touched">
+              <mat-error *ngIf="getMainFormName.errors.required">The Name is Required </mat-error>
+            </mat-error>
+           
+          </mat-form-field>
+          <ng-container *ngIf="CateogryData.categoryID != null">
+          <mat-form-field class="full-width-control">
+            <mat-label>Sub Category</mat-label>
+              <mat-select>
+               
+              </mat-select>
+          </mat-form-field>
+        </ng-container>
+
+          <div *ngIf="this.CateogryData.categoryID != null">
+            <button [disabled]="form.invalid" mat-raised-button color="primary">Save</button>
+
+          </div>
+          <div class="mt-2">
+          <mat-accordion >
+            <mat-expansion-panel (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                   Add Child
+                 
+                </mat-panel-title>
+               
+              </mat-expansion-panel-header>
+              <form [formGroup]="subForm" (submit)="SubmitSubForm()">
+              <mat-form-field class="full-width-control">
+                <mat-label>CateogryName</mat-label>
+                <input matInput formControlName="name" placeholder="Placeholder" >
+                <mat-error *ngIf="getMainFormName.invalid && getMainFormName.touched">
+                  <mat-error *ngIf="getMainFormName.errors.required">The Name is Required </mat-error>
+                </mat-error>
+               
+              </mat-form-field>
+              <button [disabled]="subForm.invalid" mat-raised-button color="primary" >Add </button>
+            </form>
+            </mat-expansion-panel>
+           
+          </mat-accordion>
+
+        </div>
+        </form>
+        </div>
+    </ng-container>
+    </div>
+
+    
+
+   
+    
+
+</mat-card>

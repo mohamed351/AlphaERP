@@ -15,25 +15,28 @@ interface ExampleFlatNode {
 })
 export class ListCategoriesComponent implements OnInit {
 
-   testing:Category[] =[
-    {
-    id:"1",
-    name:"Mobile",
-    childern:[{id:"2",name:"angular",childern:[]}] 
-    },
-    {
-      id:"2",
-      name:"screens",
-      childern:[{id:"3", name:"mm",childern:[]}]
-
-    }
-  ]
+  SelectedCategoryID:string = null;
+  CategoryList:Category[] = null;
+  SelectCategory(categoryID:any){
+    this.SelectedCategoryID = categoryID.id;
+  }
+  RefreshTree(data){
+    this.serviceAPI.GetAll<Category[]>("/api/Categories").subscribe(a=>{
+    
+      this.dataSource.data = a;
+      this.CategoryList = a;
+      
+      
+      
+    });
+  }
 
   private _transformer = (node: Category, level: number) => {
     return {
       expandable: !!node.childern && node.childern.length > 0,
       name: node.name,
       level: level,
+      id:node.id
     };
   }
 
@@ -53,6 +56,7 @@ export class ListCategoriesComponent implements OnInit {
   ngOnInit() {
     this.serviceAPI.GetAll<Category[]>("/api/Categories").subscribe(a=>{
       this.dataSource.data = a;
+      this.CategoryList = a;
     });
 
   }

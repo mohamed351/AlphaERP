@@ -1,9 +1,15 @@
 .active{
-    background-color: #eee
+    background-color: #bbb
 }
 .mat-list-base {
  padding-top: 0;
 }
 mat-icon{
     margin-right: 2px;
+}
+.nav-bar-color{
+    color:#7b6f9c;
+}
+.mat-accordion a{
+   color:#6c50b9;
 }

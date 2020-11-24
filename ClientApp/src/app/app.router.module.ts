@@ -10,7 +10,8 @@ const routes:Routes =[
     {path:"suppliers",
     loadChildren:()=>import("./suppliers/suppliers.module").then(m=>m.SuppliersModule)},
     {path:"categories",
-    loadChildren:()=>import("./categories/categories.module").then(m=>m.CategoriesModule)}
+    loadChildren:()=>import("./categories/categories.module").then(m=>m.CategoriesModule)},
+    {path:"products", loadChildren:()=>import("./products/products.module").then(m=>m.ProductsModule)}
 ]
 @NgModule({
     imports:[RouterModule.forRoot(routes)],

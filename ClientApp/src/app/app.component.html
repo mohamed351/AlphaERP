@@ -12,11 +12,11 @@
         </mat-toolbar>
         <mat-nav-list>
           <mat-accordion>
-            <a mat-list-item routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"routerLink="/"> <mat-icon class="nav-bar-color">home</mat-icon> Home</a>
-            <a mat-list-item routerLinkActive="active"  routerLink="/customers"> <mat-icon class="nav-bar-color"> people</mat-icon> Customers</a>
-            <a mat-list-item routerLinkActive="active" routerLink="/suppliers"><mat-icon class="nav-bar-color">person_pin_circle</mat-icon> Suppliers</a>
-            <a mat-list-item routerLinkActive="active" routerLink="/categories"><mat-icon class="nav-bar-color">category</mat-icon> Products Cateogry</a>
-            <a mat-list-item routerLinkActive="active" routerLink="/products"><mat-icon class="nav-bar-color">qr_code</mat-icon> Products</a>
+            <a mat-list-item routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"routerLink="/"> <mat-icon class="nav-bar-color">home</mat-icon> {{'home'|translate}}</a>
+            <a mat-list-item routerLinkActive="active"  routerLink="/customers"> <mat-icon class="nav-bar-color"> people</mat-icon> {{'customers'|translate}}</a>
+            <a mat-list-item routerLinkActive="active" routerLink="/suppliers"><mat-icon class="nav-bar-color">person_pin_circle</mat-icon> {{'suppliers'|translate}}</a>
+            <a mat-list-item routerLinkActive="active" routerLink="/categories"><mat-icon class="nav-bar-color">category</mat-icon> {{'productCategory'|translate}}</a>
+            <a mat-list-item routerLinkActive="active" routerLink="/products"><mat-icon class="nav-bar-color">qr_code</mat-icon> {{'product'|translate}}</a>
             </mat-accordion>  
     
        
@@ -34,7 +34,22 @@
           </button>
          <div class="flex-end">
            
-         
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item [mat-menu-trigger-for]="lang">
+              <mat-icon>dialpad</mat-icon>
+              <span>Language</span>
+            </button>
+               <mat-menu #lang="matMenu">
+                <button mat-menu-item [ngClass]="{'active-lang':GetLanguage() == 'en'}" (click)="SetLanguageToEnglish()">English</button>
+                <button mat-menu-item [ngClass]="{'active-lang':GetLanguage() == 'ar'}" (click)="SetLanguageToArabic()">Arabic</button>
+               </mat-menu>
+
+           
+            
+          </mat-menu>
          </div>
         </mat-toolbar>
         <div class="padding-10">

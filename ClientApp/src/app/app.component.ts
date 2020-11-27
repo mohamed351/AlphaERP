@@ -1,5 +1,6 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
@@ -19,9 +20,23 @@ export class AppComponent {
     shareReplay()
   );
 
-  constructor(private breakpointObserver: BreakpointObserver){
-
+  constructor(private breakpointObserver: BreakpointObserver, private translation:TranslateService){
+    this.translation.setDefaultLang("en");
+    this.translation.use(localStorage.getItem("lang")|| "en");
   }
+
+  SetLanguageToArabic(){
+    localStorage.setItem("lang","ar");
+    window.location.reload();
+  }
+  SetLanguageToEnglish(){
+    localStorage.setItem("lang","en");
+    window.location.reload();
+  }
+ public GetLanguage(){
+    return localStorage.getItem("lang") || "en";
+  }
+
   LogOut(){
 
   }

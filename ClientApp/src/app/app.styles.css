@@ -13,3 +13,13 @@ mat-icon{
 .mat-accordion a{
    color:#6c50b9;
 }
+.mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    width:100%;
+}
+.active-lang{
+    color:#fff;
+    background-color: #7b6f9c;
+
+}

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -10,7 +10,7 @@ import {AppRouter} from './app.router.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
 
-import { MatMenuModule } from '@angular/material/menu/typings/menu-module';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -22,7 +22,12 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator'
 import { ToastrModule } from 'ngx-toastr';
 import {ReusableDailogBoxComponent} from './components/alpha-data-table/reusable-dailog-box/reusable-dailog-box.component'
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +48,16 @@ import {ReusableDailogBoxComponent} from './components/alpha-data-table/reusable
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
-    ToastrModule.forRoot()
+    MatMenuModule,
+    ToastrModule.forRoot(),
+    TranslateModule.forRoot({
+       loader:{
+         provide:TranslateLoader,
+         useFactory:(createTranslateLoader),
+         deps:[HttpClient]
+       }
+    })
+
     
   ],
   providers: [],

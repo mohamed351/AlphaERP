@@ -25,8 +25,8 @@ namespace RealApplication.Controllers
             search = search == null ? "" : search.ToLower();
             var model = new DataTableDTO<ProductsDTO>()
             {
-                Data = mapper.Map<IEnumerable<ProductsDTO>>(unitOfWork.Customers.GetEntityDataTable(start, pageSize, async => async.CustomerName.ToLower().Contains(search) && async.IsDeleted == false, async => async.CustomerName)),
-                TotalCount = unitOfWork.Customers.GetCount(async => async.CustomerName.Contains(""))
+                Data = mapper.Map<IEnumerable<ProductsDTO>>(unitOfWork.Products.GetEntityDataTable(start, pageSize, async => async.ProductName.ToLower().Contains(search) && async.IsDeleted == false, async => async.ProductName)),
+                TotalCount = unitOfWork.Products.GetCount(a=>a.IsDeleted == false)
             };
             return Ok(model);
         }

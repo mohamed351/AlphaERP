@@ -22,7 +22,9 @@ export class AppComponent {
 
   constructor(private breakpointObserver: BreakpointObserver, private translation:TranslateService){
     this.translation.setDefaultLang("en");
-    this.translation.use(localStorage.getItem("lang")|| "en");
+    const language = localStorage.getItem("lang")|| "en";
+    this.translation.use(language);
+    document.documentElement.lang =language; 
   }
 
   SetLanguageToArabic(){

@@ -25,7 +25,15 @@
     "supplierPhone":"Supplier Phone",
     "supplierAddress":"Supplier Address",
     "supplierNameRequired":" The Supplier is Required",
-
+    "supplierDetails": "Supplier Details",
+    "cateogry":"Category",
+    "pleaseSelectCategory":"Please Select Category",
+    "categoryName":"Category Name",
+    "addChild":"Add Child",
+    "Add":"Add",
+    "subCateogry":"Sub Category",
+    "TheCategoryNameIsRequired":"The Category Name is Required",
+    "save":"Save",
     "submit":"Submit"
 
 }

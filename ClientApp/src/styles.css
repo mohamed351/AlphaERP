@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
-
 .padding-10{
   padding:15px;
 }
@@ -23,4 +22,26 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 *{
   outline: none;
+}
+a:hover{
+  text-decoration: none;
+}
+a:lang(ar) {
+
+  font-family: 'Cairo', sans-serif;
+}
+.mat-button-wrapper:lang(ar) {
+
+  font-family: 'Cairo', sans-serif;
+  font-weight: 600;
+
+}
+.mat-form-field-infix:lang(ar){
+  font-family: 'Cairo', sans-serif;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+:lang(ar) h1,h2,h3,h4,h5,h6 ,p,mat-panel-title{
+  font-family: 'Cairo', sans-serif;
+  font-weight: 600;
 }

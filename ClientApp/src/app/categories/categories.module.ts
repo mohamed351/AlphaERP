@@ -15,6 +15,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSelectModule} from '@angular/material/select';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [ListCategoriesComponent, CreateCategoryComponent, EditCategoryComponent],
   imports: [
@@ -29,7 +30,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatInputModule,
     MatFormFieldModule,
     MatExpansionModule,
-    MatSelectModule
+    MatSelectModule,
+    TranslateModule,
   ]
 })
 export class CategoriesModule { }

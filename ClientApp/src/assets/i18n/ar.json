@@ -24,6 +24,15 @@
     "supplierPhone":"تليفون المورد",
     "supplierAddress":"عنوان المورد",
     "supplierNameRequired":" اسم المورد مطلوب",
+    "supplierDetails":"تفاصيل بيانات العميل",
+    "cateogry":"الفئات",
+    "pleaseSelectCategory":" من فضلك قم بأختيار الفئة",
+    "TheCategoryNameIsRequired":"اسم الفئة مطلوب",
+    "categoryName":"اسم الفئة",
+    "addChild":"اضافة فئة",
+    "Add":"اضافة",
+    "subCateogry":"فئة منسدلة",
+    "save":"حفظ",
     "submit":"تنفيذ"
 
 }

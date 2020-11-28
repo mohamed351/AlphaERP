@@ -9,7 +9,7 @@ namespace RealApplication.Models
     {
         public Product()
         {
-            this.ProductBarCodes = new HashSet<ProductBarCode>();
+            
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,6 +21,14 @@ namespace RealApplication.Models
         [EnumDataType(typeof(TypeOfMeasurements))]
         public TypeOfMeasurements TypeOfMeasurement { get; set; }
 
+         public string BarCode { get; set; }
+
+         public string ImageURL { get; set; } ="default.png";
+        public bool IsValidInStorage { get; set; }
+
+        public bool IsValidInPointOfSales { get; set; }
+
+
         public bool IsDeleted { get; set; }
 
         [ForeignKey(nameof(Category))]
@@ -28,6 +36,6 @@ namespace RealApplication.Models
 
         public Category Category { get; set; }
 
-        public ICollection<ProductBarCode>  ProductBarCodes { get; set; }
+        
     }
 }

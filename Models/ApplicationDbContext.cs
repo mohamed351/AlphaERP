@@ -20,7 +20,7 @@ namespace RealApplication.Models
         public DbSet<CustomerPhone> Phones { get; set; }
         public DbSet<CustomerAddress> Addresses { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductBarCode> ProductBarCodes { get; set; }
+       
         public DbSet<Category> Categories { get; set; }
 
     }

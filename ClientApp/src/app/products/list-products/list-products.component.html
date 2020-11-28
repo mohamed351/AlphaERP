@@ -1,1 +1,3 @@
-<p>list-products works!</p>
+<a mat-raised-button color="primary" routerLink="create">Create New Product</a>
+<br>
+<alpha-dataTable [endPoint]="'/api/Products'" [columnsName]="columnNames"></alpha-dataTable>

@@ -13,6 +13,12 @@ namespace RealApplication.DTO.ProductDTOS
 
         public string CategoryID { get; set; }
 
+        public string BarCode { get; set; }
+
+        public bool IsValidInPointOfSales { get; set; }
+
+        public bool IsValidInStorage{get;set;}
+
         public TypeOfMeasurements TypeOfMeasurements { get; set; }
 
 

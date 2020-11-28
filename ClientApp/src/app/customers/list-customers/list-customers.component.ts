@@ -5,6 +5,7 @@ import {Customer} from '../../models/customers/customer';
 import { DataTable } from 'src/app/models/datatable';
 import {ColumnType, TypeOfColumn} from '../../components/alpha-data-table/reusable-data-table/columnType'
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-list-customers',
@@ -20,7 +21,10 @@ export class ListCustomersComponent implements OnInit {
     columnNames:ColumnType[] = [
     {columnName:"customerName",columnType: TypeOfColumn.None}, 
     {columnName:"id",columnType: TypeOfColumn.Buttons}]
-  constructor(private restAPI:RestService , private dataTable:DataTableService<Customer> , private toaster:ToastrService) { }
+  constructor(private restAPI:RestService , 
+    private dataTable:DataTableService<Customer> , 
+    private toaster:ToastrService,
+    private translation:TranslateService) { }
 
  
   ngOnInit() {

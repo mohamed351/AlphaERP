@@ -10,24 +10,24 @@
 
 <ng-template #data>
     <mat-card style="height: 90vh;">
-        <h2>Customer Details</h2>
+        <h2>{{'customerDetails'|translate}}</h2>
         <h3 class="text-primary ml-2">{{customer.customerName}}</h3>
       <mat-card *ngIf="customer.phone.length !=0">
-          <h4 class="text-primary">Phones</h4>
+          <h4 class="text-primary">{{'phones'|translate}}</h4>
           <ul class="list-group">
            <li class="list-group-item" *ngFor="let item of customer.phone"> {{item.phone}}</li>
         </ul>
       </mat-card>
 
       <div *ngIf="customer.phone.length == 0" class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Phones</strong> there is no Phones
+        <strong>{{'phones'|translate}}</strong> {{'thereIsNoPhones'|translate}}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
     
       <mat-card class="mt-5" *ngIf="customer.address.length !=0">
-          <h4 class="text-primary">Addresses</h4>
+          <h4 class="text-primary">{{'addresses'|translate}}</h4>
           <ul class="list-group">
           <li class="list-group-item" *ngFor="let item of customer.address"> {{item.address}} </li>
         </ul>
@@ -35,7 +35,7 @@
 
 
       <div *ngIf="customer.address.length == 0" class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Addresses</strong> there is no Addresses
+        <strong>{{'addresses'|translate}}</strong> {{'thereIsNoAddress'|translate}}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

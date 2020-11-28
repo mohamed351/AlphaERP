@@ -1,8 +1,31 @@
 {
+    "edit":"Edit",
+    "details":"Details",
+    "delete":"Delete",
+    "search":"Search",
     "customers":"Customers",
     "home":"Home",
     "suppliers":"Suppliers",
     "productCategory":"Product Category",
-    "product":"Product"
+    "product":"Product",
+    "createCustomer":"Create Customer",
+    "editCustomer":"Edit Customer",
+    "customerName":"Customer Name",
+    "customerPhone":"Customer Phone",
+    "customerAddress":"Customer Address",
+    "customerNameRequired":" The CustomerName is Required",
+    "customerDetails":"Customer Details",
+    "phones":"Phones",
+     "addresses":"Addresses",
+    "thereIsNoPhones":"There is no phone",
+    "thereIsNoAddress":"There is no Address",
+    "createSupplier":"Create Supplier",
+    "editSupllier":"Edit Supplier",
+    "supplierName":"Supplier Name",
+    "supplierPhone":"Supplier Phone",
+    "supplierAddress":"Supplier Address",
+    "supplierNameRequired":" The Supplier is Required",
+
+    "submit":"Submit"
 
 }

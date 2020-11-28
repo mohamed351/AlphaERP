@@ -14,6 +14,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material';
 import { SupplierDetailsComponent } from './supplier-details/supplier-details.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { SupplierDetailsComponent } from './supplier-details/supplier-details.co
     MatInputModule,
     MatIconModule,
     RouterModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    TranslateModule
   ],
   providers:[
     

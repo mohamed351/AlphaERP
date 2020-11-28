@@ -1,7 +1,29 @@
-{
+{  "edit":"تعديل",
+    "details":"تفاصيل",
+    "delete":"الغاء",
+    "search":"بحث",
     "customers":"العملاء",
     "home":"الرئيسية",
     "suppliers":"الموردون",
     "productCategory":"تصنيف المنتجات",
-    "product":"المنتجات"
+    "product":"المنتجات",
+    "createCustomer":"اضافة عميل جديد",
+    "editCustomer":"تعديل بيانات العميل",
+    "customerName":"اسم العميل",
+    "customerPhone":"تليفون العميل",
+    "customerAddress":"عنوان العميل",
+    "customerNameRequired":"اسم العميل مطلوب",
+    "customerDetails":"تفاصيل بيانات العميل",
+    "phones":"التليفونات",
+     "addresses":"العنوانين",
+    "thereIsNoPhones":"لا يوجد هواتف",
+    "thereIsNoAddress":"لا يوجد عناوين",
+    "createSupplier":"اضافة مورد جديد",
+    "editSupllier":"تعديل مورد",
+    "supplierName":"اسم المورد",
+    "supplierPhone":"تليفون المورد",
+    "supplierAddress":"عنوان المورد",
+    "supplierNameRequired":" اسم المورد مطلوب",
+    "submit":"تنفيذ"
+
 }

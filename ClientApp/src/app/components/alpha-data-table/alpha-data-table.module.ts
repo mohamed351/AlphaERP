@@ -12,6 +12,13 @@ import {MatIconModule} from '@angular/material/icon';
 import {FormsModule} from '@angular/forms';
 import {matDialogAnimations, MatDialogModule} from '@angular/material/dialog';
 import {ReusableDailogBoxComponent} from './reusable-dailog-box/reusable-dailog-box.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, '../assets/i18n', '.json');
+}
 @NgModule({
   declarations: [ReusableDataTableComponent, ReusableDailogBoxComponent],
   imports: [
@@ -26,6 +33,8 @@ import {ReusableDailogBoxComponent} from './reusable-dailog-box/reusable-dailog-
     MatIconModule,
     FormsModule,
     MatDialogModule,
+    HttpClientModule,
+    TranslateModule
     
   ],
   exports:[

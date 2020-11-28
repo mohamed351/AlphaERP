@@ -8,6 +8,7 @@ import { RestService } from 'src/app/services/rest-service.service';
 import {TypeOfColumn,ColumnType} from './columnType';
 import {delay} from 'rxjs/operators'; 
 import {ReusableDailogBoxComponent,DialogData} from '../reusable-dailog-box/reusable-dailog-box.component'
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'alpha-dataTable',
@@ -27,8 +28,9 @@ export class ReusableDataTableComponent implements OnInit , AfterViewInit  {
   
   constructor(public restAPI:RestService ,
      public dataTable:DataTableService<Customer> 
-     , public dailog:MatDialog) { 
-    
+     , public dailog:MatDialog,
+     public translate: TranslateService) { 
+  
     
   }
   get ColumnType(){

@@ -1,12 +1,12 @@
 <mat-card>
-    <h3 class="display-5">Create Customer</h3>
+    <h3 class="display-5">{{"createCustomer"|translate}}</h3>
 <form [formGroup]="forms" (submit)="OnSubmitForm()">
     <div class="full-width">
         <mat-form-field class="full-width">
-          <mat-label>CustomerName</mat-label>
-          <input matInput placeholder="CustomerName" formControlName="customerName" >
+          <mat-label>{{"customerName"|translate}}</mat-label>
+          <input matInput placeholder="{{'customerName'|translate}}" formControlName="customerName" >
           <mat-error *ngIf="CustomerName.invalid">
-              <mat-error *ngIf="CustomerName.errors.required"> The CustomerName is Required</mat-error>
+              <mat-error *ngIf="CustomerName.errors.required">{{'customerNameRequired'|translate}}</mat-error>
             </mat-error>
         </mat-form-field>
       </div>
@@ -14,7 +14,7 @@
 
       <div class="full-width">
         <mat-form-field class="button-text">
-          <mat-label>Customer Phone</mat-label>
+          <mat-label>{{'customerPhone'|translate}}</mat-label>
           <input matInput placeholder="CustomerPhone" #CustomerPhone  required minlength="10" maxlength="16" >
         </mat-form-field>
         <button type="button" (click)="AddPhone(CustomerPhone)" mat-mini-fab color="primary" aria-label="Example icon button with a filter list icon">
@@ -33,7 +33,7 @@
 
       <div class="full-width">
         <mat-form-field class="button-text">
-          <mat-label>Customer Address</mat-label>
+          <mat-label>{{'customerAddress'|translate}}</mat-label>
           <input matInput placeholder="Customer Address" #CustomerAddress  required >
        
         </mat-form-field>
@@ -52,7 +52,7 @@
 
       
 
-   <button mat-flat-button color="primary"  [disabled]="!forms.valid" class="mt-2">Submit</button>
+   <button mat-flat-button color="primary"  [disabled]="!forms.valid" class="mt-2">{{'submit'|translate}}</button>
 </form>
 
 

@@ -1,12 +1,12 @@
 <mat-card>
-    <h3 class="display-5">Create Supplier</h3>
+    <h3 class="display-5">{{'createSupplier'|translate}}</h3>
 <form [formGroup]="forms" (submit)="OnSubmitForm()">
     <div class="full-width">
         <mat-form-field class="full-width">
-          <mat-label>SupplierName</mat-label>
-          <input matInput placeholder="SupplierName" formControlName="supplierName" >
+          <mat-label>{{'supplierName'|translate}}</mat-label>
+          <input matInput placeholder="{{'supplierName'|translate}}" formControlName="supplierName" >
           <mat-error *ngIf="supplierName.invalid">
-              <mat-error *ngIf="supplierName.errors.required"> The SupplierName is Required</mat-error>
+              <mat-error *ngIf="supplierName.errors.required"> {{'supplierNameRequired'|translate}}</mat-error>
             </mat-error>
         </mat-form-field>
       </div>
@@ -14,8 +14,8 @@
 
       <div class="full-width">
         <mat-form-field class="button-text">
-          <mat-label>Supplier Phone</mat-label>
-          <input matInput placeholder="SupplierPhone" #supplierPhone  required minlength="10" maxlength="16" >
+          <mat-label>{{'supplierPhone'|translate}}</mat-label>
+          <input matInput placeholder="{{'supplierPhone'|translate}}" #supplierPhone  required minlength="10" maxlength="16" >
         </mat-form-field>
         <button type="button" (click)="AddPhone(supplierPhone)" mat-mini-fab color="primary" aria-label="Example icon button with a filter list icon">
             <mat-icon>add_to_photos</mat-icon>
@@ -33,8 +33,8 @@
 
       <div class="full-width">
         <mat-form-field class="button-text">
-          <mat-label>Supplier Address</mat-label>
-          <input matInput placeholder="Supplier Address" #supplierAddress  required >
+          <mat-label>{{'supplierAddress'|translate}}</mat-label>
+          <input matInput placeholder="{{'supplierAddress'|translate}} Address" #supplierAddress  required >
        
         </mat-form-field>
         <button type="button" (click)="AddAddress(supplierAddress)" mat-mini-fab color="primary" aria-label="Example icon button with a filter list icon">
@@ -52,7 +52,7 @@
 
       
 
-   <button mat-flat-button color="primary"  [disabled]="!forms.valid" class="mt-2">Submit</button>
+   <button mat-flat-button color="primary"  [disabled]="!forms.valid" class="mt-2">{{'submit'|translate}}</button>
 </form>
 
 

@@ -12,7 +12,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
-
+import {NgxBarcodeModule} from 'ngx-barcode'
 @NgModule({
   declarations: [ListProductsComponent, CreateProductComponent, EditProductComponent],
   imports: [
@@ -25,7 +25,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxBarcodeModule
   ]
 })
 export class ProductsModule { }

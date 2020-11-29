@@ -1,5 +1,61 @@
 <mat-card>
     <h4>Create Product</h4>
 
+    <mat-form-field class="full-width">
+        <mat-label>Product Name</mat-label>
+        <input matInput placeholder="Product Name" class="full-width" required>
+        <mat-error></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Selling Price</mat-label>
+        <input matInput placeholder="Selling Price" type="number" class="full-width" required>
+        <mat-error></mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field class="full-width">
+        <mat-label>Purchasing Price</mat-label>
+        <input matInput placeholder="Selling Price" type="number" class="full-width" required>
+        <mat-error></mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field class="full-width">
+        <mat-label>Category</mat-label>
+        <mat-select>
+         <mat-option *ngFor="let item of categoryInfo" [value]="item.id"> {{item.name}}</mat-option>
+        </mat-select>
+        
+      </mat-form-field>
+
+
+      <mat-form-field class="full-width">
+        <mat-label>Measurement Type</mat-label>
+        <mat-select>
+         <mat-option [value]=0> Per Unit </mat-option>
+         <mat-option [value]=1> Gram </mat-option>
+        </mat-select>
+        
+      </mat-form-field>
+
+
+      <mat-form-field class="full-width">
+        <mat-label>Bar Code</mat-label>
+        <input matInput placeholder="Bar Code" #barcode class="full-width" required>
+        <mat-error></mat-error>
+      </mat-form-field>
+      <div>
+        <ngx-barcode [bc-value]="barcode.value" [bc-display-value]="true"></ngx-barcode>
+
+      </div>
+
+      <mat-checkbox class="example-margin" [color]="'primary'">
+      Is Valid In Point Of Sales
+</mat-checkbox>
+ <br/>
+<mat-checkbox [color]="'primary'" class="example-margin">
+  Is Valid In Storage
+</mat-checkbox>
 
 </mat-card>

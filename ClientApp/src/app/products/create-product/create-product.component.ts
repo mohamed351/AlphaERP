@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from 'src/app/models/categories/category';
+import { RestService } from 'src/app/services/rest-service.service';
 
 @Component({
   selector: 'app-create-product',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-product.component.css']
 })
 export class CreateProductComponent implements OnInit {
-
-  constructor() { }
+  public categoryInfo:Category[] =[];
+  constructor(private restAPI:RestService) { }
 
   ngOnInit() {
+  this.restAPI.GetAll<Category[]>("/api/Categories/flat").subscribe(a=>{
+    this.categoryInfo = a;
+  });
   }
 
 }

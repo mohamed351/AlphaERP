@@ -2,6 +2,7 @@ using RealApplication.Repository.interfaces;
 using RealApplication.Repository.Implementation;
 using RealApplication.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace RealApplication.Repository.Implementation
 {
@@ -14,6 +15,9 @@ namespace RealApplication.Repository.Implementation
 
         }
 
-        
+        public async Task<int> GetProductNumber()
+        {
+            return await this.dbContext.Set<Product>().MaxAsync(a=>a.ProductNumber)+1;
+        }
     }
 }

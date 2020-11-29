@@ -23,7 +23,10 @@ namespace RealApplication.Models
 
          public string BarCode { get; set; }
 
-         public string ImageURL { get; set; } ="default.png";
+    
+         public string ImageURL { get; set; } 
+
+         public int ProductNumber { get; set; }
         public bool IsValidInStorage { get; set; }
 
         public bool IsValidInPointOfSales { get; set; }

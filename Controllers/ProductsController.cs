@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using RealApplication.DTO;
 using RealApplication.DTO.ProductDTOS;
+using RealApplication.Models;
 using RealApplication.Repository.UnitOfWork;
 
 namespace RealApplication.Controllers
@@ -30,5 +32,23 @@ namespace RealApplication.Controllers
             };
             return Ok(model);
         }
+        [HttpGet(template:"/api/[controller]/number")]
+        public async  Task<IActionResult> GetProductNumber(){
+            return Ok(await this.unitOfWork.Products.GetProductNumber());   
+        }
+        [HttpPost]
+        public async Task<IActionResult> Post(ProductsDTO productsDTO){
+        if(!ModelState.IsValid)
+        return BadRequest("The Product is not valid");
+
+          var product = this.mapper.Map<Product>(productsDTO);
+          product.ProductNumber = await this.unitOfWork.Products.GetProductNumber();
+          return Ok(this.mapper.Map<ProductsDTO>(product));
+        }
+
+
+      
+    
+
     }
 }

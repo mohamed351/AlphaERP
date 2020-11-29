@@ -15,6 +15,8 @@ namespace RealApplication.DTO.ProductDTOS
 
         public string BarCode { get; set; }
 
+        public string ProductImage { get; set; }
+
         public bool IsValidInPointOfSales { get; set; }
 
         public bool IsValidInStorage{get;set;}

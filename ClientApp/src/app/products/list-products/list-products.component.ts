@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ColumnType, TypeOfColumn } from 'src/app/components/alpha-data-table/reusable-data-table/columnType';
+import { RestService } from 'src/app/services/rest-service.service';
 
 @Component({
   selector: 'app-list-products',
@@ -12,9 +13,13 @@ export class ListProductsComponent implements OnInit {
     {columnName:"sellingPrice",columnType: TypeOfColumn.None} ,
     {columnName:"purchasingPrice",columnType: TypeOfColumn.None},
     {columnName:"id",columnType: TypeOfColumn.Buttons}]
-  constructor() { }
+   colum:string[] = [];
 
-  ngOnInit() {
+  constructor(private restAPI:RestService) { }
+  ngOnInit(): void {
+   
   }
 
-}
+
+  }
+

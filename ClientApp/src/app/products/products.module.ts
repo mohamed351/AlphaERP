@@ -10,9 +10,10 @@ import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {NgxBarcodeModule} from 'ngx-barcode'
+import { ImageCropperModule } from 'ngx-image-cropper';
 @NgModule({
   declarations: [ListProductsComponent, CreateProductComponent, EditProductComponent],
   imports: [
@@ -26,7 +27,9 @@ import {NgxBarcodeModule} from 'ngx-barcode'
     MatFormFieldModule,
     ReactiveFormsModule,
     MatSelectModule,
-    NgxBarcodeModule
+    NgxBarcodeModule,
+    ImageCropperModule,
+    FormsModule
   ]
 })
 export class ProductsModule { }

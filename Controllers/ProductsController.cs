@@ -6,6 +6,7 @@ using RealApplication.DTO;
 using RealApplication.DTO.ProductDTOS;
 using RealApplication.Models;
 using RealApplication.Repository.UnitOfWork;
+using System.Reflection;
 
 namespace RealApplication.Controllers
 {
@@ -36,6 +37,8 @@ namespace RealApplication.Controllers
         public async  Task<IActionResult> GetProductNumber(){
             return Ok(await this.unitOfWork.Products.GetProductNumber());   
         }
+        [HttpGet(template:"/api/[controller]/Properties")]
+       
         [HttpPost]
         public async Task<IActionResult> Post(ProductsDTO productsDTO){
         if(!ModelState.IsValid)
@@ -46,8 +49,13 @@ namespace RealApplication.Controllers
           return Ok(this.mapper.Map<ProductsDTO>(product));
         }
 
-
-      
+        /*
+        private string  proccessImage(string imagebase64){
+          if(imagebase64 == null)
+           return HttpContext.Request
+            return imagebase64;
+        }
+        */
     
 
     }

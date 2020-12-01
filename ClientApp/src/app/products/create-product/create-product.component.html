@@ -1,29 +1,38 @@
 <mat-card>
     <h4>Create Product</h4>
 
+<form [formGroup]="form" >
+    <mat-form-field class="full-width">
+      <mat-label>Product Number</mat-label>
+      <input #productNumber  matInput placeholder="Product Number"  readonly class="full-width">
+      <mat-error></mat-error>
+    </mat-form-field>
+
+
+
     <mat-form-field class="full-width">
         <mat-label>Product Name</mat-label>
-        <input matInput placeholder="Product Name" class="full-width" required>
+        <input matInput formControlName="productName" placeholder="Product Name" class="full-width" required>
         <mat-error></mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
         <mat-label>Selling Price</mat-label>
-        <input matInput placeholder="Selling Price" type="number" class="full-width" required>
+        <input matInput formControlName="sellingPrice" placeholder="Selling Price" type="number" class="full-width" required>
         <mat-error></mat-error>
       </mat-form-field>
 
 
       <mat-form-field class="full-width">
         <mat-label>Purchasing Price</mat-label>
-        <input matInput placeholder="Selling Price" type="number" class="full-width" required>
+        <input matInput formControlName="purchasingPrice" placeholder="Selling Price" type="number" class="full-width" required>
         <mat-error></mat-error>
       </mat-form-field>
 
 
       <mat-form-field class="full-width">
         <mat-label>Category</mat-label>
-        <mat-select>
+        <mat-select formControlName="categoryID">
          <mat-option *ngFor="let item of categoryInfo" [value]="item.id"> {{item.name}}</mat-option>
         </mat-select>
         
@@ -32,7 +41,7 @@
 
       <mat-form-field class="full-width">
         <mat-label>Measurement Type</mat-label>
-        <mat-select>
+        <mat-select formControlName="typeOfMeasurements">
          <mat-option [value]=0> Per Unit </mat-option>
          <mat-option [value]=1> Gram </mat-option>
         </mat-select>
@@ -42,7 +51,7 @@
 
       <mat-form-field class="full-width">
         <mat-label>Bar Code</mat-label>
-        <input matInput placeholder="Bar Code" #barcode class="full-width" required>
+        <input matInput formControlName="barCode" placeholder="Bar Code" #barcode class="full-width" required>
         <mat-error></mat-error>
       </mat-form-field>
       <div>
@@ -50,12 +59,43 @@
 
       </div>
 
-      <mat-checkbox class="example-margin" [color]="'primary'">
+      <div>
+      <mat-checkbox formControlName="isValidInPointOfSales" class="example-margin" [color]="'primary'">
       Is Valid In Point Of Sales
 </mat-checkbox>
  <br/>
-<mat-checkbox [color]="'primary'" class="example-margin">
+<mat-checkbox formControlName="isValidInStorage" [color]="'primary'" class="example-margin">
   Is Valid In Storage
 </mat-checkbox>
-
+</div>
+<div>
+  <input #input type="file" (change)="fileChangeEvent($event)" />
+ 
+  <ng-container *ngIf="imageBase64 != null">
+    <br/>
+    <br/>
+    <img width="150" height="150" [src]="imageBase64"/>
+  </ng-container>
+</div>
+<div class="mt-5 d-flex justify-content-end">
+<button mat-raised-button color="primary" >Submit</button>
+</div>
+</form>
 </mat-card>
+
+
+<div [ngStyle]="{'display': !IsCropperDivShown ? 'none':'block'}" class="client-container">
+  <div class="flex-container">
+    <button type="button" mat-flat-button color="warn" (click)="handleCancelButton(input)">Cancel</button>
+    <button type="button" mat-flat-button color="primary" (click)="handelOkButton()">Ok</button>
+</div>
+<image-cropper
+  [imageChangedEvent]="imageChangedEvent"
+  [maintainAspectRatio]="true"
+   [resizeToWidth]="500"
+   [resizeToHeight]="500"
+   [aspectRatio]="4/4"
+  format="png"
+  (imageCropped)="imageCropped($event)"
+></image-cropper>
+</div>

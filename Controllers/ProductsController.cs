@@ -37,7 +37,23 @@ namespace RealApplication.Controllers
         public async  Task<IActionResult> GetProductNumber(){
             return Ok(await this.unitOfWork.Products.GetProductNumber());   
         }
-        [HttpGet(template:"/api/[controller]/Properties")]
+
+        [HttpGet(template:"{ID}")]
+        public IActionResult GetProductByID(string ID)
+        {
+            if(ID == null){
+                return BadRequest("The Product ID is not valid");
+            }
+
+           var product =  this.unitOfWork.Products.GetByID(ID);
+           if(product == null){
+               return NotFound("The Product is not Found");
+           }
+          var productDTO = this.mapper.Map<ProductsDTO>(product);
+           return Ok(productDTO);
+
+        }
+      
        
         [HttpPost]
         public async Task<IActionResult> Post(ProductsDTO productsDTO){
@@ -50,6 +66,8 @@ namespace RealApplication.Controllers
           this.unitOfWork.Complete();
           return Ok(this.mapper.Map<ProductsDTO>(product));
         }
+
+
 
         /*
         private string  proccessImage(string imagebase64){

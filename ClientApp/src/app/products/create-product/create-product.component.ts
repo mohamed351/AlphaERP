@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ImageCroppedEvent } from 'ngx-image-cropper/lib/interfaces/image-cropped-event.interface';
 import { Category } from 'src/app/models/categories/category';
 import { RestService } from 'src/app/services/rest-service.service';
@@ -15,7 +16,7 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
   imageChangedEvent: any = '';
     croppedImage: any = '';
     IsCropperDivShown:boolean =false;
-    imageBase64:string;
+    imageBase64:string = null;
     barcodeValue:string ="";
     form:FormGroup = new FormGroup({
       productName:new FormControl('',Validators.required),
@@ -26,13 +27,37 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
       isValidInPointOfSales:new FormControl(false,Validators.required),
       isValidInStorage:new FormControl(false,Validators.required),
       typeOfMeasurements:new FormControl('',Validators.required),
+      isValidOnline:new FormControl(false,Validators.required),
       productImage:new FormControl('')
 
     });
-  constructor(private restAPI:RestService) { }
+  constructor(private restAPI:RestService, private router:Router) { }
   ngAfterViewInit(): void {
    
   }
+ get ProductName(){
+   return this.form.get("productName")
+ }
+ get SellingPrice(){
+   return this.form.get("sellingPrice");
+ }
+ get purchasingPrice(){
+   return this.form.get("purchasingPrice");
+ }
+ get categoryID(){
+   return this.form.get("categoryID");
+ }
+ get barCode(){
+   return this.form.get("barCode");
+ }
+ get ProductImage(){
+   return this.form.get("productImage");
+ }
+ get TypeOfMeasurements(){
+   return this.form.get("typeOfMeasurements");
+ }
+
+
 
   ngOnInit() {
   this.restAPI.GetAll<Category[]>("/api/Categories/flat").subscribe(a=>{
@@ -61,7 +86,7 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
   }
 
   handleCancelButton(input){
-    
+    //
     this.IsCropperDivShown = false;
      input.value = null;
      this.imageBase64 = null;
@@ -75,4 +100,15 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
     this.IsCropperDivShown= false;
     console.log(this.imageBase64 );
   }
+  onSubmitData(){
+   
+    this.ProductImage.setValue(this.imageBase64);
+    console.log(this.form.value);
+    this.restAPI.PostData("/api/products",this.form.value).subscribe(a=>{
+        this.router.navigate(["/products"]);
+        
+    });
+  }
+
+
 }

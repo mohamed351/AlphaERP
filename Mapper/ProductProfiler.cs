@@ -18,7 +18,9 @@ namespace RealApplication.Mapper
               .ForMember(async=>async.IsValidInPointOfSales, async =>async.MapFrom(a=>a.IsValidInPointOfSales))
               .ForMember(async=>async.IsValidInStorage, async=> async.MapFrom(async=>async.IsValidInStorage))
               .ForMember(async=>async.BarCode, async=>async.MapFrom(a=> a.BarCode))
-              .ForMember(async=>async.TypeOfMeasurements, async=>async.MapFrom(a=>a.TypeOfMeasurement));
+              .ForMember(async=>async.TypeOfMeasurements, async=>async.MapFrom(a=>a.TypeOfMeasurement))
+              .ForMember(async=>async.IsValidOnline, async=> async.MapFrom(a=>a.IsValidOnline));
+      
 
              this.CreateMap<Product,ProductsDTO>()
               .ForMember(a=>a.ID,async=>async.MapFrom(a=>a.ID))
@@ -29,7 +31,9 @@ namespace RealApplication.Mapper
               .ForMember(async=>async.IsValidInPointOfSales, async =>async.MapFrom(a=>a.IsValidInPointOfSales))
               .ForMember(async=>async.IsValidInStorage, async=> async.MapFrom(async=>async.IsValidInStorage))
               .ForMember(async=>async.BarCode, async=>async.MapFrom(a=> a.BarCode))
-              .ForMember(async=>async.TypeOfMeasurements, async=>async.MapFrom(a=>a.TypeOfMeasurement)).ReverseMap();
+              .ForMember(async=>async.TypeOfMeasurements, async=>async.MapFrom(a=>a.TypeOfMeasurement))
+              .ForMember(async=> async.IsValidOnline,async=>async.MapFrom(async=>async.IsValidOnline))
+              .ReverseMap();
               
 
         }

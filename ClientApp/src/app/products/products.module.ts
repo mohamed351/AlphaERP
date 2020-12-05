@@ -14,6 +14,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {NgxBarcodeModule} from 'ngx-barcode'
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [ListProductsComponent, CreateProductComponent, EditProductComponent],
   imports: [
@@ -29,7 +30,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     MatSelectModule,
     NgxBarcodeModule,
     ImageCropperModule,
-    FormsModule
+    FormsModule,
+    TranslateModule
   ]
 })
 export class ProductsModule { }

@@ -31,6 +31,8 @@ namespace RealApplication.Models
 
         public bool IsValidInPointOfSales { get; set; }
 
+        public bool IsValidOnline{get;set;}
+
 
         public bool IsDeleted { get; set; }
 

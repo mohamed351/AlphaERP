@@ -21,6 +21,8 @@ namespace RealApplication.DTO.ProductDTOS
 
         public bool IsValidInStorage{get;set;}
 
+        public bool IsValidOnline { get; set; }
+
         public TypeOfMeasurements TypeOfMeasurements { get; set; }
 
 

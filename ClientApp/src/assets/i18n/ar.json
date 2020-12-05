@@ -33,6 +33,24 @@
     "Add":"اضافة",
     "subCateogry":"فئة منسدلة",
     "save":"حفظ",
-    "submit":"تنفيذ"
+    "submit":"تنفيذ",
+    "createProduct":"انشاء منتج",
+    "productName":"اسم المنتج",
+    "sellingPrice":"سعر البيع",
+    "purchasingPrice":"سعر الشراء",
+    "measurementType":"وحدة القياس",
+    "barCode":"باركود",
+    "IsValidPointOfSales":"متاح في متاجر التجزئة",
+    "IsValidStorage":"متاح في المخازن",
+    "IsValidOnline":"متاح علي الانترنت",
+    "productNameRequired":"مطلوب اسم المنتح",
+    "sellingPriceRequired":"مطلوب سعر البيع "  ,
+    "purchasingPriceRequired":"مطلوب سعر الشراء",
+    "measurementTypeRequired":"مطلوب نوع وحدة القياس",
+    "barCodeRequired":"مطلوب الباركود",
+    "productNumber":"رقم المنتج",
+    "perUnit":"بالوحدة",
+    "gram":"بجرام",
+    "editProduct":"تعديل المنتج"
 
 }

@@ -34,6 +34,24 @@
     "subCateogry":"Sub Category",
     "TheCategoryNameIsRequired":"The Category Name is Required",
     "save":"Save",
-    "submit":"Submit"
+    "submit":"Submit",
+    "createProduct":"Create Product",
+    "productName":"Product Name",
+    "sellingPrice":"Selling Price",
+    "purchasingPrice":"Purchasing Price",
+    "measurementType":"Measurement Type",
+    "barCode":"Barcode",
+    "IsValidPointOfSales":"Is valid in point of sales",
+    "IsValidStorage":"Is valid in storage",
+    "IsValidOnline":"Is valid  online",
+    "productNameRequired":"The Product Name is Required",
+    "sellingPriceRequired":"The Selling Price is Required",
+    "purchasingPriceRequired":"The Purchasing Price is Required",
+    "measurementTypeRequired":"The Measurement Type  is Required",
+    "barCodeRequired":"The Product Barcode is Required",
+    "productNumber":"ProductNumber",
+    "perUnit":"Per Unit",
+    "gram":"Gram",
+    "editProduct":"Edit Product"
 
 }

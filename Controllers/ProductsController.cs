@@ -46,6 +46,8 @@ namespace RealApplication.Controllers
 
           var product = this.mapper.Map<Product>(productsDTO);
           product.ProductNumber = await this.unitOfWork.Products.GetProductNumber();
+          this.unitOfWork.Products.Add(product);
+          this.unitOfWork.Complete();
           return Ok(this.mapper.Map<ProductsDTO>(product));
         }
 

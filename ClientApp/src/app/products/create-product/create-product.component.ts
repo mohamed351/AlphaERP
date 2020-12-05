@@ -71,9 +71,7 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
    
   }
 
-  SubmitData(){
-
-  }
+  
 
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;

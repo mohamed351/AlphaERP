@@ -86,7 +86,9 @@
 </div>
 <div>
   <input #input type="file" (change)="fileChangeEvent($event)" />
- 
+ <ng-container>
+   
+ </ng-container>
   <ng-container *ngIf="imageBase64 != null">
     <br/>
     <br/>

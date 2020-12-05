@@ -1,14 +1,21 @@
+using System;
+using System.Drawing;
 using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
 using RealApplication.DTO.ProductDTOS;
 using RealApplication.Models;
+
+using System.IO;
 
 namespace RealApplication.Mapper
 {
     public class ProductProfiler:Profile
     {
+      
 
-        public ProductProfiler()
+        public ProductProfiler( )
         {
+            
             this.CreateMap<Product,ProductsDTO>()
               .ForMember(a=>a.ID,async=>async.MapFrom(a=>a.ID))
               .ForMember(async=>async.CategoryID, async=>async.MapFrom(async=>async.CategoryID))
@@ -34,9 +41,10 @@ namespace RealApplication.Mapper
               .ForMember(async=>async.TypeOfMeasurements, async=>async.MapFrom(a=>a.TypeOfMeasurement))
               .ForMember(async=> async.IsValidOnline,async=>async.MapFrom(async=>async.IsValidOnline))
               .ReverseMap();
-              
-
+           
         }
+
+     
 
         
         

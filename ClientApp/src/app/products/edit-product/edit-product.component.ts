@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { Category } from 'src/app/models/categories/category';
+import { Product } from 'src/app/models/product/product';
 import { RestService } from 'src/app/services/rest-service.service';
 
 @Component({
@@ -13,13 +14,14 @@ import { RestService } from 'src/app/services/rest-service.service';
 export class EditProductComponent implements OnInit {
 
   public categoryInfo:Category[] =[];
-  
+  public product:Product = null;
   imageChangedEvent: any = '';
     croppedImage: any = '';
     IsCropperDivShown:boolean =false;
     imageBase64:string = null;
     barcodeValue:string ="";
     form:FormGroup = new FormGroup({
+      id:new FormControl('',Validators.required),
       productName:new FormControl('',Validators.required),
       sellingPrice:new FormControl('',Validators.required),
       purchasingPrice:new FormControl('',Validators.required),
@@ -32,7 +34,7 @@ export class EditProductComponent implements OnInit {
       productImage:new FormControl('')
 
     });
-  constructor(private restAPI:RestService, private router:Router) { }
+  constructor(private restAPI:RestService, private router:Router, private routerActive:ActivatedRoute) { }
   ngAfterViewInit(): void {
    
   }
@@ -57,12 +59,27 @@ export class EditProductComponent implements OnInit {
  get TypeOfMeasurements(){
    return this.form.get("typeOfMeasurements");
  }
+ get IsValidInPointOfSales(){
+   return this.form.get("isValidInPointOfSales");
+
+ }
+ get IsValidInStorage(){
+   return this.form.get("isValidInStorage");
+ }
+ get IsValidOnline(){
+   return this.form.get("isValidOnline");
+ }
 
 
 
   ngOnInit() {
   this.restAPI.GetAll<Category[]>("/api/Categories/flat").subscribe(a=>{
     this.categoryInfo = a;
+  });
+  this.restAPI.GetByID<Product>("/api/Products", this.routerActive.snapshot.params["id"]).subscribe(a=>{
+    this.product = a;
+    this.setValues();
+
   });
  
    
@@ -105,6 +122,19 @@ export class EditProductComponent implements OnInit {
         this.router.navigate(["/products"]);
         
     });
+  }
+
+  setValues(){
+    this.ProductName.setValue(this.product.productName);
+    this.purchasingPrice.setValue(this.product.purchasingPrice);
+    this.SellingPrice.setValue(this.product.sellingPrice);
+    this.categoryID.setValue(this.product.categoryID);
+    this.TypeOfMeasurements.setValue(this.product.typeOfMeasurements);
+    this.barCode.setValue(this.product.barCode);
+    this.IsValidOnline.setValue(this.product.isValidOnline);
+    this.IsValidInStorage.setValue(this.product.isValidInStorage);
+    this.IsValidInPointOfSales.setValue(this.product.isValidInPointOfSales);
+    this.ProductImage.setValue(null);
   }
 
 }

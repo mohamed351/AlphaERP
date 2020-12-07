@@ -23,6 +23,7 @@ export class EditProductComponent implements OnInit {
     barcodeValue:string ="";
     form:FormGroup = new FormGroup({
       id:new FormControl('',Validators.required),
+      productNumber:new FormControl('',Validators.required),
       productName:new FormControl('',Validators.required),
       sellingPrice:new FormControl('',Validators.required),
       purchasingPrice:new FormControl('',Validators.required),
@@ -72,6 +73,9 @@ export class EditProductComponent implements OnInit {
  }
  get ID(){
    return this.form.get("id");
+ }
+ get ProductNumber (){
+   return this.form.get("productNumber");
  }
 
 
@@ -123,7 +127,7 @@ export class EditProductComponent implements OnInit {
    
     this.ProductImage.setValue(this.imageBase64);
     console.log(this.form.value);
-    this.restAPI.PostData("/api/products",this.form.value).subscribe(a=>{
+    this.restAPI.PutData("/api/products",this.form.value.id,this.form.value).subscribe(a=>{
         this.router.navigate(["/products"]);
         
     });
@@ -140,6 +144,7 @@ export class EditProductComponent implements OnInit {
     this.IsValidOnline.setValue(this.product.isValidOnline);
     this.IsValidInStorage.setValue(this.product.isValidInStorage);
     this.IsValidInPointOfSales.setValue(this.product.isValidInPointOfSales);
+    this.ProductNumber.setValue(this.product.productNumber);
     this.ProductImage.setValue(null);
   }
 

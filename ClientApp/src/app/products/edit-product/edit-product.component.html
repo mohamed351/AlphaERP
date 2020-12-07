@@ -4,7 +4,7 @@
 <form [formGroup]="form" (submit)="onSubmitData()">
     <mat-form-field class="full-width">
       <mat-label>{{'productNumber'|translate}}</mat-label>
-      <input #productNumber  matInput placeholder="{{'productNumber'|translate}}"  readonly class="full-width">
+      <input #productNumber formControlName="productNumber" matInput placeholder="{{'productNumber'|translate}}"  readonly class="full-width">
       <mat-error></mat-error>
     </mat-form-field>
 

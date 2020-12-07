@@ -15,6 +15,12 @@ namespace RealApplication.Repository.Implementation
 
         }
 
+        public async Task<string> GetOldImage(string productId)
+        {
+          var product = await dbContext.Set<Product>().AsNoTracking().FirstOrDefaultAsync(a =>a.ID ==productId);
+            return product.ImageURL;
+        }
+
         public async Task<int> GetProductNumber()
         {
             return await this.dbContext.Set<Product>().MaxAsync(a=>a.ProductNumber)+1;

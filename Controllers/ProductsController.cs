@@ -86,9 +86,27 @@ namespace RealApplication.Controllers
             this.unitOfWork.Complete();
             return Ok(this.mapper.Map<ProductsDTO>(product));
         }
+        [HttpPut(template:"{ID}")]
+        public async  Task<ActionResult> Put(string ID,ProductsDTO productsDTO) {
 
 
+            if(!ModelState.IsValid){
+               return BadRequest("The Product Data Is Not valid");
+                
+            }
+            
+            if(productsDTO.ProductImage != null)
+                 productsDTO.ProductImage=  this.SaveAnImages(productsDTO.ProductImage);
+            else
+                productsDTO.ProductImage = await this.unitOfWork.Products.GetOldImage(ID);
+            
+           var product = this.mapper.Map<Product>(productsDTO);
+             product.ID = ID;
 
+             this.unitOfWork.Products.Edit(product);
+             this.unitOfWork.Complete();
+             return NoContent();
+        }
 
 
         private string SaveAnImages(string imageProduct)

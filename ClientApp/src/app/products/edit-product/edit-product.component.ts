@@ -15,6 +15,7 @@ export class EditProductComponent implements OnInit {
 
   public categoryInfo:Category[] =[];
   public product:Product = null;
+  @ViewChild("productNumber",{static:true}) productNumber:ElementRef;
   imageChangedEvent: any = '';
     croppedImage: any = '';
     IsCropperDivShown:boolean =false;
@@ -69,6 +70,9 @@ export class EditProductComponent implements OnInit {
  get IsValidOnline(){
    return this.form.get("isValidOnline");
  }
+ get ID(){
+   return this.form.get("id");
+ }
 
 
 
@@ -78,6 +82,7 @@ export class EditProductComponent implements OnInit {
   });
   this.restAPI.GetByID<Product>("/api/Products", this.routerActive.snapshot.params["id"]).subscribe(a=>{
     this.product = a;
+    this.productNumber.nativeElement.value =a.productNumber;
     this.setValues();
 
   });
@@ -125,6 +130,7 @@ export class EditProductComponent implements OnInit {
   }
 
   setValues(){
+    this.ID.setValue(this.product.id);
     this.ProductName.setValue(this.product.productName);
     this.purchasingPrice.setValue(this.product.purchasingPrice);
     this.SellingPrice.setValue(this.product.sellingPrice);

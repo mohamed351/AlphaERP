@@ -10,6 +10,7 @@ using RealApplication.Models;
 using RealApplication.Repository.UnitOfWork;
 using AutoMapper;
 using System.Reflection;
+using Microsoft.AspNetCore.Http;
 
 namespace RealApplication
 {
@@ -29,6 +30,7 @@ namespace RealApplication
             services.AddDbContext<ApplicationDbContext>(options =>{
               options.UseSqlServer(Configuration.GetConnectionString("con"));           
             });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IUnitOfWork,UnitOfWork>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             

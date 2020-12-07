@@ -23,6 +23,8 @@ namespace RealApplication.DTO.ProductDTOS
 
         public bool IsValidOnline { get; set; }
 
+        public int ProductNumber { get; set; }
+
         public TypeOfMeasurements TypeOfMeasurements { get; set; }
 
 

@@ -11,6 +11,7 @@ using System.Drawing;
 using System.IO;
 using System;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace RealApplication.Controllers
 {
@@ -22,9 +23,11 @@ namespace RealApplication.Controllers
         private readonly IMapper mapper;
 
         private readonly IWebHostEnvironment webHostEnvironment;
+        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public ProductsController(IUnitOfWork unit, IMapper mapper, IWebHostEnvironment webHostEnvironment)
+        public ProductsController(IUnitOfWork unit, IMapper mapper, IWebHostEnvironment webHostEnvironment, IHttpContextAccessor httpContextAccessor)
         {
+            this.httpContextAccessor = httpContextAccessor;
             this.webHostEnvironment = webHostEnvironment;
             this.mapper = mapper;
             this.unitOfWork = unit;
@@ -61,6 +64,7 @@ namespace RealApplication.Controllers
                 return NotFound("The Product is not Found");
             }
             var productDTO = this.mapper.Map<ProductsDTO>(product);
+            ConvertImageToImageURL(productDTO);
             return Ok(productDTO);
 
         }
@@ -92,14 +96,22 @@ namespace RealApplication.Controllers
 
             string imageString = imageProduct.Split(";base64,")[1];
             byte[] array = Convert.FromBase64String(imageString);
-             string NewName = Guid.NewGuid().ToString() + ".png";
-             string fullPath = Path.Combine(webHostEnvironment.WebRootPath, "images", NewName);
-            using( MemoryStream memoryStream = new MemoryStream(array)){
-                using(var file= new FileStream(fullPath,FileMode.Create)){
+            string NewName = Guid.NewGuid().ToString() + ".png";
+            string fullPath = Path.Combine(webHostEnvironment.WebRootPath, "images", NewName);
+            using (MemoryStream memoryStream = new MemoryStream(array))
+            {
+                using (var file = new FileStream(fullPath, FileMode.Create))
+                {
                     file.Write(array);
                 }
             }
             return NewName;
+
+        }
+        private void ConvertImageToImageURL(ProductsDTO productsDTO)
+        {
+
+            productsDTO.ProductImage = productsDTO.ProductImage == null ? $"{HttpContext.Request.Scheme}://{httpContextAccessor.HttpContext.Request.Host.Value}/images/{"default.png"}":$"{HttpContext.Request.Scheme}://{httpContextAccessor.HttpContext.Request.Host.Value}/images/{productsDTO.ProductImage}";
 
         }
 

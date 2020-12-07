@@ -86,8 +86,13 @@
 </div>
 <div>
   <input #input type="file" (change)="fileChangeEvent($event)" />
- <ng-container>
-   
+ <ng-container *ngIf="ProductImage != null">
+  <br/>
+  <br/>
+    <img [src]="product.productImage" width="150" height="150" >
+    <br/>
+    <span>Old Picture</span>
+    
  </ng-container>
   <ng-container *ngIf="imageBase64 != null">
     <br/>

@@ -11,6 +11,9 @@ using RealApplication.Repository.UnitOfWork;
 using AutoMapper;
 using System.Reflection;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace RealApplication
 {
@@ -26,6 +29,23 @@ namespace RealApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+             services.AddIdentity<Employee, IdentityRole>(a =>
+            {
+                a.Password.RequireDigit = false;
+                a.Password.RequireLowercase = false;
+                a.Password.RequireNonAlphanumeric = false;
+                a.Password.RequireUppercase = false;
+            }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+
+            services.AddAuthentication().AddCookie().AddJwtBearer(options =>{
+             options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:key"].ToString())),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                };
+            });
             services.AddControllersWithViews().AddNewtonsoftJson();
             services.AddDbContext<ApplicationDbContext>(options =>{
               options.UseSqlServer(Configuration.GetConnectionString("con"));           

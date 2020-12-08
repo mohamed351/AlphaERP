@@ -43,14 +43,17 @@ namespace RealApplication.Controllers
                     var result = await _signInManager.CheckPasswordSignInAsync(user, model.password, false);
                     if (result.Succeeded)
                     {
+                       var roles = await _userManager.GetRolesAsync(user);
+                       //get first role
+                       string role = roles.Count > 0 ?roles[0] :"";
                         //create token
                         var claims = new[]
                         {
-                            new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                            new Claim(JwtRegisteredClaimNames.UniqueName, user.Id),
-                            new Claim(JwtRegisteredClaimNames.Acr, user.Id),
-                             new Claim(JwtRegisteredClaimNames.Actort, user.Id)
+                            new Claim(ClaimTypes.Email, user.Email),
+                            new Claim(ClaimTypes.Version, Guid.NewGuid().ToString()),
+                            new Claim(ClaimTypes.Sid, user.Id),
+                            new Claim(ClaimTypes.Role,role),
+                             new Claim(ClaimTypes.NameIdentifier, user.UserName)
                         };
                         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Tokens:Key"]));
                         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

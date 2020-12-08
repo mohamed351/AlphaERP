@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,7 @@ export class AppComponent {
     shareReplay()
   );
 
-  constructor(private breakpointObserver: BreakpointObserver, private translation:TranslateService){
+  constructor(private breakpointObserver: BreakpointObserver, private translation:TranslateService, public auth:AuthService){
     this.translation.setDefaultLang("en");
     const language = localStorage.getItem("lang")|| "en";
     this.translation.use(language);

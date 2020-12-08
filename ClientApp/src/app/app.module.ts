@@ -24,6 +24,10 @@ import { ToastrModule } from 'ngx-toastr';
 import {ReusableDailogBoxComponent} from './components/alpha-data-table/reusable-dailog-box/reusable-dailog-box.component'
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './guards/auth.guard';
+import { MatFormField, MatFormFieldModule, MatInputModule } from '@angular/material';
+import {ReactiveFormsModule} from '@angular/forms';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -32,6 +36,7 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [
     AppComponent,
     HomeComponent,
+    LoginComponent,
  ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -49,18 +54,22 @@ export function createTranslateLoader(http: HttpClient) {
     MatTableModule,
     MatPaginatorModule,
     MatMenuModule,
+    MatFormFieldModule,
+    MatInputModule,
     ToastrModule.forRoot(),
+    ReactiveFormsModule,
     TranslateModule.forRoot({
        loader:{
          provide:TranslateLoader,
          useFactory:(createTranslateLoader),
          deps:[HttpClient]
        }
-    })
+    }),
+    
 
     
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
   
 })

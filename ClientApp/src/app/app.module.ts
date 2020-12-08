@@ -28,6 +28,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { MatFormField, MatFormFieldModule, MatInputModule } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
+import { UnAuthGuardGuard } from './guards/unauth.guard';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -69,7 +70,7 @@ export function createTranslateLoader(http: HttpClient) {
 
     
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,UnAuthGuardGuard],
   bootstrap: [AppComponent],
   
 })

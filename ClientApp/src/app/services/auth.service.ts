@@ -28,6 +28,10 @@ export class AuthService {
   GetToken(){
     return JSON.parse(localStorage.getItem("Token"));
   }
+  AssignToken(token:any){
+    localStorage.setItem("Token",JSON.stringify(token));
+    
+  }
 
 
 }

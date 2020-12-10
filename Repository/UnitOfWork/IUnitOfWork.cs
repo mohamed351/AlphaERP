@@ -10,6 +10,8 @@ namespace RealApplication.Repository.UnitOfWork
         public ICategoryRepository Categories { get; }
 
         public IProductRepository Products {get;}
+
+        public IMeasurementRepository Measurement{get;}
         int Complete();
     }
 }

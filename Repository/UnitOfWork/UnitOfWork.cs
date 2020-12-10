@@ -15,12 +15,15 @@ namespace RealApplication.Repository.UnitOfWork
             this.Customers = new CustomerRepository(context);
             this.Categories = new CategoryRepository(context);
             this.Products = new ProductRepository(context);
+            this.Measurement = new MeasurementRepository(context);
         }
         public ISupplierRepository Suppliers { get; }
         public ICustomerRepository Customers { get; }
         public ICategoryRepository Categories { get; }
 
         public IProductRepository Products {get;}
+
+        public IMeasurementRepository Measurement {get;}
 
         public int Complete()
         {

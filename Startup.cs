@@ -75,7 +75,7 @@ namespace RealApplication
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+        
             app.UseStaticFiles();
             if (!env.IsDevelopment())
             {

@@ -23,5 +23,7 @@ namespace RealApplication.Models
        
         public DbSet<Category> Categories { get; set; }
 
+        public DbSet<Measurement> Measurements {get;set;}
+
     }
 }

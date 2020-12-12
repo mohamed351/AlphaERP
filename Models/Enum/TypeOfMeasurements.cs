@@ -3,6 +3,7 @@ namespace RealApplication.Models.Enum
     public enum TypeOfMeasurements
     {
         PerUnit,
-        Gram
+        Gram,
+        Milliliter
     }
 }

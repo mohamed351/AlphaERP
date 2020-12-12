@@ -25,5 +25,15 @@ namespace RealApplication.Models
 
         public DbSet<Measurement> Measurements {get;set;}
 
+        public DbSet<ProductMeasurements>  ProductMeasurements { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<ProductMeasurements>()
+            .HasKey( c => new {c.MeasurementID, c.ProductID});
+
+            base.OnModelCreating(builder);
+        }
+
     }
 }

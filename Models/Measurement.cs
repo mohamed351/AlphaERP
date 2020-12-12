@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using RealApplication.Models.Enum;
 
 namespace RealApplication.Models
@@ -13,6 +14,8 @@ namespace RealApplication.Models
       public bool IsKnown { get; set; }
 
       public int defaultValue { get; set; }
+
+      public ICollection<ProductMeasurements> ProductMeasurements { get; set; }
       
   }
 }

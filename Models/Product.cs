@@ -41,6 +41,9 @@ namespace RealApplication.Models
 
         public Category Category { get; set; }
 
+
+        public ICollection<ProductMeasurements> ProductMeasurements { get; set; }
+
         
     }
 }

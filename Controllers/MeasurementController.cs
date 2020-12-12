@@ -25,7 +25,7 @@ namespace RealApplication.Controllers
                 search = search == null ? "" :search.ToLower();
             var model = new DataTableDTO<SelectMeasurementDTO>()
             {
-                Data = mapper.Map<IEnumerable<SelectMeasurementDTO>>(unitOfWork.Measurement.GetEntityDataTable(start, pageSize, async=> async.Name.ToLower().Contains(search) && async.IsDeleted == false, async => async.ID) )  ,
+                Data = mapper.Map<IEnumerable<SelectMeasurementDTO>>(unitOfWork.Measurement.GetEntityDataTable(start, pageSize, async=> async.Name.ToLower().Contains(search) && async.IsDeleted == false && async.IsKnown ==false, async => async.ID) )  ,
                 TotalCount = unitOfWork.Measurement.GetCount(async => async.Name.Contains(""))
             };
             return Ok(model);

@@ -51,6 +51,8 @@
     "productNumber":"رقم المنتج",
     "perUnit":"بالوحدة",
     "gram":"بجرام",
-    "editProduct":"تعديل المنتج"
-
+    "editProduct":"تعديل المنتج",
+    "measurements":"وحدات القياس أخري",
+    "milliliter":"ميلي لتر",
+    "cm":"سم"
 }

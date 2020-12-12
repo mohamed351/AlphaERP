@@ -52,6 +52,8 @@
         <mat-select formControlName="typeOfMeasurements">
          <mat-option [value]=0> {{'perUnit'|translate}} </mat-option>
          <mat-option [value]=1> {{'gram'|translate}} </mat-option>
+         <mat-option [value]=2> {{'milliliter'|translate}} </mat-option>
+         <mat-option [value]=3> {{'cm'|translate}} </mat-option>
         </mat-select>
         <mat-error *ngIf="TypeOfMeasurements.invalid && TypeOfMeasurements.touched ">
           <mat-error *ngIf="TypeOfMeasurements.errors.required">{{'measurementTypeRequired'|translate}}</mat-error>

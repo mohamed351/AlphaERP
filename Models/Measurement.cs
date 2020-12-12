@@ -9,6 +9,8 @@ namespace RealApplication.Models
       public TypeOfMeasurements MainType { get; set; }
 
       public bool IsDeleted { get; set; }
+
+      public bool IsKnown { get; set; }
       
   }
 }

@@ -52,6 +52,9 @@
     "productNumber":"ProductNumber",
     "perUnit":"Per Unit",
     "gram":"Gram",
-    "editProduct":"Edit Product"
+    "editProduct":"Edit Product",
+     "measurements":"AnotherMeasurement",
+     "milliliter":"milliliter",
+     "cm":"cm"
 
 }

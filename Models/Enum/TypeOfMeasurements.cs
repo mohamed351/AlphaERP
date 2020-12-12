@@ -4,6 +4,8 @@ namespace RealApplication.Models.Enum
     {
         PerUnit,
         Gram,
-        Milliliter
+        Milliliter,
+
+        Cm
     }
 }

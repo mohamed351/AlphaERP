@@ -11,6 +11,8 @@ namespace RealApplication.Models
       public bool IsDeleted { get; set; }
 
       public bool IsKnown { get; set; }
+
+      public int defaultValue { get; set; }
       
   }
 }

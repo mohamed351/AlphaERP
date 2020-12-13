@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using RealApplication.DTO;
 using RealApplication.MeasurementDTO;
 using RealApplication.Models;
+using RealApplication.Models.Enum;
 using RealApplication.Repository.UnitOfWork;
 
 namespace RealApplication.Controllers
@@ -65,6 +66,14 @@ namespace RealApplication.Controllers
 
             return Ok(measurement);
         }
+        [HttpGet(),Route(template:"/Product/Measurement/")]
+        public IActionResult GetMesurementByType([FromQuery]TypeOfMeasurements  type){
+           var measurement = unitOfWork.Measurement.GetByCondititon(async=>async.MainType == type);
+            return Ok(measurement);
+        }
+
+
+       
         
     }
 }

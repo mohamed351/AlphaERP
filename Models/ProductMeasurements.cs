@@ -17,6 +17,8 @@ namespace RealApplication.Models
         public Product Product {get;set;}
 
         public int Value { get; set; }
+
+        public string BarCode {get;set;}
         
 
 

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ImageCroppedEvent } from 'ngx-image-cropper/lib/interfaces/image-cropped-event.interface';
 import { Category } from 'src/app/models/categories/category';
@@ -28,7 +28,8 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
       isValidInStorage:new FormControl(false,Validators.required),
       typeOfMeasurements:new FormControl('',Validators.required),
       isValidOnline:new FormControl(false,Validators.required),
-      productImage:new FormControl('')
+      productImage:new FormControl(''),
+      measurements:new FormArray([])
 
     });
   constructor(private restAPI:RestService, private router:Router) { }
@@ -55,6 +56,9 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
  }
  get TypeOfMeasurements(){
    return this.form.get("typeOfMeasurements");
+ }
+ get Measurements(){
+   return this.form.get("measurements") as FormArray;
  }
 
 
@@ -106,6 +110,25 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
         this.router.navigate(["/products"]);
         
     });
+  }
+  seletionChange(event){
+    this.restAPI.GetAll<any[]>("/Product/Measurement/?type="+event.value).subscribe(a=>{
+      this.Measurements.clear();
+        a.forEach(c=>{
+          this.Measurements.push(new FormGroup({
+            id:new FormControl(c.id,[Validators.required]),
+            measurementName:new FormControl({value:c.name,disabled:true},[Validators.required],),
+            isKnown: new FormControl(c.isKnown,[Validators.required]),
+            value:new FormControl({value:c.defaultValue,disabled:c.isKnown},[Validators.required]),
+            barCode :new FormControl('',[Validators.required])
+           }))
+        })
+      
+       console.log(this.Measurements);
+    });
+  }
+  testing(data){
+    console.log(data);
   }
 
 

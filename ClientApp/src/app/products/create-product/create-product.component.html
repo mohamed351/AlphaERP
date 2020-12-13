@@ -49,7 +49,7 @@
 
       <mat-form-field class="full-width">
         <mat-label>{{'measurementType'|translate}}</mat-label>
-        <mat-select formControlName="typeOfMeasurements">
+        <mat-select formControlName="typeOfMeasurements" (selectionChange)="seletionChange($event)">
          <mat-option [value]=0> {{'perUnit'|translate}} </mat-option>
          <mat-option [value]=1> {{'gram'|translate}} </mat-option>
          <mat-option [value]=2> {{'milliliter'|translate}} </mat-option>
@@ -59,6 +59,37 @@
           <mat-error *ngIf="TypeOfMeasurements.errors.required">{{'measurementTypeRequired'|translate}}</mat-error>
       </mat-error>
       </mat-form-field>
+
+      <div class="measurementContainer">
+        <mat-card *ngFor="let item of Measurements.controls;let i= index;">
+           <div [formGroup]="item" (click)="testing(item)" >
+             <input type="hidden" formControlName ="id" />
+             <mat-form-field class="mr-3">
+               <mat-label>Measurement Name</mat-label>
+            <input matInput formControlName="measurementName"  >
+          </mat-form-field>
+
+          <mat-form-field class="mr-3">
+            <mat-label>Value</mat-label>
+            <input matInput formControlName="value" >
+          </mat-form-field>
+
+
+      
+
+
+          <mat-form-field class="mr-3">
+            <mat-label>BarCode</mat-label>
+            <input matInput formControlName="barCode"  >
+            <ngx-barcode [bc-value]="item.get('barCode').value"></ngx-barcode>
+          </mat-form-field>
+
+          <button *ngIf="!item.get('isKnown').value">
+            Delete
+          </button>
+           </div>
+        </mat-card>
+      </div>
 
 
       <mat-form-field class="full-width">

@@ -18,6 +18,8 @@ namespace RealApplication.Controllers
         {
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
+            
+            
         }
         [HttpGet]
         public IActionResult GetAllCategories(){
@@ -56,8 +58,10 @@ namespace RealApplication.Controllers
         [HttpPut(template:"{ID}")]
         public IActionResult Put(string ID, CategoryInfoDTO  infoDTO){
             if(ID == null || !ModelState.IsValid){
+                
                 return BadRequest("The Request is not valid");
             }
+            
            var category =  this.mapper.Map<Category>(infoDTO);
            category.ID = ID;
            unitOfWork.Categories.Edit(category);

@@ -61,30 +61,33 @@
       </mat-form-field>
 
       <div class="measurementContainer">
-        <mat-card *ngFor="let item of Measurements.controls;let i= index;">
-           <div [formGroup]="item" (click)="testing(item)" >
+        <mat-card  *ngFor="let item of Measurements.controls;let i= index;">
+           <div [formGroup]="item"  >
              <input type="hidden" formControlName ="id" />
              <mat-form-field class="mr-3">
                <mat-label>Measurement Name</mat-label>
-            <input matInput formControlName="measurementName"  >
+            <input matInput formControlName="measurementName"  readonly >
           </mat-form-field>
 
           <mat-form-field class="mr-3">
             <mat-label>Value</mat-label>
-            <input matInput formControlName="value" >
+       
+            <input  matInput type="number"  readonly formControlName="value" >
           </mat-form-field>
-
-
+        
+          <app-calcuate-measure *ngIf="!item.get('isKnown').value" 
+          [mesurements]="this.mesaurementsSelection"
+           (ValueChange)="Testing3($event,item.get('value'))"
+           [currentId] ="item.get('id').value">
+          </app-calcuate-measure>
       
-
-
           <mat-form-field class="mr-3">
             <mat-label>BarCode</mat-label>
             <input matInput formControlName="barCode"  >
             <ngx-barcode [bc-value]="item.get('barCode').value"></ngx-barcode>
           </mat-form-field>
 
-          <button *ngIf="!item.get('isKnown').value">
+          <button type="button" (click)="testing2()" *ngIf="!item.get('isKnown').value">
             Delete
           </button>
            </div>
@@ -129,9 +132,10 @@
 <div class="mt-5 d-flex justify-content-end">
 <button mat-raised-button color="primary"  type="submit" [disabled]="!form.valid">{{"submit"|translate}}</button>
 </div>
+
 </form>
 </mat-card>
-
+ 
 
 <div [ngStyle]="{'display': !IsCropperDivShown ? 'none':'block'}" class="client-container">
   <div class="flex-container">

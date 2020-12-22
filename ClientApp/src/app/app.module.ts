@@ -28,6 +28,8 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { MatFormField, MatFormFieldModule, MatInputModule } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MatCardModule} from '@angular/material/card'; 
+import {MatSelectModule} from '@angular/material/select';
 import { UnAuthGuardGuard } from './guards/unauth.guard';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -38,6 +40,9 @@ export function createTranslateLoader(http: HttpClient) {
     AppComponent,
     HomeComponent,
     LoginComponent,
+   
+    
+   
  ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -66,6 +71,8 @@ export function createTranslateLoader(http: HttpClient) {
          deps:[HttpClient]
        }
     }),
+    MatCardModule,
+    MatSelectModule
     
 
     

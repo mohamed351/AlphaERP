@@ -82,6 +82,11 @@ namespace RealApplication.Controllers
             {
                 product.ImageURL = SaveAnImages(productsDTO.ProductImage);
             }
+            //fill the details
+            productsDTO.Measurements.Each(a=> product.ProductMeasurements.Add(new ProductMeasurements(){
+               Value = a.Value,
+               MeasurementID = a.ID
+            }));
             this.unitOfWork.Products.Add(product);
             this.unitOfWork.Complete();
             return Ok(this.mapper.Map<ProductsDTO>(product));

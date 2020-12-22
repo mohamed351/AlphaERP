@@ -17,6 +17,8 @@
    display: flex;
    justify-content: space-between;
 }
-.measurementContainer mat-form-field{
-  
+
+.measurement-card{
+ margin-top: 10px;
+
 }

@@ -7,12 +7,25 @@ import { Category } from 'src/app/models/categories/category';
 import { Measurement } from 'src/app/models/measurements';
 import { MeasurementService } from 'src/app/services/measurement.service';
 import { RestService } from 'src/app/services/rest-service.service';
-
+import {trigger,state, style, transition, animate} from '@angular/animations';
 @Component({
   selector: 'app-create-product',
   templateUrl: './create-product.component.html',
   styleUrls: ['./create-product.component.css'],
-  providers:[MeasurementService]
+  providers:[MeasurementService],
+  animations:[
+    trigger("listAdded",[
+      state("in",style({
+        "opacity":1,
+        "transform":"translateX(0)"
+      })),
+      transition("void => *",[ style({
+        "opacity":"0",
+        "transform":"translateX(100px)"
+      }),
+        animate(400)])
+    ])
+  ]
 })
 export class CreateProductComponent implements OnInit , AfterViewInit {
   public categoryInfo:Category[] =[];
@@ -108,6 +121,7 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
     console.log(this.imageBase64 );
   }
   onSubmitData(){
+    console.log(this.form);
    
     this.ProductImage.setValue(this.imageBase64);
     console.log(this.form.value);
@@ -115,6 +129,7 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
         this.router.navigate(["/products"]);
         
     });
+    
   }
   seletionChange(event){
     this.restAPI.GetAll<Measurement[]>("/Product/Measurement/?type="+event.value).subscribe(a=>{
@@ -140,10 +155,9 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
       console.log(this.mesaurementCalcuation);
   }
   Testing3(data:SelectedMesaurement , inputElement:FormControl){
-    console.log(data);
-    console.log(inputElement);
   
-    this.mesaurementCalcuation.ReactiveForm =  this.Measurements;
+  
+    //this.mesaurementCalcuation.ReactiveForm =  this.Measurements;
     this.mesaurementCalcuation.SelectedMesaurement = data;
      this.mesaurementCalcuation.SetMeasurmentValue(inputElement);
   }

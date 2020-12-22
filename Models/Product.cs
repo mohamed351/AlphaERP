@@ -9,7 +9,7 @@ namespace RealApplication.Models
     {
         public Product()
         {
-            
+            this.ProductMeasurements = new List<ProductMeasurements>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

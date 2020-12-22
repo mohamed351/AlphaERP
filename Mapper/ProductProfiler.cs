@@ -30,6 +30,8 @@ namespace RealApplication.Mapper
               .ForMember(async=>async.IsValidOnline, async=> async.MapFrom(a=>a.IsValidOnline))
                .ForMember(async=> async.ProductImage,async=>async.MapFrom(a=>a.ImageURL))
                .ForMember(async=>async.ProductNumber, async=>async.MapFrom(a=>a.ProductNumber));
+               
+               
         
             
             

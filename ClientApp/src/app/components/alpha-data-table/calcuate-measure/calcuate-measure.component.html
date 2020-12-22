@@ -5,7 +5,6 @@
         <mat-option  *ngFor="let item of  mesurments" [value]="item.id" > {{item.name}}</mat-option>
     </mat-select>
 </mat-form-field>
-
 <mat-form-field>
     <mat-label>Value </mat-label>
     <input matInput placeholder="Value" 
@@ -15,7 +14,10 @@
      (keypress)="onTextChange()"
       (change)="onTextChange()" 
       (keydown)="onTextChange()" 
-      [(ngModel)]="valueOfElement" >
+      [(ngModel)]="valueOfElement" 
+      autocomplete="off">
 </mat-form-field>
+
+
 
     

@@ -61,7 +61,7 @@
       </mat-form-field>
 
       <div class="measurementContainer">
-        <mat-card  *ngFor="let item of Measurements.controls;let i= index;">
+        <mat-card [@listAdded] *ngFor="let item of Measurements.controls;let i= index;" class="measurement-card">
            <div [formGroup]="item"  >
              <input type="hidden" formControlName ="id" />
              <mat-form-field class="mr-3">
@@ -84,12 +84,10 @@
           <mat-form-field class="mr-3">
             <mat-label>BarCode</mat-label>
             <input matInput formControlName="barCode"  >
-            <ngx-barcode [bc-value]="item.get('barCode').value"></ngx-barcode>
           </mat-form-field>
 
-          <button type="button" (click)="testing2()" *ngIf="!item.get('isKnown').value">
-            Delete
-          </button>
+          <button type="button" (click)="testing2()" *ngIf="!item.get('isKnown').value" mat-raised-button color="warn">Delete</button>
+          
            </div>
         </mat-card>
       </div>

@@ -11,7 +11,8 @@ namespace RealApplication.Models
         public string SupplierID { get; set; }
         [ForeignKey(nameof(Employee))]
         public string  EmployeeID { get; set; }
-      
+        [ForeignKey(nameof(Store))]
+       public int StoreID {get;set;}
 
         public int InvoiceNumber{get;set;}
 

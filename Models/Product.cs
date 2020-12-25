@@ -44,6 +44,8 @@ namespace RealApplication.Models
 
         public ICollection<ProductMeasurements> ProductMeasurements { get; set; }
 
+        public ICollection<ProductStore> ProductStores {get;set;}
+
         
     }
 }

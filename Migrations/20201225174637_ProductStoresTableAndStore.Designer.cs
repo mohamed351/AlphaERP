@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RealApplication.Models;
 
 namespace RealApplication.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201225174637_ProductStoresTableAndStore")]
+    partial class ProductStoresTableAndStore
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -503,7 +505,7 @@ namespace RealApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ProductID")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -514,8 +516,6 @@ namespace RealApplication.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("InvoiceID");
-
-                    b.HasIndex("ProductID");
 
                     b.ToTable("SupplymentDetails");
                 });
@@ -535,9 +535,6 @@ namespace RealApplication.Migrations
 
                     b.Property<bool>("IsCancelled")
                         .HasColumnType("bit");
-
-                    b.Property<int>("StoreID")
-                        .HasColumnType("int");
 
                     b.Property<string>("SupplierID")
                         .HasColumnType("nvarchar(450)");
@@ -684,10 +681,6 @@ namespace RealApplication.Migrations
                         .HasForeignKey("InvoiceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("RealApplication.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductID");
                 });
 
             modelBuilder.Entity("RealApplication.Models.SupplymentInvoice", b =>

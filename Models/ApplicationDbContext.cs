@@ -31,10 +31,17 @@ namespace RealApplication.Models
 
         public DbSet<SupplymentInvoice> supplymentInvoices {get;set;}
 
+        public DbSet<Store> Stores {get;set;}
+
+        public DbSet<ProductStore> ProductStores {get;set;}
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<ProductMeasurements>()
             .HasKey( c => new {c.MeasurementID, c.ProductID});
+
+            builder.Entity<ProductStore>()
+            .HasKey(c =>  new {c.ProductID , c.StoreID, c.ProductEnteredIn});
 
             base.OnModelCreating(builder);
         }

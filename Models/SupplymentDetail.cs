@@ -10,10 +10,12 @@ namespace RealApplication.Models
 
         public SupplymentInvoice SupplymentInvoice { get; set; }
 
-
+        [ForeignKey(nameof(Product))]
         public string ProductID { get; set; }
 
-        public int UnitPrice { get; set; }
+        public Product Product {get;set;}
+
+        public decimal UnitPrice { get; set; }
 
         public int Quantity { get; set; }
 

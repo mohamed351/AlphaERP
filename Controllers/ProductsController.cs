@@ -85,7 +85,8 @@ namespace RealApplication.Controllers
             //fill the details
             productsDTO.Measurements.Each(a=> product.ProductMeasurements.Add(new ProductMeasurements(){
                Value = a.Value,
-               MeasurementID = a.ID
+               MeasurementID = a.ID,
+               BarCode = a.BarCode
             }));
             this.unitOfWork.Products.Add(product);
             this.unitOfWork.Complete();

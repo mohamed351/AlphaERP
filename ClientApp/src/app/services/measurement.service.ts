@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { SelectedMesaurement } from '../components/alpha-data-table/calcuate-measure/calcuate-measure.component';
+import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
+import { CalcuateMeasureComponent, SelectedMesaurement } from '../components/alpha-data-table/calcuate-measure/calcuate-measure.component';
 import { TypeOfMeasurements } from '../models/typeOfMeasurements';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class MeasurementService {
   public SelectedMesaurement:SelectedMesaurement = null;
   constructor() { 
   }
-  SetMeasurmentValue(ValueElement:FormControl){
+  SetMeasurmentValue(ValueElement:AbstractControl){
     if(this.SelectedMesaurement != null){
       if(this.SelectedMesaurement.id === -1){
        ValueElement.setValue(this.SelectedMesaurement.value);
@@ -23,12 +23,14 @@ export class MeasurementService {
       }
     }
   }
-  private SetValueOfCurrentMeasurement(id,value,ValueElement:FormControl){
+  private SetValueOfCurrentMeasurement(id,value,ValueElement:AbstractControl){
+   
     for (const  iterator in this.ReactiveForm.controls) {
       console.log(this.ReactiveForm.controls[iterator].get("id").value);
-       console.log(id, value);
+   
+     
       if(this.ReactiveForm.controls[iterator].get("id").value == id){
-      
+        console.log(ValueElement);
         console.log("Value Will Change",this.ReactiveForm.controls[iterator].get("id").value);
         ValueElement.setValue((this.ReactiveForm.controls[iterator].get("value").value * value).toFixed(0));
       
@@ -36,6 +38,12 @@ export class MeasurementService {
       }
     }
   }
+   public BindAllData(ListOfCalculators:CalcuateMeasureComponent[]){
+     for (const iterator of ListOfCalculators) {
+       this.SetValueOfCurrentMeasurement(iterator.currentId,iterator.valueOfElement,iterator.formControl);
+     }
+   }
+  
 
 
 

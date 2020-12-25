@@ -27,6 +27,10 @@ namespace RealApplication.Models
 
         public DbSet<ProductMeasurements>  ProductMeasurements { get; set; }
 
+        public DbSet<SupplymentDetail> SupplymentDetails { get; set; }
+
+        public DbSet<SupplymentInvoice> supplymentInvoices {get;set;}
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<ProductMeasurements>()

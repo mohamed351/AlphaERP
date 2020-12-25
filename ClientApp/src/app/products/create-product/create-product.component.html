@@ -72,13 +72,15 @@
           <mat-form-field class="mr-3">
             <mat-label>Value</mat-label>
        
-            <input  matInput type="number"  readonly formControlName="value" >
+            <input    matInput type="number"   readonly formControlName="value" >
           </mat-form-field>
         
-          <app-calcuate-measure *ngIf="!item.get('isKnown').value" 
+          <app-calcuate-measure #appcaluclator *ngIf="!item.get('isKnown').value" 
           [mesurements]="this.mesaurementsSelection"
-           (ValueChange)="Testing3($event,item.get('value'))"
-           [currentId] ="item.get('id').value">
+           (ValueChange)="AddMeasurement($event,item.get('value'))"
+           [currentId] ="item.get('id').value"
+           #measurmentButton
+           >
           </app-calcuate-measure>
       
           <mat-form-field class="mr-3">
@@ -87,7 +89,6 @@
           </mat-form-field>
 
           <button type="button" (click)="testing2()" *ngIf="!item.get('isKnown').value" mat-raised-button color="warn">Delete</button>
-          
            </div>
         </mat-card>
       </div>

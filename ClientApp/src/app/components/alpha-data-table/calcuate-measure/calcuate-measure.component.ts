@@ -12,7 +12,8 @@ export class CalcuateMeasureComponent implements OnInit {
 @Input("mesurements") mesurments:Measurement[] =[]
 @Output("ValueChange") ValueChange = new EventEmitter<SelectedMesaurement>();
 @Input("currentId") currentId:number =null; 
-private selectedMeasurement:Measurement = null;
+@Input("connectedFormControl") formControl:FormControl;
+public selectedMeasurement:Measurement = null;
  public  valueOfElement:number = 0 ;
 
   constructor() { 
@@ -56,6 +57,7 @@ private selectedMeasurement:Measurement = null;
     }
   
   }
+  
   
   
 

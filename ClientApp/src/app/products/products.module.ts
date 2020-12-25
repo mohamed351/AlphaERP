@@ -15,8 +15,10 @@ import {MatSelectModule} from '@angular/material/select';
 import {NgxBarcodeModule} from 'ngx-barcode'
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { TranslateModule } from '@ngx-translate/core';
+import { MeasurementService } from '../services/measurement.service';
+import { MeasurementBinderDirective } from './measurement-binder.directive';
 @NgModule({
-  declarations: [ListProductsComponent, CreateProductComponent, EditProductComponent],
+  declarations: [ListProductsComponent, CreateProductComponent, EditProductComponent, MeasurementBinderDirective],
   imports: [
     CommonModule,
     ProductRoutingModule,
@@ -32,6 +34,7 @@ import { TranslateModule } from '@ngx-translate/core';
     ImageCropperModule,
     FormsModule,
     TranslateModule
-  ]
+  ],
+  providers:[MeasurementService]
 })
 export class ProductsModule { }

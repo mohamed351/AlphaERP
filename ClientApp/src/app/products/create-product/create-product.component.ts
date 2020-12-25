@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ImageCroppedEvent } from 'ngx-image-cropper/lib/interfaces/image-cropped-event.interface';
-import { SelectedMesaurement } from 'src/app/components/alpha-data-table/calcuate-measure/calcuate-measure.component';
+import { CalcuateMeasureComponent, SelectedMesaurement } from 'src/app/components/alpha-data-table/calcuate-measure/calcuate-measure.component';
 import { Category } from 'src/app/models/categories/category';
 import { Measurement } from 'src/app/models/measurements';
 import { MeasurementService } from 'src/app/services/measurement.service';
@@ -12,7 +12,6 @@ import {trigger,state, style, transition, animate} from '@angular/animations';
   selector: 'app-create-product',
   templateUrl: './create-product.component.html',
   styleUrls: ['./create-product.component.css'],
-  providers:[MeasurementService],
   animations:[
     trigger("listAdded",[
       state("in",style({
@@ -31,6 +30,8 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
   public categoryInfo:Category[] =[];
   public mesaurementsSelection:Measurement[] =[]
   @ViewChild("productNumber",{static:false}) productNumber:ElementRef;
+  @ViewChildren("appcaluclator") Calculators:CalcuateMeasureComponent[];
+ 
   imageChangedEvent: any = '';
     croppedImage: any = '';
     IsCropperDivShown:boolean =false;
@@ -154,13 +155,19 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
   testing2(){
       console.log(this.mesaurementCalcuation);
   }
-  Testing3(data:SelectedMesaurement , inputElement:FormControl){
   
-  
+  AddMeasurement(data:SelectedMesaurement , inputElement:FormControl){
+            this.mesaurementCalcuation.SelectedMesaurement = data;
+            this.mesaurementCalcuation.SetMeasurmentValue(inputElement);
+       
+    }
     //this.mesaurementCalcuation.ReactiveForm =  this.Measurements;
-    this.mesaurementCalcuation.SelectedMesaurement = data;
-     this.mesaurementCalcuation.SetMeasurmentValue(inputElement);
+   /* 
+  
+     */
   }
+     
+  
 
+  
 
-}

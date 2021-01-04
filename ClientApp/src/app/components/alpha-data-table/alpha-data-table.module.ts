@@ -15,15 +15,16 @@ import {ReusableDailogBoxComponent} from './reusable-dailog-box/reusable-dailog-
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import {CalcuateMeasureComponent} from './calcuate-measure/calcuate-measure.component';
+
 import { MatCardModule, MatSelectModule } from '@angular/material';
 import {AcceptIntOnlyDirective} from './Directives/accept-int-only.directive';
+import { MesurementCalculatorComponent } from './mesurement-calculator/mesurement-calculator.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '../assets/i18n', '.json');
 }
 @NgModule({
-  declarations: [ReusableDataTableComponent, ReusableDailogBoxComponent,CalcuateMeasureComponent, AcceptIntOnlyDirective],
+  declarations: [ReusableDataTableComponent, ReusableDailogBoxComponent, AcceptIntOnlyDirective, MesurementCalculatorComponent],
   imports: [
     CommonModule,
     MatTableModule,
@@ -46,7 +47,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   exports:[
     ReusableDataTableComponent,
-   CalcuateMeasureComponent
+   MesurementCalculatorComponent
   ],
   providers:[
     

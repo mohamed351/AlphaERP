@@ -1,0 +1,25 @@
+
+    <mat-form-field class="form-field">
+        <mat-label>Measurement</mat-label>
+    <mat-select (valueChange)="valueChange($event)">
+       <ng-container *ngFor="let item of  measurementValues" >
+       
+        <mat-option  *ngIf="item.id != this.IDControl " [value]="item.id"  > 
+            {{item.measurementName}}
+        </mat-option>
+    </ng-container>
+  
+    </mat-select>
+</mat-form-field>
+
+    <mat-form-field class="form-field">
+        <mat-label>Value </mat-label>
+        <input  matInput placeholder="Value"
+        [(ngModel)]="valueOfInput" 
+           (change)="textChange()"
+          (ngModelChange)="textChange()"
+          (keydown)="textChange()"
+          autocomplete="off"
+          appAcceptIntOnly >
+    </mat-form-field>
+    

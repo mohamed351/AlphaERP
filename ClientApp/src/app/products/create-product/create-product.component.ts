@@ -2,12 +2,11 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewChildren, 
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ImageCroppedEvent } from 'ngx-image-cropper/lib/interfaces/image-cropped-event.interface';
-import { CalcuateMeasureComponent, SelectedMesaurement } from 'src/app/components/alpha-data-table/calcuate-measure/calcuate-measure.component';
 import { Category } from 'src/app/models/categories/category';
 import { Measurement } from 'src/app/models/measurements';
-import { MeasurementService } from 'src/app/services/measurement.service';
 import { RestService } from 'src/app/services/rest-service.service';
 import {trigger,state, style, transition, animate} from '@angular/animations';
+import { MesurementCalculatorComponent } from 'src/app/components/alpha-data-table/mesurement-calculator/mesurement-calculator.component';
 @Component({
   selector: 'app-create-product',
   templateUrl: './create-product.component.html',
@@ -30,7 +29,7 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
   public categoryInfo:Category[] =[];
   public mesaurementsSelection:Measurement[] =[]
   @ViewChild("productNumber",{static:false}) productNumber:ElementRef;
-  @ViewChildren("appcaluclator") Calculators:CalcuateMeasureComponent[];
+  @ViewChildren("appcaluclator") Calculators:MesurementCalculatorComponent[] =[];
  
   imageChangedEvent: any = '';
     croppedImage: any = '';
@@ -51,7 +50,7 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
       measurements:new FormArray([])
 
     });
-  constructor(private restAPI:RestService, private router:Router,public mesaurementCalcuation:MeasurementService) { }
+  constructor(private restAPI:RestService, private router:Router) { }
   ngAfterViewInit(): void {
    
   }
@@ -145,26 +144,21 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
             barCode :new FormControl('',[Validators.required])
            }))
         })
-       this.mesaurementCalcuation.ReactiveForm = this.Measurements
-       this.mesaurementCalcuation.mainType = event.value;
+     
     });
   }
-  testing(data){
-    console.log(data);
-  }
-  testing2(){
-      console.log(this.mesaurementCalcuation);
-  }
+  DeleteButton(index){
+    
+    this.Measurements.removeAt(index)
   
-  AddMeasurement(data:SelectedMesaurement , inputElement:FormControl){
-            this.mesaurementCalcuation.SelectedMesaurement = data;
-            this.mesaurementCalcuation.SetMeasurmentValue(inputElement);
-       
+  }
+ 
+  changeText(){
+    for (const iterator of this.Calculators) {
+      iterator.valueChangeOut();
     }
-    //this.mesaurementCalcuation.ReactiveForm =  this.Measurements;
-   /* 
+  }
   
-     */
   }
      
   

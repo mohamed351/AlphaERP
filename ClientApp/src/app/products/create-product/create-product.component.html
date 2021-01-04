@@ -75,20 +75,21 @@
             <input    matInput type="number"   readonly formControlName="value" >
           </mat-form-field>
         
-          <app-calcuate-measure #appcaluclator *ngIf="!item.get('isKnown').value" 
-          [mesurements]="this.mesaurementsSelection"
-           (ValueChange)="AddMeasurement($event,item.get('value'))"
-           [currentId] ="item.get('id').value"
-           #measurmentButton
-           >
-          </app-calcuate-measure>
+       
+
+          <app-mesurement-calculator *ngIf="!item.get('isKnown').value"
+           [formControlValue]="item.get('value')" 
+          [measurementValue]="Measurements.value "
+          (valueChanged)="changeText()" 
+          [IDControl]="item.get('id').value"
+          #appcaluclator ></app-mesurement-calculator>
       
           <mat-form-field class="mr-3">
             <mat-label>BarCode</mat-label>
             <input matInput formControlName="barCode"  >
           </mat-form-field>
 
-          <button type="button" (click)="testing2()" *ngIf="!item.get('isKnown').value" mat-raised-button color="warn">Delete</button>
+          <button type="button" (click)="DeleteButton(i)"  *ngIf="!item.get('isKnown').value" mat-raised-button color="warn">Delete</button>
            </div>
         </mat-card>
       </div>

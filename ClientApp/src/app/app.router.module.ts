@@ -13,6 +13,7 @@ const routes:Routes =[
     {path:"categories",loadChildren:()=>import("./categories/categories.module").then(m=>m.CategoriesModule),canActivate:[AuthGuard]},
     {path:"products", loadChildren:()=>import("./products/products.module").then(m=>m.ProductsModule),canActivate:[AuthGuard]},
     {path:"measurement", loadChildren:()=>import("./measurement/measurement.module").then(m=>m.MeasurementModule) , canActivate:[AuthGuard]},
+    {path:"supplymentInvoice", loadChildren:()=>import("./supplyment-invoice/supplyment-invoice.module").then(m=>m.SupplymentInvoiceModule) , canActivate:[AuthGuard]},
     {path:"login",component:LoginComponent, canActivate:[UnAuthGuardGuard]}
 ]
 @NgModule({

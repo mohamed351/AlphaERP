@@ -10,6 +10,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import {MatNativeDateModule} from '@angular/material';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [ListSupplymentListComponent, AddSupplymentInvoiceComponent],
@@ -21,7 +23,9 @@ import {MatNativeDateModule} from '@angular/material';
     MatFormFieldModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatButtonModule,
+    MatIconModule
   ]
 })
 export class SupplymentInvoiceModule { }

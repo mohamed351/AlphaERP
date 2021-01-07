@@ -31,6 +31,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card'; 
 import {MatSelectModule} from '@angular/material/select';
 import { UnAuthGuardGuard } from './guards/unauth.guard';
+import { ChartModule } from 'angular-highcharts';
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -40,8 +42,7 @@ export function createTranslateLoader(http: HttpClient) {
     AppComponent,
     HomeComponent,
     LoginComponent,
-   
-    
+
    
  ],
   imports: [
@@ -72,7 +73,10 @@ export function createTranslateLoader(http: HttpClient) {
        }
     }),
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
+    ChartModule,
+   
+   
     
 
     

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Supplier } from 'src/app/models/suppliers/supplier';
+import { RestService } from 'src/app/services/rest-service.service';
 
 @Component({
   selector: 'app-add-supplyment-invoice',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddSupplymentInvoiceComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private apiService:RestService) { }
+  Suppliers:any[] =[];
   ngOnInit() {
+    this.apiService.GetAll<any[]>("/api/Supplier/flat?$select=id,name").subscribe(a=>{
+      this.Suppliers =a;
+    });
   }
 
 }

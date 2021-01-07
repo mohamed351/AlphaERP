@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
 using RealApplication.DTO.CategoriesDTOS;
 using RealApplication.Models;
@@ -22,6 +23,7 @@ namespace RealApplication.Controllers
             
         }
         [HttpGet]
+        [EnableQuery()]
         public IActionResult GetAllCategories(){
 
                

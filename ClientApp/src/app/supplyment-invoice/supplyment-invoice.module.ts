@@ -6,6 +6,11 @@ import {ProductRoutingModule} from './supplyment-Invoice.router.module';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
+import {MatNativeDateModule} from '@angular/material';
+
 @NgModule({
   declarations: [ListSupplymentListComponent, AddSupplymentInvoiceComponent],
   imports: [
@@ -13,7 +18,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ProductRoutingModule,
     MatCardModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class SupplymentInvoiceModule { }

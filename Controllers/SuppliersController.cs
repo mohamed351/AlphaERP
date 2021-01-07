@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using RealApplication.Models;
 using System.Threading.Tasks;
 using System;
+using Microsoft.AspNet.OData;
 
 namespace RealApplication.Controllers
 {
@@ -25,6 +26,12 @@ namespace RealApplication.Controllers
            
 
         }
+        [EnableQuery()]
+        [HttpGet(template:"/api/[controller]/flat")]
+        public  IEnumerable<Supplier> GetODataSupplier(){
+            return unitOfWork.Suppliers.GetAll();
+        }
+        
         [HttpGet]
         public IActionResult Get([FromQuery] int pageSize, [FromQuery] int start ,[FromQuery]string search ="")
         {

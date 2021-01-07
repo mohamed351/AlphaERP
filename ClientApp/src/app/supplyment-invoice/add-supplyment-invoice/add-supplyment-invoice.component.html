@@ -5,7 +5,21 @@
     <mat-card-content>
         <form>
             <mat-card>
-                
+                <mat-form-field>
+                    <mat-label>Supplier</mat-label>
+                    <mat-select>
+                      <mat-option *ngFor="let supplier of Suppliers" [value]="supplier.ID">
+                        {{supplier.Name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field class="ml-5">
+                    <mat-label>Invoice Date</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
             </mat-card>
         </form>
     </mat-card-content>

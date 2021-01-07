@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNet.OData.Extensions;
 
 namespace RealApplication
 {
@@ -37,7 +38,7 @@ namespace RealApplication
                 a.Password.RequireNonAlphanumeric = false;
                 a.Password.RequireUppercase = false;
             }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
-
+             services.AddOData();
             services.AddAuthentication().AddCookie().AddJwtBearer(options =>{
              options.TokenValidationParameters = new TokenValidationParameters()
                 {
@@ -87,9 +88,12 @@ namespace RealApplication
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.EnableDependencyInjection();
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+                endpoints.Expand().Filter().Count().MaxTop(10).Select().OrderBy();
+                
             });
 
             app.UseSpa(spa =>

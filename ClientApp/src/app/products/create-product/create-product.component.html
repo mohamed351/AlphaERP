@@ -20,16 +20,18 @@
 
       <mat-form-field class="full-width">
         <mat-label>{{'sellingPrice'|translate}}</mat-label>
-        <input matInput formControlName="sellingPrice" placeholder="{{'sellingPrice'|translate}}" type="number" class="full-width" required>
+        <input (ngModelChange)="changeText()" matInput formControlName="sellingPrice" placeholder="{{'sellingPrice'|translate}}" type="number" class="full-width" required>
         <mat-error *ngIf="SellingPrice.invalid && SellingPrice.touched ">
             <mat-error *ngIf="SellingPrice.errors.required">{{'sellingPriceRequired'|translate}}</mat-error>
         </mat-error>
       </mat-form-field>
 
+    
+
 
       <mat-form-field class="full-width">
         <mat-label>{{'purchasingPrice'|translate}}</mat-label>
-        <input matInput formControlName="purchasingPrice" placeholder="{{'purchasingPrice'|translate}}" type="number" class="full-width" required>
+        <input (ngModelChange)="changeText()" matInput formControlName="purchasingPrice" placeholder="{{'purchasingPrice'|translate}}" type="number" class="full-width" required>
         <mat-error *ngIf="purchasingPrice.invalid && purchasingPrice.touched ">
           <mat-error *ngIf="purchasingPrice.errors.required">{{'purchasingPriceRequired'|translate}}</mat-error>
       </mat-error>
@@ -78,6 +80,8 @@
        
 
           <app-mesurement-calculator *ngIf="!item.get('isKnown').value"
+          [PurchasingPrice]="purchasingPrice.value"
+          [SellingPrice]="SellingPrice.value"
            [formControlValue]="item.get('value')" 
           [measurementValue]="Measurements.value "
           (valueChanged)="changeText()" 

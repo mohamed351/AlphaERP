@@ -141,7 +141,8 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
             measurementName:new FormControl(c.name,[Validators.required],),
             isKnown: new FormControl(c.isKnown,[Validators.required]),
             value:new FormControl(c.defaultValue,[Validators.required]),
-            barCode :new FormControl('',[Validators.required])
+            barCode :new FormControl('',[Validators.required]),
+            isMain:new FormControl(c.isMain)
            }))
         })
      

@@ -34,6 +34,7 @@ import { UnAuthGuardGuard } from './guards/unauth.guard';
 import { ChartModule } from 'angular-highcharts';
 
 
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -76,9 +77,7 @@ export function createTranslateLoader(http: HttpClient) {
     MatSelectModule,
     ChartModule,
    
-   
-    
-
+  
     
   ],
   providers: [AuthGuard,UnAuthGuardGuard],

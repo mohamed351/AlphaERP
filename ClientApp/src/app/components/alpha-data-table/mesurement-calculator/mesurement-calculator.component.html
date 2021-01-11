@@ -21,5 +21,11 @@
           (keydown)="textChange()"
           autocomplete="off"
           appAcceptIntOnly >
+          <mat-hint>
+          <span>Selling Price</span> <span> {{(calculatedSellingPrice )|currency}}  </span>
+            <br/>
+          <span>Purchase Price</span> <span> {{(calculatedPurchasingPrice)|currency}} </span>
+        </mat-hint>
     </mat-form-field>
-    
+   
+  

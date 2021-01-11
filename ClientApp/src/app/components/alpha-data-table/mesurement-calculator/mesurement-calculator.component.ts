@@ -13,17 +13,29 @@ export class MesurementCalculatorComponent implements OnInit {
   @Input('IDControl') IDControl:number = null;
   @Input('measurementValue') measurementValues:any[] = null;
   @Output('valueChanged') valueChanged = new EventEmitter();
+  @Input('SellingPrice') SellingPrice:number = 0;
+  @Input('PurchasingPrice') PurchasingPrice:number = 0;
+  @Input('SellingMeasurement') SellingMesurementID;
+  @Input('PurchasingMeasurement') PurchasingMeasurementID;
+  calculatedSellingPrice:number = 0;
+  calculatedPurchasingPrice:number = 0;
+ mainMeasurement:any;
+  
+
+  
   public filterArray:any[] 
   public selectedId:number = null;
   public valueOfInput:number = null;
 
   constructor() { 
-   
+    
   }
 
   ngOnInit() {
    
     this.filterArray = this.measurementValues.filter(a=> a.id != this.IDControl);
+   this.mainMeasurement =  this.measurementValues.find(a=>a.isMain == true);
+   console.log(this.mainMeasurement);
    
   }
   valueChange(data){
@@ -36,11 +48,17 @@ export class MesurementCalculatorComponent implements OnInit {
   textChange(data:any){
     if(this.selectedId == null){
    this.formControl.setValue(this.valueOfInput);
+   let value =1;
+   this.calculatedSellingPrice = ((value * (+this.valueOfInput))/this.mainMeasurement.value)*this.SellingPrice;
+   this.calculatedPurchasingPrice =(value * (+this.valueOfInput)/this.mainMeasurement.value)*this.PurchasingPrice;
     }
     else{
     
     let {value}  =this.measurementValues.find(a=>a.id == this.selectedId);
-    this.formControl.setValue(value * (+this.valueOfInput))
+    this.calculatedSellingPrice = ((value * (+this.valueOfInput))/this.mainMeasurement.value)*this.SellingPrice;
+    this.calculatedPurchasingPrice =(value * (+this.valueOfInput)/this.mainMeasurement.value)*this.PurchasingPrice;
+    this.formControl.setValue(value * (+this.valueOfInput));
+
   
     }
     this.valueChanged.emit(null);
@@ -49,10 +67,16 @@ export class MesurementCalculatorComponent implements OnInit {
   public valueChangeOut(){
     if(this.selectedId == null){
       this.formControl.setValue(this.valueOfInput);
+      let value =1;
+      this.calculatedSellingPrice = ((value * (+this.valueOfInput))/this.mainMeasurement.value)*this.SellingPrice;
+      this.calculatedPurchasingPrice =(value * (+this.valueOfInput)/this.mainMeasurement.value)*this.PurchasingPrice;
        }
        else{
        
        let {value}  =this.measurementValues.find(a=>a.id == this.selectedId);
+       this.calculatedSellingPrice = ((value * (+this.valueOfInput))/this.mainMeasurement.value)*this.SellingPrice;
+       this.calculatedPurchasingPrice =(value * (+this.valueOfInput)/this.mainMeasurement.value)*this.PurchasingPrice;
+       console.log(this.calculatedPurchasingPrice);
        this.formControl.setValue(value * (+this.valueOfInput))
       
        }

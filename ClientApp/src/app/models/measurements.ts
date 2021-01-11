@@ -8,4 +8,5 @@ export interface Measurement {
     productMeasurements?: any;
     measurementName:string;
     value:number;
+    isMain:boolean;
 }

@@ -15,6 +15,8 @@ namespace RealApplication.Models
 
       public int defaultValue { get; set; }
 
+      public bool IsMain { get; set; }
+
       public ICollection<ProductMeasurements> ProductMeasurements { get; set; }
       
   }

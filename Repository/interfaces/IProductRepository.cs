@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using RealApplication.Models;
 namespace RealApplication.Repository.interfaces
@@ -6,6 +7,7 @@ namespace RealApplication.Repository.interfaces
     {
      Task<int> GetProductNumber();
      Task<string> GetOldImage(string productId);
+    Product GetProductWithMesasurementById(string productID);
 
 
     }

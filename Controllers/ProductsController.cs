@@ -58,12 +58,19 @@ namespace RealApplication.Controllers
                 return BadRequest("The Product ID is not valid");
             }
 
-            var product = this.unitOfWork.Products.GetByID(ID);
+            var product = this.unitOfWork.Products.GetProductWithMesasurementById(ID);
             if (product == null)
             {
                 return NotFound("The Product is not Found");
             }
             var productDTO = this.mapper.Map<ProductsDTO>(product);
+            product.ProductMeasurements.Each(a=> productDTO.Measurements.Add(new ProductMeasureDTO(){
+                BarCode= a.BarCode,
+                MeasurementName = a.Measurement.Name,
+                Value = a.Value,
+                ID = a.MeasurementID,
+                IsKnown = a.Measurement.IsKnown
+            }));
             ConvertImageToImageURL(productDTO);
             return Ok(productDTO);
 

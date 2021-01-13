@@ -8,6 +8,8 @@ namespace RealApplication.Models
         public string Name { get; set; }
 
         public ICollection<ProductStore> ProductStores { get; set; }
+        
+        public ICollection<SupplymentInvoice> SupplymentInvoices { get; set; }
 
 
     }

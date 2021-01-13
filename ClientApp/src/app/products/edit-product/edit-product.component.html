@@ -47,16 +47,55 @@
       </mat-form-field>
 
 
+ 
       <mat-form-field class="full-width">
         <mat-label>{{'measurementType'|translate}}</mat-label>
-        <mat-select formControlName="typeOfMeasurements">
+        <mat-select formControlName="typeOfMeasurements" (selectionChange)="seletionChange($event)">
          <mat-option [value]=0> {{'perUnit'|translate}} </mat-option>
          <mat-option [value]=1> {{'gram'|translate}} </mat-option>
+         <mat-option [value]=2> {{'milliliter'|translate}} </mat-option>
+         <mat-option [value]=3> {{'cm'|translate}} </mat-option>
         </mat-select>
         <mat-error *ngIf="TypeOfMeasurements.invalid && TypeOfMeasurements.touched ">
           <mat-error *ngIf="TypeOfMeasurements.errors.required">{{'measurementTypeRequired'|translate}}</mat-error>
       </mat-error>
       </mat-form-field>
+
+      <div class="measurementContainer">
+        <mat-card [@listAdded] *ngFor="let item of Measurements.controls;let i= index;" class="measurement-card">
+           <div [formGroup]="item"  >
+             <input type="hidden" formControlName ="id" />
+             <mat-form-field class="mr-3">
+               <mat-label>Measurement Name</mat-label>
+            <input matInput formControlName="measurementName"  readonly >
+          </mat-form-field>
+
+          <mat-form-field class="mr-3">
+            <mat-label>Value</mat-label>
+       
+            <input    matInput type="number"   readonly formControlName="value" >
+          </mat-form-field>
+        
+       
+
+          <app-mesurement-calculator *ngIf="!item.get('isKnown').value"
+          [PurchasingPrice]="purchasingPrice.value"
+          [SellingPrice]="SellingPrice.value"
+           [formControlValue]="item.get('value')" 
+          [measurementValue]="Measurements.value "
+          (valueChanged)="changeText()" 
+          [IDControl]="item.get('id').value"
+          #appcaluclator ></app-mesurement-calculator>
+      
+          <mat-form-field class="mr-3">
+            <mat-label>BarCode</mat-label>
+            <input matInput formControlName="barCode"  >
+          </mat-form-field>
+
+          <button type="button" (click)="DeleteButton(i)"  *ngIf="!item.get('isKnown').value" mat-raised-button color="warn">Delete</button>
+           </div>
+        </mat-card>
+      </div>
 
 
       <mat-form-field class="full-width">

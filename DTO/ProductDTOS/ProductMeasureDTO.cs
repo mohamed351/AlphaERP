@@ -6,5 +6,9 @@ namespace RealApplication.DTO.ProductDTOS
          public int Value { get; set; }
 
          public string BarCode { get; set; }
+
+         public bool IsKnown { get; set; }
+
+         
     }
 }

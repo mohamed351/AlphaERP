@@ -1,20 +1,38 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component, ElementRef, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { MesurementCalculatorComponent } from 'src/app/components/alpha-data-table/mesurement-calculator/mesurement-calculator.component';
 import { Category } from 'src/app/models/categories/category';
+import { Measurement } from 'src/app/models/measurements';
 import { Product } from 'src/app/models/product/product';
 import { RestService } from 'src/app/services/rest-service.service';
 
 @Component({
   selector: 'app-edit-product',
   templateUrl: './edit-product.component.html',
-  styleUrls: ['./edit-product.component.css']
+  styleUrls: ['./edit-product.component.css'],
+  animations:[
+    trigger("listAdded",[
+      state("in",style({
+        "opacity":1,
+        "transform":"translateX(0)"
+      })),
+      transition("void => *",[ style({
+        "opacity":"0",
+        "transform":"translateX(100px)"
+      }),
+        animate(400)])
+    ])
+  ]
 })
 export class EditProductComponent implements OnInit {
 
   public categoryInfo:Category[] =[];
   public product:Product = null;
+  public mesaurementsSelection:Measurement[] =[]
+  @ViewChildren("appcaluclator") Calculators:MesurementCalculatorComponent[] =[];
   @ViewChild("productNumber",{static:true}) productNumber:ElementRef;
   imageChangedEvent: any = '';
     croppedImage: any = '';
@@ -33,7 +51,8 @@ export class EditProductComponent implements OnInit {
       isValidInStorage:new FormControl(false,Validators.required),
       typeOfMeasurements:new FormControl('',Validators.required),
       isValidOnline:new FormControl(false,Validators.required),
-      productImage:new FormControl('')
+      productImage:new FormControl(''),
+      measurements:new FormArray([])
 
     });
   constructor(private restAPI:RestService, private router:Router, private routerActive:ActivatedRoute) { }
@@ -108,6 +127,28 @@ export class EditProductComponent implements OnInit {
     this.croppedImage = event.base64;
   }
 
+  get Measurements(){
+    return this.form.get("measurements") as FormArray;
+  }
+
+  seletionChange(event){
+    this.restAPI.GetAll<Measurement[]>("/Product/Measurement/?type="+event.value).subscribe(a=>{
+      this.Measurements.clear();
+      this.mesaurementsSelection = a;
+        a.forEach(c=>{
+          this.Measurements.push(new FormGroup({
+            id:new FormControl(c.id,[Validators.required]),
+            measurementName:new FormControl(c.name,[Validators.required],),
+            isKnown: new FormControl(c.isKnown,[Validators.required]),
+            value:new FormControl(c.defaultValue,[Validators.required]),
+            barCode :new FormControl('',[Validators.required]),
+            isMain:new FormControl(c.isMain)
+           }))
+        })
+     
+    });
+  }
+
   handleCancelButton(input){
     //
     this.IsCropperDivShown = false;
@@ -146,6 +187,18 @@ export class EditProductComponent implements OnInit {
     this.IsValidInPointOfSales.setValue(this.product.isValidInPointOfSales);
     this.ProductNumber.setValue(this.product.productNumber);
     this.ProductImage.setValue(null);
+  }
+
+  DeleteButton(index){
+    
+    this.Measurements.removeAt(index)
+  
+  }
+ 
+  changeText(){
+    for (const iterator of this.Calculators) {
+      iterator.valueChangeOut();
+    }
   }
 
 }

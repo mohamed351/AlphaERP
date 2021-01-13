@@ -3,6 +3,8 @@ using RealApplication.Repository.Implementation;
 using RealApplication.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace RealApplication.Repository.Implementation
 {
@@ -14,6 +16,15 @@ namespace RealApplication.Repository.Implementation
             this.dbContext = dbContext;
 
         }
+        public  Product GetProductWithMesasurementById(string productID){
+          
+          return this.dbContext.Set<Product>()
+          .Include(a=> a.ProductMeasurements)
+          .ThenInclude(a=>a.Measurement)
+          .FirstOrDefault(a=>a.ID == productID);
+    
+        }
+    
 
         public async Task<string> GetOldImage(string productId)
         {

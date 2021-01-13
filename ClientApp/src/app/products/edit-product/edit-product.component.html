@@ -77,7 +77,7 @@
           </mat-form-field>
         
        
-
+        
           <app-mesurement-calculator *ngIf="!item.get('isKnown').value"
           [PurchasingPrice]="purchasingPrice.value"
           [SellingPrice]="SellingPrice.value"
@@ -85,6 +85,7 @@
           [measurementValue]="Measurements.value "
           (valueChanged)="changeText()" 
           [IDControl]="item.get('id').value"
+          [defaultValue]="item.get('value').value"
           #appcaluclator ></app-mesurement-calculator>
       
           <mat-form-field class="mr-3">
@@ -125,14 +126,14 @@
 </div>
 <div>
   <input #input type="file" (change)="fileChangeEvent($event)" />
- <ng-container *ngIf="ProductImage != null">
+ <!-- <ng-container *ngIf="product.productImage != null">
   <br/>
   <br/>
     <img [src]="product.productImage" width="150" height="150" >
     <br/>
     <span>Old Picture</span>
     
- </ng-container>
+ </ng-container> -->
   <ng-container *ngIf="imageBase64 != null">
     <br/>
     <br/>

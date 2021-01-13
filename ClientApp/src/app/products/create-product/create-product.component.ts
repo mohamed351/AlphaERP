@@ -155,6 +155,7 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
   }
  
   changeText(){
+  
     for (const iterator of this.Calculators) {
       iterator.valueChangeOut();
     }

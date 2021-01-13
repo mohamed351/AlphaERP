@@ -9,6 +9,8 @@ namespace RealApplication.DTO.ProductDTOS
 
          public bool IsKnown { get; set; }
 
+         public bool IsMain { get; set; }
+
          
     }
 }

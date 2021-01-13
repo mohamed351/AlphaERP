@@ -32,7 +32,7 @@ export class EditProductComponent implements OnInit {
   public categoryInfo:Category[] =[];
   public product:Product = null;
   public mesaurementsSelection:Measurement[] =[]
-  @ViewChildren("appcaluclator") Calculators:MesurementCalculatorComponent[] =[];
+   @ViewChildren("appcaluclator") Calculators:MesurementCalculatorComponent[] =[];
   @ViewChild("productNumber",{static:true}) productNumber:ElementRef;
   imageChangedEvent: any = '';
     croppedImage: any = '';
@@ -143,7 +143,7 @@ export class EditProductComponent implements OnInit {
             value:new FormControl(c.defaultValue,[Validators.required]),
             barCode :new FormControl('',[Validators.required]),
             isMain:new FormControl(c.isMain)
-           }))
+           }));
         })
      
     });
@@ -187,6 +187,19 @@ export class EditProductComponent implements OnInit {
     this.IsValidInPointOfSales.setValue(this.product.isValidInPointOfSales);
     this.ProductNumber.setValue(this.product.productNumber);
     this.ProductImage.setValue(null);
+    this.product.measurements.forEach(c=>{
+      this.Measurements.push(new FormGroup({
+        id:new FormControl(c.id,[Validators.required]),
+        measurementName:new FormControl(c.measurementName,[Validators.required],),
+        isKnown: new FormControl(c.isKnown,[Validators.required]),
+        value:new FormControl(c.value,[Validators.required]),
+        barCode :new FormControl(c.barCode,[Validators.required]),
+        isMain:new FormControl(c.isMain)
+       }))
+    });
+   console.log(this.Calculators.length);
+   this.changeText();
+   
   }
 
   DeleteButton(index){
@@ -196,6 +209,7 @@ export class EditProductComponent implements OnInit {
   }
  
   changeText(){
+  
     for (const iterator of this.Calculators) {
       iterator.valueChangeOut();
     }

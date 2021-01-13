@@ -69,7 +69,8 @@ namespace RealApplication.Controllers
                 MeasurementName = a.Measurement.Name,
                 Value = a.Value,
                 ID = a.MeasurementID,
-                IsKnown = a.Measurement.IsKnown
+                IsKnown = a.Measurement.IsKnown,
+                IsMain =a.Measurement.IsMain
             }));
             ConvertImageToImageURL(productDTO);
             return Ok(productDTO);

@@ -13,5 +13,17 @@ isValidInStorage:boolean,
 isValidOnline:boolean,
 typeOfMeasurements:TypeOfMeasurements,
 productImage:string
-
+measurements: Measurement[];
 }
+
+export interface Measurement {
+    id: number;
+    measurementName: string;
+    value: number;
+    barCode: string;
+    isKnown: boolean;
+    isMain: boolean;
+  }
+
+
+

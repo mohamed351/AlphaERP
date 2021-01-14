@@ -6,6 +6,10 @@ namespace RealApplication.Models
 {
     public class Category
     {
+        public Category()
+        {
+            this.Products = new List<Product>();
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string ID { get; set; }

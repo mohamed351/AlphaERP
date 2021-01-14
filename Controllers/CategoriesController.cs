@@ -5,6 +5,7 @@ using RealApplication.DTO.CategoriesDTOS;
 using RealApplication.Models;
 using RealApplication.Repository.UnitOfWork;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RealApplication.Controllers
 {
@@ -14,16 +15,15 @@ namespace RealApplication.Controllers
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
+        private readonly ApplicationDbContext context;
 
-        public CategoriesController(IUnitOfWork unitOfWork , IMapper mapper)
+        public CategoriesController(IUnitOfWork unitOfWork , IMapper mapper, ApplicationDbContext context)
         {
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
-            
-            
+            this.context = context;
         }
         [HttpGet]
-        [EnableQuery()]
         public IActionResult GetAllCategories(){
 
                
@@ -81,6 +81,11 @@ namespace RealApplication.Controllers
            }
            return Ok();
 
+        }
+        [EnableQuery()]
+         [HttpGet(template:"/api/[controller]/products")]
+        public IEnumerable<Category> GetCategoryProduct(){
+            return context.Categories;
         }
 
         

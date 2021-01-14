@@ -140,6 +140,7 @@ namespace RealApplication.Controllers
             return NewName;
 
         }
+
         private void ConvertImageToImageURL(ProductsDTO productsDTO)
         {
 

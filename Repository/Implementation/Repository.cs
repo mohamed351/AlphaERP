@@ -53,5 +53,10 @@ namespace RealApplication.Repository.Implementation
            .Skip(PageSize * PageStart)
            .Take(PageSize).ToList();
         }
+
+        public bool ValueExist(Func<TEntity, bool> condition)
+        {
+           return dbContext.Set<TEntity>().Any(condition);
+        }
     }
 }

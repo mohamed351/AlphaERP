@@ -6,6 +6,7 @@ namespace RealApplication.Models
     { 
          public int ID { get; set; }
         public string Name { get; set; }
+        public bool IsDelete { get; set; }
 
         public ICollection<ProductStore> ProductStores { get; set; }
         

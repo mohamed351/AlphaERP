@@ -31,7 +31,7 @@ namespace RealApplication.Controllers
             var model = new DataTableDTO<CustomerDTO>()
             {
                 Data = mapper.Map<IEnumerable<CustomerDTO>>(unitOfWork.Customers.GetEntityDataTable(start, pageSize, async => async.CustomerName.ToLower().Contains(search) &&async.IsDeleted == false, async => async.CustomerName) )  ,
-                TotalCount = unitOfWork.Customers.GetCount(async => async.CustomerName.Contains(""))
+                TotalCount = unitOfWork.Customers.GetCount(async => async.CustomerName.ToLower().Contains(search)  && async.IsDeleted == false)
             };
             return Ok(model);
         }

@@ -16,6 +16,10 @@ namespace RealApplication.Repository.interfaces
          
          int GetCount(Func<TEntity,bool> Condtion);
 
+         bool ValueExist(Func<TEntity,bool> condition);
+        
+
+
 
         
 

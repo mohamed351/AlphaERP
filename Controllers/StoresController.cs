@@ -40,6 +40,44 @@ namespace RealApplication.Controllers
              return Ok(this.mapper.Map<StoreCreateDTO>(store));
 
         }
+        [HttpPut(template:"{id}")]
+        public IActionResult PutStore(int? id,[FromBody] StoreCreateDTO dto){
+            if(!ModelState.IsValid){
+               return BadRequest("The Data is not valid");
+            }
+             if(id == null){
+                 return BadRequest("The ID is not Exist");
+             }
+             var store = this.mapper.Map<Store>(dto);
+             store.ID = id.Value;
+             this.unitOfWork.Stores.Edit(store);
+             this.unitOfWork.Complete();
+             return Ok(this.mapper.Map<StoreCreateDTO>(store));
+        }
+        [HttpDelete(template:"id")]
+        public IActionResult DeleteStore(int? id){
+            if(id == null){
+                return BadRequest("The ID is not Valid");
+            }
+           var store = this.unitOfWork.Stores.GetByID(id.Value);
+           store.IsDelete = true;
+           this.unitOfWork.Complete();
+           return Ok(store);
+        }
+
+        [HttpGet(template:"/api/[controller]/Verify/{storeName}")]
+        public IActionResult VerifyStoreName(string storeName,[FromQuery] int? storeID){
+            storeName = storeName.Trim();
+            if(storeID == null){
+            return Ok(!this.unitOfWork.Stores.ValueExist(a=> a.Name == storeName ));
+            }
+            else{
+                return Ok(!this.unitOfWork.Stores.ValueExist(a=> a.Name == storeName && a.ID !=storeID ));
+            }
+        }
+
+
+
 
 
        

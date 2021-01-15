@@ -55,5 +55,7 @@
     "measurements":"وحدات القياس أخري",
     "milliliter":"ميلي لتر",
     "cm":"سم",
-    "supplymentInvoice":"فواتير الشراء"
+    "supplymentInvoice":"فواتير الشراء",
+    "stores":"مخازن",
+    "createStore":"انشاء مخزن"
 }

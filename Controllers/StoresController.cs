@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
+using RealApplication.DTO;
 using RealApplication.DTO.StoreDTOS;
 using RealApplication.Models;
 using RealApplication.Repository.UnitOfWork;
@@ -28,6 +29,19 @@ namespace RealApplication.Controllers
         public IEnumerable<Store> GetStores(){
             return this.unitOfWork.Stores.GetAll();         
         }
+
+        [HttpGet("/api/[controller]/dataTable")]
+        public IActionResult Get([FromQuery] int pageSize, [FromQuery] int start, [FromQuery] string search)
+        {
+            search = search == null ? "" :search.ToLower();
+            var model = new DataTableDTO<StoreCreateDTO>()
+            {
+                Data = mapper.Map<IEnumerable<StoreCreateDTO>>(unitOfWork.Stores.GetEntityDataTable(start, pageSize,a=>a.Name.ToLower().Contains(search) && a.IsDelete == false, async => async.ID) )  ,
+                TotalCount = unitOfWork.Stores.GetCount(async => async.Name.ToLower().Contains(search)  && async.IsDelete == false)
+            };
+            return Ok(model);
+        }
+        
 
         [HttpPost]
         public IActionResult PostStore(StoreCreateDTO dTO){

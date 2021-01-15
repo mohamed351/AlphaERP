@@ -6,6 +6,7 @@ import { UnAuthGuardGuard } from './guards/unauth.guard';
 import { HomeComponent } from './home/home.component';
 import {LoginComponent} from './login/login.component';
 
+
 const routes:Routes =[
     {path:"",component:HomeComponent,canActivate:[AuthGuard]},
     {path:"customers",  loadChildren:()=> import("./customers/customers.module").then(m=>m.CustomersModule) , canActivate:[AuthGuard] },
@@ -14,7 +15,8 @@ const routes:Routes =[
     {path:"products", loadChildren:()=>import("./products/products.module").then(m=>m.ProductsModule),canActivate:[AuthGuard]},
     {path:"measurement", loadChildren:()=>import("./measurement/measurement.module").then(m=>m.MeasurementModule) , canActivate:[AuthGuard]},
     {path:"supplymentInvoice", loadChildren:()=>import("./supplyment-invoice/supplyment-invoice.module").then(m=>m.SupplymentInvoiceModule) , canActivate:[AuthGuard]},
-    {path:"login",component:LoginComponent, canActivate:[UnAuthGuardGuard]}
+    {path:"login",component:LoginComponent, canActivate:[UnAuthGuardGuard]},
+    {path:"stores",loadChildren:()=>import("./stores/stores.module").then(m=>m.StoresModule), canActivate:[AuthGuard]}
 ]
 @NgModule({
     imports:[RouterModule.forRoot(routes)],

@@ -68,7 +68,7 @@ namespace RealApplication.Controllers
              this.unitOfWork.Complete();
              return Ok(this.mapper.Map<StoreCreateDTO>(store));
         }
-        [HttpDelete(template:"id")]
+        [HttpDelete(template:"{id}")]
         public IActionResult DeleteStore(int? id){
             if(id == null){
                 return BadRequest("The ID is not Valid");

@@ -121,7 +121,14 @@ namespace RealApplication.Controllers
              this.unitOfWork.Complete();
              return NoContent();
         }
-
+        [HttpGet("/api/[controller]/validateName/{Name}")]
+        public IActionResult ValidateProductName(string Name,[FromQuery]string ID){
+           return Ok(this.unitOfWork.Products.ValidateName(ID,Name));
+        }
+        public IActionResult ValidateProductBarCode(string barCode ,[FromQuery] string ID){
+           return Ok(true);
+        }
+       
 
         private string SaveAnImages(string imageProduct)
         {

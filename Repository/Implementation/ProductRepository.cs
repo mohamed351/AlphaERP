@@ -24,6 +24,14 @@ namespace RealApplication.Repository.Implementation
           .FirstOrDefault(a=>a.ID == productID);
     
         }
+        public bool ValidateName(string ProductID , string ProductName){
+           if(string.IsNullOrEmpty(ProductID)){
+               return !dbContext.Set<Product>().Any(a=>a.ProductName == ProductName);
+           } 
+           else{
+               return !dbContext.Set<Product>().Any(a=>a.ProductName == ProductName && a.ID != ProductID);
+           }
+        }
     
 
         public async Task<string> GetOldImage(string productId)
@@ -34,7 +42,13 @@ namespace RealApplication.Repository.Implementation
 
         public async Task<int> GetProductNumber()
         {
-            return await this.dbContext.Set<Product>().MaxAsync(a=>a.ProductNumber)+1;
+         int? number =  await this.dbContext.Set<Product>().MaxAsync(x => (int?)x.ProductNumber);
+           if(number == null){
+               return await Task.FromResult(1);
+           }
+           else{
+               return await Task.FromResult( number.Value);
+           }
         }
     }
 }

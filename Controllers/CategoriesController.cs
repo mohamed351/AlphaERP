@@ -82,9 +82,8 @@ namespace RealApplication.Controllers
            return Ok();
 
         }
-        [EnableQuery()]
-         [HttpGet(template:"/api/[controller]/products")]
-        public IEnumerable<Category> GetCategoryProduct(){
+         [HttpGet(template:"/api/[controller]/products/{id}")]
+        public IEnumerable<Category> GetCategoryProduct(string id){
             return context.Categories;
         }
 

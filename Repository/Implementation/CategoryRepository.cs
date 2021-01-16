@@ -4,6 +4,7 @@ using RealApplication.Repository.interfaces;
 using RealApplication.DTO.CategoriesDTOS;
 using System.Collections.Generic;
 using System.Linq;
+using RealApplication.DTO.ProductCategoryDTOS;
 
 namespace RealApplication.Repository.Implementation
 {
@@ -29,9 +30,17 @@ namespace RealApplication.Repository.Implementation
 
           });
 
-          
            
     }
+    // public IEnumerable<ProductInfoDTO> ProductCategoryDTOs(string cateogryID){
+    //     // return   dbContext.Set<Category>().Include(a=>a.ChildCategory)
+    //     //   .ToList()
+    //     //   .Where(a=>a.CategoryID == cateogryID)
+    //     //   .Select(ent => new ProductInfoDTO{
+           
+    //     //   });
+            
+    // }
 
     private CategoryDTO ListWithUnites_LoadUnites(Category unite)
     {

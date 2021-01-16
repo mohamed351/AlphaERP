@@ -30,6 +30,10 @@ namespace RealApplication.Repository.Implementation
             return dbContext.Set<TEntity>().ToList();
         }
 
+        public IQueryable<TEntity> GetIQueryableData(){
+            return this.dbContext.Set<TEntity>();
+        }
+
         public IEnumerable<TEntity> GetByCondititon(Func<TEntity, bool> func )
         {
            return   dbContext.Set<TEntity>().Where(func).ToList();

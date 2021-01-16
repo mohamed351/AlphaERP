@@ -9,6 +9,7 @@ namespace RealApplication.Repository.interfaces
      Task<string> GetOldImage(string productId);
     Product GetProductWithMesasurementById(string productID);
     bool ValidateName(string ProductID , string ProductName);
+    bool ValidateBarCode(string productID, string productBarCode);
 
     }
 }

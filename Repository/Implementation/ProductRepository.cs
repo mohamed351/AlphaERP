@@ -25,12 +25,24 @@ namespace RealApplication.Repository.Implementation
     
         }
         public bool ValidateName(string ProductID , string ProductName){
+            ProductName = ProductName.Trim();
            if(string.IsNullOrEmpty(ProductID)){
                return !dbContext.Set<Product>().Any(a=>a.ProductName == ProductName);
            } 
            else{
                return !dbContext.Set<Product>().Any(a=>a.ProductName == ProductName && a.ID != ProductID);
            }
+        }
+
+        public bool ValidateBarCode(string productID, string productBarCode){
+            productBarCode =productBarCode.Trim();
+            if(string.IsNullOrEmpty(productID)){
+                return !dbContext.Set<ProductMeasurements>().Any(a=>a.BarCode == productBarCode);
+            }
+            else{
+                return !dbContext.Set<ProductMeasurements>().Any(a=>a.BarCode == productBarCode && a.ProductID == productID);
+            }
+            
         }
     
 

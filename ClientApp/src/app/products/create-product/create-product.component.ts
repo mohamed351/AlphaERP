@@ -7,6 +7,7 @@ import { Measurement } from 'src/app/models/measurements';
 import { RestService } from 'src/app/services/rest-service.service';
 import {trigger,state, style, transition, animate} from '@angular/animations';
 import { MesurementCalculatorComponent } from 'src/app/components/alpha-data-table/mesurement-calculator/mesurement-calculator.component';
+import {ProductCustomeValidation} from '../product.custome.validation';
 @Component({
   selector: 'app-create-product',
   templateUrl: './create-product.component.html',
@@ -37,7 +38,7 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
     imageBase64:string = null;
     barcodeValue:string ="";
     form:FormGroup = new FormGroup({
-      productName:new FormControl('',Validators.required),
+      productName:new FormControl('',Validators.required,this.ProductCustomeValidation.ValidateProductName(null)),
       sellingPrice:new FormControl('',Validators.required),
       purchasingPrice:new FormControl('',Validators.required),
       categoryID:new FormControl('',Validators.required),
@@ -50,7 +51,9 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
       measurements:new FormArray([])
 
     });
-  constructor(private restAPI:RestService, private router:Router) { }
+  constructor(private restAPI:RestService,
+     private router:Router,
+     private  ProductCustomeValidation :ProductCustomeValidation) { }
   ngAfterViewInit(): void {
    
   }

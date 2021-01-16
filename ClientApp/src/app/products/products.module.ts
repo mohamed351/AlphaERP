@@ -15,6 +15,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {NgxBarcodeModule} from 'ngx-barcode'
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { TranslateModule } from '@ngx-translate/core';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [ListProductsComponent, CreateProductComponent, EditProductComponent],
@@ -32,7 +33,8 @@ import { TranslateModule } from '@ngx-translate/core';
     NgxBarcodeModule,
     ImageCropperModule,
     FormsModule,
-    TranslateModule
+    TranslateModule,
+    HttpClientModule
   ],
   providers:[]
 })

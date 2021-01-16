@@ -15,6 +15,8 @@
         <input matInput formControlName="productName" placeholder="{{'productName'|translate}}" class="full-width" required>
         <mat-error *ngIf="ProductName.invalid && ProductName.touched"> 
           <mat-error *ngIf="ProductName.errors.required"> {{'productNameRequired'|translate}}</mat-error>
+          <mat-error *ngIf="ProductName.errors.Unique"> The Product Name should be unique</mat-error>
+
         </mat-error>
       </mat-form-field>
 

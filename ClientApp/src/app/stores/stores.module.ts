@@ -12,10 +12,12 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { DetailsStoreComponent } from './details-store/details-store.component';
 
 
 @NgModule({
-  declarations: [ListStoreComponent, CreateStoreComponent, EditStoreComponent],
+  declarations: [ListStoreComponent, CreateStoreComponent, EditStoreComponent, DetailsStoreComponent],
   imports: [
     CommonModule,
     StoresRoutingModule,
@@ -26,7 +28,8 @@ import {HttpClientModule} from '@angular/common/http';
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinnerModule
   ]
 })
 export class StoresModule { }

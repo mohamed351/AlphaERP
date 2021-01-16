@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {ListStoreComponent} from './list-store/list-store.component';
 import {CreateStoreComponent} from './create-store/create-store.component';
 import {EditStoreComponent} from './edit-store/edit-store.component';
-
+import {DetailsStoreComponent} from './details-store/details-store.component';
 const routes: Routes = [
   {
     path: '',
@@ -18,6 +18,10 @@ const routes: Routes = [
       path:"edit/:id",
       component:EditStoreComponent
   },
+  {
+    path:"details/:id",
+    component:DetailsStoreComponent
+  }
   
   
 ];

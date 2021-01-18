@@ -59,7 +59,7 @@ namespace RealApplication.Repository.Implementation
                return await Task.FromResult(1);
            }
            else{
-               return await Task.FromResult( number.Value);
+               return await Task.FromResult( number.Value +1);
            }
         }
     }

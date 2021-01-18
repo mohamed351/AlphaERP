@@ -8,6 +8,7 @@ import { Category } from 'src/app/models/categories/category';
 import { Measurement } from 'src/app/models/measurements';
 import { Product } from 'src/app/models/product/product';
 import { RestService } from 'src/app/services/rest-service.service';
+import { ProductCustomeValidation } from '../product.custome.validation';
 
 @Component({
   selector: 'app-edit-product',
@@ -33,7 +34,12 @@ export class EditProductComponent implements OnInit {
   public product:Product = null;
   public mesaurementsSelection:Measurement[] =[]
    @ViewChildren("appcaluclator") Calculators:MesurementCalculatorComponent[] =[];
-  @ViewChild("productNumber",{static:true}) productNumber:ElementRef;
+   productNumber:ElementRef;
+  @ViewChild("productNumber",{static:false}) set content(content: ElementRef) {
+    if(content) { // initially setter gets called with undefined
+        this.productNumber = content;
+    }
+ }
   imageChangedEvent: any = '';
     croppedImage: any = '';
     IsCropperDivShown:boolean =false;
@@ -55,9 +61,13 @@ export class EditProductComponent implements OnInit {
       measurements:new FormArray([])
 
     });
-  constructor(private restAPI:RestService, private router:Router, private routerActive:ActivatedRoute) { }
+  constructor(private restAPI:RestService,
+     private router:Router,
+      private routerActive:ActivatedRoute,
+      private productValidation:ProductCustomeValidation) { }
   ngAfterViewInit(): void {
-   
+    //this.productNumber= ViewChild("productNumber",{static:true});
+    
   }
  get ProductName(){
    return this.form.get("productName")
@@ -105,8 +115,10 @@ export class EditProductComponent implements OnInit {
   });
   this.restAPI.GetByID<Product>("/api/Products", this.routerActive.snapshot.params["id"]).subscribe(a=>{
     this.product = a;
-    this.productNumber.nativeElement.value =a.productNumber;
+    //this.productNumber.nativeElement.value =a.productNumber;
     this.setValues();
+    this.productNumber= ViewChild("productNumber",{static:true});
+    console.log(this.ProductNumber);
 
   });
  
@@ -141,7 +153,7 @@ export class EditProductComponent implements OnInit {
             measurementName:new FormControl(c.name,[Validators.required],),
             isKnown: new FormControl(c.isKnown,[Validators.required]),
             value:new FormControl(c.defaultValue,[Validators.required]),
-            barCode :new FormControl('',[Validators.required]),
+            barCode :new FormControl('',[Validators.required, this.productValidation.ValidationbarCodeForm(this.Measurements)]),
             isMain:new FormControl(c.isMain)
            }));
         })
@@ -193,12 +205,14 @@ export class EditProductComponent implements OnInit {
         measurementName:new FormControl(c.measurementName,[Validators.required],),
         isKnown: new FormControl(c.isKnown,[Validators.required]),
         value:new FormControl(c.value,[Validators.required]),
-        barCode :new FormControl(c.barCode,[Validators.required]),
+        barCode :new FormControl(c.barCode,[Validators.required, this.productValidation.ValidationbarCodeForm(this.Measurements)]),
         isMain:new FormControl(c.isMain)
        }))
     });
-   console.log(this.Calculators.length);
+    
+  if(this.Calculators.length != 0){
    this.changeText();
+  }
    
   }
 

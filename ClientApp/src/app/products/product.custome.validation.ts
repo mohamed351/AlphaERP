@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { AsyncValidatorFn, ValidationErrors , AbstractControl, FormGroup, FormArray} from "@angular/forms";
+import { AsyncValidatorFn, ValidationErrors , AbstractControl, FormGroup, FormArray, ValidatorFn} from "@angular/forms";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
@@ -77,17 +77,23 @@ export class ProductCustomeValidation {
         }
     }
 
-    ValidationbarCodeForm(FormArray:FormArray):ValidationErrors{
+    ValidationbarCodeForm(FormArray:FormArray):ValidatorFn{
         return (AbstractControl:AbstractControl):ValidationErrors|null =>{
-            FormArray.controls.forEach(element => {
-                let controlString = (<String>AbstractControl.value).trim();
-                if(element.get("barcode").value == controlString){
-                    AbstractControl.hasError("Bar Code is Duplicated");
-                    return { Unique: "ProductName Should be unique" };
-                }
-                
+          var duplicated:Boolean = false;
+           FormArray.controls.filter(a=>a.get('barCode') != AbstractControl).forEach(a=>{
+              if(AbstractControl.value == a.get('barCode').value){
+                  if((<String> AbstractControl.value).trim() != ""){
+                     duplicated = true;
+                     
+                  }
+              }
            });
+           if(duplicated){
+            AbstractControl.hasError("Bar Code is Duplicated");
+            return { Unique: "Bar Code   Should be unique" };
+           }
            return null;
+          
         }
     }
 

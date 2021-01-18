@@ -16,7 +16,7 @@ import {NgxBarcodeModule} from 'ngx-barcode'
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { TranslateModule } from '@ngx-translate/core';
 import {HttpClientModule} from '@angular/common/http';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [ListProductsComponent, CreateProductComponent, EditProductComponent],
   imports: [
@@ -34,7 +34,8 @@ import {HttpClientModule} from '@angular/common/http';
     ImageCropperModule,
     FormsModule,
     TranslateModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
   providers:[]
 })

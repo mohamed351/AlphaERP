@@ -106,6 +106,8 @@
         <input matInput formControlName="barCode" placeholder="{{'barCode'|translate}}" #barcode class="full-width" required>
         <mat-error *ngIf="barCode.invalid && barCode.touched">
           <mat-error *ngIf="barCode.errors.required">{{'barCodeRequired'|translate}}</mat-error>
+          <mat-error *ngIf="barCode.errors.Unique">{{'barCodeRequired'|translate}}</mat-error>
+
         </mat-error>
       </mat-form-field>
       <div>

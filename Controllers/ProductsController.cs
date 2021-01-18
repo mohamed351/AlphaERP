@@ -125,9 +125,9 @@ namespace RealApplication.Controllers
         public IActionResult ValidateProductName(string Name,[FromQuery]string ID){
            return Ok(this.unitOfWork.Products.ValidateName(ID,Name));
         }
-         [HttpGet("/api/[controller]/validateBarcode/{Name}")]
+         [HttpGet("/api/[controller]/validateBarcode/{barCode}")]
         public IActionResult ValidateProductBarCode(string barCode ,[FromQuery] string ID){
-           return Ok(this.unitOfWork.Products.ValidateBarCode(barCode,ID));
+           return Ok(this.unitOfWork.Products.ValidateBarCode(ID,barCode));
         }
        
 

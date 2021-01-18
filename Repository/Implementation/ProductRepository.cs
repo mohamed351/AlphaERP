@@ -35,11 +35,12 @@ namespace RealApplication.Repository.Implementation
         }
 
         public bool ValidateBarCode(string productID, string productBarCode){
-            productBarCode =productBarCode.Trim();
+           productBarCode =productBarCode.Trim();
             if(string.IsNullOrEmpty(productID)){
                 return !dbContext.Set<ProductMeasurements>().Any(a=>a.BarCode == productBarCode);
             }
             else{
+                 
                 return !dbContext.Set<ProductMeasurements>().Any(a=>a.BarCode == productBarCode && a.ProductID == productID);
             }
             

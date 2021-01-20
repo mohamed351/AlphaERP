@@ -3,3 +3,11 @@
 .halfwidth{
     width: 40%;
 }
+.margin-rows{
+ margin-left: 0.2rem;
+ margin-right: 0.2rem;
+ width: 15%;
+}
+.select2-rows{
+    width: 50%;
+}

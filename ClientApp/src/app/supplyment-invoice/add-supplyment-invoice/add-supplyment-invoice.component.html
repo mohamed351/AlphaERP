@@ -3,7 +3,7 @@
         <h4>Supplyment Invoice</h4>
     </mat-card-header>
     <mat-card-content>
-        <form>
+        <form [formGroup]="form">
             <mat-card>
             
                 <mat-form-field class="halfwidth">
@@ -33,52 +33,65 @@
                   
                 
             </mat-card>
-
+            <button type="button" (click)="AddInvoiceDetails()" class="mt-3" mat-raised-button color="primary">Add Row</button>
             <mat-card class="mt-5">
-              <button type="button" mat-raised-button color="primary">Add Row</button>
-              <div style="display: flex;" *ngFor="let item of InvoiceDetails.controls">
+           
+              <div style="display: flex;" *ngFor="let item of InvoiceDetails.controls; let i = index" [formGroup]="item">
 
-                <div style="flex: 1;">
+                <div class="margin-rows select2-rows">
                   <ng-select  [items]="Products" 
                   placeholder="ProductName"
                   bindLabel="ProductName"
+                  formControlName="productID"
                   bindValue="ID" 
+                  #productData
+                  (change)="SerilaFilter($event , barcode, i)"
                   >
                   </ng-select>
                 </div>
 
-                <div style="flex: 1;">
-                  <ng-select  [items]="Products" 
-                  placeholder="ProductSerial"
-                  bindLabel="barCode"
-                  bindValue="id" 
+                <div class="margin-rows select2-rows">
+                  <ng-select  [items]="barCodes[i]" 
+                  placeholder="BarCode"
+                  bindLabel="BarCode"
+                  bindValue="BarCode" 
+                  #barcode
+                  (search)="selectProductBarCode($event,i)"
+                  (change)="ChoosebarCodes($event,i)"
                   >
                   </ng-select>
                 </div>
 
-                <mat-form-field class="ml-3 ;flex: 1;">
+                <mat-form-field   class="margin-rows ">
                   <mat-label>Quantity</mat-label>
-                  <input matInput type="text" >
+                  <input matInput type="text"
+                   formControlName="quantity"
+                     >
+                     <mat-hint >{{item.get("typeOfMeasurement").value |measurementText }} </mat-hint>
                 </mat-form-field>
                   
 
-                <mat-form-field class="ml-3;flex: 1;">
+                <mat-form-field   class="margin-rows ">
+                  <mat-label>Price</mat-label>
+                  <input matInput type="number"  formControlName="price">
+                </mat-form-field>
+
+                <mat-form-field class="margin-rows ">
                   <mat-label>ExpireDate</mat-label>
-                  <input matInput [matDatepicker]="picker">
+                  <input matInput [matDatepicker]="picker" formControlName="expireDate">
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
               
 
-              <mat-form-field class="ml-3;flex: 1;">
+              <mat-form-field class="margin-rows">
                 <mat-label>Serial</mat-label>
-                <input matInput type="text" >
+                <input matInput type="text" formControlName="productSerial" >
               </mat-form-field>
               <button class="ml-3" type="button" mat-mini-fab color="warn"> 
                 <mat-icon>
                   delete_forever
               </mat-icon>
-
               </button>
             </div>
             </mat-card>

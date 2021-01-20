@@ -13,9 +13,11 @@ import {MatNativeDateModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { NgSelectModule } from '@ng-select/ng-select';
-
+import {ReactiveFormsModule} from '@angular/forms';
+import { MeasurementPipePipe } from './pipes/measurement-pipe.pipe';
+import { MeasurementTextPipe } from './pipes/measurement-text.pipe';
 @NgModule({
-  declarations: [ListSupplymentListComponent, AddSupplymentInvoiceComponent],
+  declarations: [ListSupplymentListComponent, AddSupplymentInvoiceComponent, MeasurementPipePipe, MeasurementTextPipe],
   imports: [
     CommonModule,
     ProductRoutingModule,
@@ -27,7 +29,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     MatNativeDateModule,
     MatButtonModule,
     MatIconModule,
-    NgSelectModule
+    NgSelectModule,
+    ReactiveFormsModule
   ]
 })
 export class SupplymentInvoiceModule { }

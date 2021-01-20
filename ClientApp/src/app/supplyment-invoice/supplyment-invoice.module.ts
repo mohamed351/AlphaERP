@@ -12,6 +12,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [ListSupplymentListComponent, AddSupplymentInvoiceComponent],
@@ -25,7 +26,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    NgSelectModule
   ]
 })
 export class SupplymentInvoiceModule { }

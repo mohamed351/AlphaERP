@@ -36,20 +36,33 @@
 
             <mat-card class="mt-5">
               <button type="button" mat-raised-button color="primary">Add Row</button>
-              <div *ngFor="let item of InvoiceDetails.controls">
+              <div style="display: flex;" *ngFor="let item of InvoiceDetails.controls">
 
-                <mat-form-field class="ml-3">
-                  <mat-label>Product</mat-label>
-                  <input matInput type="text" >
-                </mat-form-field>
+                <div style="flex: 1;">
+                  <ng-select  [items]="Products" 
+                  placeholder="ProductName"
+                  bindLabel="ProductName"
+                  bindValue="ID" 
+                  >
+                  </ng-select>
+                </div>
 
-                <mat-form-field class="ml-3">
+                <div style="flex: 1;">
+                  <ng-select  [items]="Products" 
+                  placeholder="ProductSerial"
+                  bindLabel="barCode"
+                  bindValue="id" 
+                  >
+                  </ng-select>
+                </div>
+
+                <mat-form-field class="ml-3 ;flex: 1;">
                   <mat-label>Quantity</mat-label>
                   <input matInput type="text" >
                 </mat-form-field>
                   
 
-                <mat-form-field class="ml-3">
+                <mat-form-field class="ml-3;flex: 1;">
                   <mat-label>ExpireDate</mat-label>
                   <input matInput [matDatepicker]="picker">
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -57,7 +70,7 @@
                 </mat-form-field>
               
 
-              <mat-form-field class="ml-3">
+              <mat-form-field class="ml-3;flex: 1;">
                 <mat-label>Serial</mat-label>
                 <input matInput type="text" >
               </mat-form-field>
@@ -69,7 +82,6 @@
               </button>
             </div>
             </mat-card>
-            <button type="button" (click)="printData()" mat-raised-button color="primary">print</button>
         </form>
     </mat-card-content>
 

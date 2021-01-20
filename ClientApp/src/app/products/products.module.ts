@@ -17,6 +17,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { TranslateModule } from '@ngx-translate/core';
 import {HttpClientModule} from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {NgSelectModule} from '@ng-select/ng-select';
+
 @NgModule({
   declarations: [ListProductsComponent, CreateProductComponent, EditProductComponent],
   imports: [
@@ -35,7 +37,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     FormsModule,
     TranslateModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgSelectModule
+    
   ],
   providers:[]
 })

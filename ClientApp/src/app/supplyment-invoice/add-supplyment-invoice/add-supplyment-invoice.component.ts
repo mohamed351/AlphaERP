@@ -13,6 +13,8 @@ export class AddSupplymentInvoiceComponent implements OnInit {
   constructor(private apiService:RestService) { }
   Suppliers:any[] =[];
   Stores:any[] =[];
+  Products:any[] = [];
+  ProductSerials:any[]= [];
   form:FormGroup = new FormGroup({
       supplierId:new FormControl('',[Validators.required]),
       storeId:new FormControl('',[Validators.required]),
@@ -37,6 +39,10 @@ export class AddSupplymentInvoiceComponent implements OnInit {
     this.apiService.GetAll<any[]>("/api/stores?$select=ID,Name").subscribe(a=>{
       this.Stores =a;
     });
+    this.apiService.GetAll<any[]>("http://localhost:5000/api/productOData?$expand=ProductMeasurements&$select=ID,ProductName,TypeOfMeasurement,ProductMeasurements").subscribe(a=>{
+      this.Products = a;
+    });
+    
   }
   AddInvoiceDetails(){
     this.InvoiceDetails.push( new FormGroup({
@@ -47,10 +53,8 @@ export class AddSupplymentInvoiceComponent implements OnInit {
 
     }))
   }
-  printData(){
-   
+  SerilaFilter(filterSerial:string){
     
-   
   }
  
 

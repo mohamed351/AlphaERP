@@ -63,5 +63,15 @@ namespace RealApplication.Repository.Implementation
                return await Task.FromResult( number.Value +1);
            }
         }
+        public  IEnumerable<Product> GetProductName(string productName, int size){
+          return this.dbContext.Set<Product>()
+           .Where(async=>async.ProductName.Contains(productName))
+           .Skip(0)
+            .Take(size).ToList();
+           
+        }
+       
+
+       
     }
 }

@@ -12,6 +12,9 @@ using System.IO;
 using System;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using System.Linq;
+using Microsoft.AspNet.OData;
+using Microsoft.AspNet.OData.Builder;
 
 namespace RealApplication.Controllers
 {
@@ -33,6 +36,14 @@ namespace RealApplication.Controllers
             this.unitOfWork = unit;
 
         }
+        [HttpGet(template:"/api/productOData")]
+        [EnableQuery]
+        public IActionResult GetOData(){
+            var builder = new ODataConventionModelBuilder();
+            builder.EnableLowerCamelCase();
+            return Ok( this.unitOfWork.Products.GetIQueryableData());
+        }
+
         [HttpGet]
         public IActionResult Get([FromQuery] int pageSize, [FromQuery] int start, [FromQuery] string search)
         {

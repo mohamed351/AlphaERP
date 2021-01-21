@@ -1,6 +1,7 @@
 <mat-card>
     <mat-card-header>
         <h4>Supplyment Invoice</h4>
+  
     </mat-card-header>
     <mat-card-content>
         <form [formGroup]="form">
@@ -67,7 +68,7 @@
                   <input matInput type="text"
                    formControlName="quantity"
                      >
-                     <mat-hint >{{item.get("typeOfMeasurement").value |measurementText }} </mat-hint>
+                     <mat-hint >{{item.get("typeOfMeasurement").value === ""? "": item.get("typeOfMeasurement").value  |measurementPipe|async }}  </mat-hint>
                 </mat-form-field>
                   
 

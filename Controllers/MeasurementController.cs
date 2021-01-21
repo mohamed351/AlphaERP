@@ -9,7 +9,7 @@ using RealApplication.Models;
 using RealApplication.Models.Enum;
 using RealApplication.Repository.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
-
+using System.Threading.Tasks;
 
 namespace RealApplication.Controllers
 {
@@ -90,6 +90,11 @@ namespace RealApplication.Controllers
         public IActionResult GetMesurementByType([FromQuery]TypeOfMeasurements  type){
            var measurement = unitOfWork.Measurement.GetByCondititon(async=>async.MainType == type);
             return Ok(measurement);
+        }
+        [HttpGet("/api/[controller]/GetMainType/{ID}")]
+        public async  Task<IActionResult> GetMainType(int ID){
+           var result = await this.unitOfWork.Measurement.GetTypeOfMeasurement(ID);
+            return Ok(new { measurementText = result});
         }
 
 

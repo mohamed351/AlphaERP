@@ -88,7 +88,7 @@ export class AddSupplymentInvoiceComponent implements OnInit {
    if(data != undefined){
     let productItem = this.Products.find(a=>a.ID == data.ProductID);
      this.InvoiceDetails.controls[index].get("productID").setValue(data.ProductID);
-     //this.InvoiceDetails.controls[index].get("quantity").setValue(data.Value);
+     this.InvoiceDetails.controls[index].get("quantity").setValue(data.Value);
      this.InvoiceDetails.controls[index].get("typeOfMeasurement").setValue(productItem.TypeOfMeasurement);
      this.InvoiceDetails.controls[index].get("price").setValue(productItem.SellingPrice)
      console.log(this.InvoiceDetails.controls[index].get("typeOfMeasurement"));

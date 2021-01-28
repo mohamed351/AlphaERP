@@ -13,9 +13,10 @@ export class AddSupplymentInvoiceComponent implements OnInit {
 
   constructor(private apiService:RestService) { }
   Suppliers:any[] =[];
-  Stores:any[] =[];
-  Products:any[] = [];
-  barCodes:any[][]= [];
+  Stores: any[] = [];
+  Products: any[] = [];
+  selectedProduct: any = null;
+
   form:FormGroup = new FormGroup({
       supplierId:new FormControl('',[Validators.required]),
       storeId:new FormControl('',[Validators.required]),
@@ -24,8 +25,10 @@ export class AddSupplymentInvoiceComponent implements OnInit {
         new FormGroup({
             productID:new FormControl('',[Validators.required]),
             quantity:new FormControl('',[Validators.required]),
-            expireDate:new FormControl(''),
-            price:new FormControl(''),
+             expireDate: new FormControl(''),
+            barCode:new FormControl('',[Validators.required]),
+          price: new FormControl(''),
+          measurementName:new FormControl(''),
             productSerial:new FormControl(''),
             typeOfMeasurement:new FormControl('')
         })
@@ -41,60 +44,59 @@ export class AddSupplymentInvoiceComponent implements OnInit {
     this.apiService.GetAll<any[]>("/api/stores?$select=ID,Name").subscribe(a=>{
       this.Stores =a;
     });
-    this.apiService.GetAll<any[]>("http://localhost:5000/api/productOData?$expand=ProductMeasurements&$select=ID,ProductName,TypeOfMeasurement,ProductMeasurements,SellingPrice").subscribe(a=>{
-      this.Products = a;
-      
-    });
-    
+
+
+
+
   }
   AddInvoiceDetails(){
     this.InvoiceDetails.push( new FormGroup({
       productID:new FormControl('',[Validators.required]),
-      quantity:new FormControl('',[Validators.required]),
-      expireDate:new FormControl(''),
+      quantity: new FormControl('', [Validators.required]),
+      barCode:new FormControl('',[Validators.required]),
+      expireDate: new FormControl(''),
+      measurementName:new FormControl(''),
       typeOfMeasurement:new FormControl(''),
       price:new FormControl(''),
       productSerial:new FormControl('')
 
     }))
   }
-  SerilaFilter(product:any, dataClear:NgSelectComponent, index:number){
-    if(product != undefined){
-      this.barCodes[index] = product.ProductMeasurements;
-       
-     
-    }
-    else{
-      this.barCodes[index] = [];
-    }
-    dataClear.clearModel();
-   console.log(dataClear);
-  
-  }
-  selectProductBarCode(data, index){
-     this.ConvertArray(index);
-  }
-   ConvertArray(index){
-     let newArray = [];
-      this.Products.forEach(a=>{
-        newArray.push( ...a.ProductMeasurements);
 
-      });
-      this.barCodes[index] = newArray;
-      console.log(this.barCodes[index]);
-   }
-   ChoosebarCodes(data, index:number){
-     console.log(data);
-   if(data != undefined){
-    let productItem = this.Products.find(a=>a.ID == data.ProductID);
-     this.InvoiceDetails.controls[index].get("productID").setValue(data.ProductID);
-     this.InvoiceDetails.controls[index].get("quantity").setValue(data.Value);
-     this.InvoiceDetails.controls[index].get("typeOfMeasurement").setValue(productItem.TypeOfMeasurement);
-     this.InvoiceDetails.controls[index].get("price").setValue(productItem.SellingPrice)
-     console.log(this.InvoiceDetails.controls[index].get("typeOfMeasurement"));
-   }
-     
-   }
- 
+  searchProductName(productName) {
+    this.apiService.GetAll<any>(`/api/SupplymentInvoice/GetByProductName/${productName.term}`).subscribe(a => {
+      this.Products = a;
+    });
+    // this.apiService.GetAll("/api/SupplymentInvoice/GetByProductName")
+  }
+  productNameChanged(product, index) {
+    if (product != undefined) {
+      this.selectedProduct = product;
+      this.InvoiceDetails.controls[index].get("barCode").setValue(product.barCode);
+      this.InvoiceDetails.controls[index].get("productID").setValue(product.productID);
+      this.InvoiceDetails.controls[index].get("measurementName").setValue(product.name);
+    }
+  }
+  searchBarCode(barCode) {
+    console.log(barCode);
+    this.apiService.GetAll<any>(`/api/SupplymentInvoice/GetByBarCode/${barCode.term}`).subscribe(a => {
+      this.Products = a;
+    });
+  }
 
-}
+  clearProductName(index) {
+    this.selectedProduct = null;
+    this.InvoiceDetails.controls[index].get("barCode").setValue("");
+    this.InvoiceDetails.controls[index].get("productID").setValue("");
+    this.InvoiceDetails.controls[index].get("measurementName").setValue("");
+  }
+  deleteRow(index) {
+    this.InvoiceDetails.removeAt(index);
+  }
+
+  }
+
+
+
+
+

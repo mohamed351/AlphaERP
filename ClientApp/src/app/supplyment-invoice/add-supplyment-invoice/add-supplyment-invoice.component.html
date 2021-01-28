@@ -1,12 +1,12 @@
 <mat-card>
     <mat-card-header>
         <h4>Supplyment Invoice</h4>
-  
+
     </mat-card-header>
     <mat-card-content>
         <form [formGroup]="form">
             <mat-card>
-            
+
                 <mat-form-field class="halfwidth">
                     <mat-label>Supplier</mat-label>
                     <mat-select>
@@ -31,34 +31,38 @@
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
-                  
-                
+
+
             </mat-card>
             <button type="button" (click)="AddInvoiceDetails()" class="mt-3" mat-raised-button color="primary">Add Row</button>
             <mat-card class="mt-5">
-           
+
               <div style="display: flex;" *ngFor="let item of InvoiceDetails.controls; let i = index" [formGroup]="item">
 
                 <div class="margin-rows select2-rows">
-                  <ng-select  [items]="Products" 
-                  placeholder="ProductName"
-                  bindLabel="ProductName"
+                  <ng-select  [items]="Products"
+                  placeholder="productName"
+                  bindLabel="productName"
                   formControlName="productID"
-                  bindValue="ID" 
-                  #productData
-                  (change)="SerilaFilter($event , barcode, i)"
+                  bindValue="productID"
+                  (search)="searchProductName($event)"
+                  (change)="productNameChanged($event,i)"
+                  (clear)="clearProductName(i)"
                   >
                   </ng-select>
                 </div>
 
                 <div class="margin-rows select2-rows">
-                  <ng-select  [items]="barCodes[i]" 
+                  <ng-select  [items]="Products"
                   placeholder="BarCode"
-                  bindLabel="BarCode"
-                  bindValue="BarCode" 
+                  bindLabel="barCode"
+                  bindValue="barCode"
+                  formControlName="barCode"
+                  (search)="searchBarCode($event)"
+                  (change)="productNameChanged($event,i)"
+                  (clear)="clearProductName(i)"
                   #barcode
-                  (search)="selectProductBarCode($event,i)"
-                  (change)="ChoosebarCodes($event,i)"
+
                   >
                   </ng-select>
                 </div>
@@ -68,9 +72,9 @@
                   <input matInput type="text"
                    formControlName="quantity"
                      >
-                     <mat-hint >{{item.get("typeOfMeasurement").value === ""? "": item.get("typeOfMeasurement").value  |measurementPipe|async }}  </mat-hint>
+                  <mat-hint>{{ this.InvoiceDetails.controls[i].get("measurementName").value}} </mat-hint>
                 </mat-form-field>
-                  
+
 
                 <mat-form-field   class="margin-rows ">
                   <mat-label>Price</mat-label>
@@ -83,13 +87,13 @@
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
-              
+
 
               <mat-form-field class="margin-rows">
                 <mat-label>Serial</mat-label>
                 <input matInput type="text" formControlName="productSerial" >
               </mat-form-field>
-              <button class="ml-3" type="button" mat-mini-fab color="warn"> 
+              <button class="ml-3" (click)="deleteRow(i)" type="button" mat-mini-fab color="warn">
                 <mat-icon>
                   delete_forever
               </mat-icon>

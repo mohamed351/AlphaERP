@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS, HttpInterceptor } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -28,10 +28,13 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { MatFormField, MatFormFieldModule, MatInputModule } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
-import {MatCardModule} from '@angular/material/card'; 
+import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
 import { UnAuthGuardGuard } from './guards/unauth.guard';
 import { ChartModule } from 'angular-highcharts';
+import { TokenInterceptor } from './Interceptors/AuthInterceptor';
+import { APP_BASE_HREF } from '@angular/common';
+
 
 
 
@@ -44,7 +47,8 @@ export function createTranslateLoader(http: HttpClient) {
     HomeComponent,
     LoginComponent,
 
-   
+
+
  ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -76,12 +80,18 @@ export function createTranslateLoader(http: HttpClient) {
     MatCardModule,
     MatSelectModule,
     ChartModule,
-   
-  
-    
+
+
+
+
   ],
-  providers: [AuthGuard,UnAuthGuardGuard],
+  providers: [AuthGuard, UnAuthGuardGuard, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi:true
+
+  },{ provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent],
-  
+
 })
 export class AppModule { }

@@ -19,12 +19,15 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatCardModule, MatSelectModule } from '@angular/material';
 import {AcceptIntOnlyDirective} from './Directives/accept-int-only.directive';
 import { MesurementCalculatorComponent } from './mesurement-calculator/mesurement-calculator.component';
+import {MeasurementDialogComponent } from '../measurement-dialog/measurement-dialog.component';
+
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '../assets/i18n', '.json');
 }
 @NgModule({
-  declarations: [ReusableDataTableComponent, ReusableDailogBoxComponent, AcceptIntOnlyDirective, MesurementCalculatorComponent],
+  declarations: [ReusableDataTableComponent, ReusableDailogBoxComponent, AcceptIntOnlyDirective, MesurementCalculatorComponent, MeasurementDialogComponent] ,
   imports: [
     CommonModule,
     MatTableModule,
@@ -43,16 +46,17 @@ export function createTranslateLoader(http: HttpClient) {
     MatCardModule,
     MatSelectModule
 
-    
+
   ],
   exports:[
     ReusableDataTableComponent,
-   MesurementCalculatorComponent
+    MesurementCalculatorComponent,
+    MeasurementDialogComponent
   ],
   providers:[
-    
+
   ],
-  entryComponents:[ReusableDailogBoxComponent]
+  entryComponents:[ReusableDailogBoxComponent, MeasurementDialogComponent]
 
 })
 export class AlphaDataTableModule { }

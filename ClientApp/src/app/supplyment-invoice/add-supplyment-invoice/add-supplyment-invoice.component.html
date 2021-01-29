@@ -1,6 +1,6 @@
 <mat-card>
     <mat-card-header>
-        <h4>Supplyment Invoice</h4>
+        <h4>Purchasing invoice</h4>
 
     </mat-card-header>
     <mat-card-content>
@@ -9,8 +9,8 @@
 
                 <mat-form-field class="halfwidth">
                     <mat-label>Supplier</mat-label>
-                    <mat-select>
-                      <mat-option *ngFor="let supplier of Suppliers" [value]="supplier.ID">
+                    <mat-select formControlName="supplierId">
+                      <mat-option  *ngFor="let supplier of Suppliers" [value]="supplier.ID">
                         {{supplier.Name}}
                       </mat-option>
                     </mat-select>
@@ -18,18 +18,23 @@
 
                   <mat-form-field class="ml-5 halfwidth">
                     <mat-label>Invoice Date</mat-label>
-                    <input matInput [matDatepicker]="picker">
+                    <input formControlName="Invoicedate" matInput [matDatepicker]="picker">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                   </mat-form-field>
 
                   <mat-form-field class="halfwidth">
                     <mat-label>Store</mat-label>
-                    <mat-select>
+                    <mat-select formControlName="storeId">
                       <mat-option *ngFor="let store of Stores" [value]="store.ID">
                         {{store.Name}}
                       </mat-option>
                     </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field class="halfwidth ml-5">
+                    <mat-label>Note</mat-label>
+                    <textarea matInput formControlName="note"></textarea>
                   </mat-form-field>
 
 
@@ -37,7 +42,7 @@
             <button type="button" (click)="AddInvoiceDetails()" class="mt-3" mat-raised-button color="primary">Add Row</button>
             <mat-card class="mt-5">
 
-              <div style="display: flex;" *ngFor="let item of InvoiceDetails.controls; let i = index" [formGroup]="item">
+              <div style="display: flex" *ngFor="let item of InvoiceDetails.controls; let i = index" [formGroup]="item">
 
                 <div class="margin-rows select2-rows">
                   <ng-select  [items]="Products"
@@ -71,6 +76,7 @@
                   <mat-label>Quantity</mat-label>
                   <input matInput type="text"
                    formControlName="quantity"
+                   (dblclick)="GetQuantityDialog(i)"
                      >
                   <mat-hint>{{ this.InvoiceDetails.controls[i].get("measurementName").value}} </mat-hint>
                 </mat-form-field>
@@ -89,18 +95,28 @@
                 </mat-form-field>
 
 
+
+
               <mat-form-field class="margin-rows">
                 <mat-label>Serial</mat-label>
                 <input matInput type="text" formControlName="productSerial" >
+              </mat-form-field>
+
+              <mat-form-field class="margin-rows">
+                <mat-label>Total Price</mat-label>
+                <input matInput [value]="CalcuateTotalRow(i)" readonly disabled >
               </mat-form-field>
               <button class="ml-3" (click)="deleteRow(i)" type="button" mat-mini-fab color="warn">
                 <mat-icon>
                   delete_forever
               </mat-icon>
               </button>
+
+
             </div>
+
             </mat-card>
         </form>
     </mat-card-content>
-
+    <button (click)="submitTheForm()" mat-raised-button color="primary" [disabled]="form.invalid">Submit</button>
 </mat-card>

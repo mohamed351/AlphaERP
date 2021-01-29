@@ -15,7 +15,7 @@ namespace RealApplication.Extensions
 
         public static string GetUserId(this ClaimsPrincipal principal)
         {
-            return principal.FindFirstValue(ClaimTypes.NameIdentifier);
+            return principal.FindFirstValue(ClaimTypes.Sid);
         }
 
         public static string GetUserIdToken(this ClaimsPrincipal principal)

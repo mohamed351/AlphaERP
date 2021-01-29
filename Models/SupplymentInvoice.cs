@@ -6,6 +6,10 @@ namespace RealApplication.Models
 {
     public class SupplymentInvoice
     {
+        public SupplymentInvoice()
+        {
+            this.InvoiceDetails = new List<SupplymentDetail>();
+        }
         public int ID { get; set; }
         [ForeignKey(nameof(Supplier))]
         public string SupplierID { get; set; }

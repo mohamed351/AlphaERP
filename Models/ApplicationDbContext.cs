@@ -35,6 +35,8 @@ namespace RealApplication.Models
 
         public DbSet<ProductStore> ProductStores {get;set;}
 
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<ProductMeasurements>()

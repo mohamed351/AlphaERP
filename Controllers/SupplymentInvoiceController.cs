@@ -6,6 +6,9 @@ using System.Linq;
 using RealApplication.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System;
+using System.Collections.Generic;
+using RealApplication.Models.Enum;
 
 namespace RealApplication.Controllers
 {
@@ -54,12 +57,53 @@ namespace RealApplication.Controllers
         public IActionResult Post([FromBody]CreateSuppliermentInvoiceDTO invoiceDTO)
         {
           string UserId =   User.GetUserId();
+            int NewInvoiceNumber = applicationDbContext.supplymentInvoices.Max(a => a.InvoiceNumber) + 1;
+            var invoiceData = new SupplymentInvoice()
+            {
+                SupplierID = invoiceDTO.SupplierId,
+                StoreID = invoiceDTO.StoreId,
+                EmployeeID = UserId,
+                InvoiceNumber = NewInvoiceNumber,
+                IsCancelled = false,
+                
 
-            //applicationDbContext.supplymentInvoices.Add(new SupplymentInvoice()
-            //{
+            };
+            foreach (var item in invoiceDTO.details)
+            {
+                invoiceData.InvoiceDetails.Add(new SupplymentDetail()
+                {
+                    ExpireDate = item.ExpireDate,
+                    ProductID = item.ProductID,
+                    Quantity = CalculateMeasurement(Convert.ToInt32(item.Quantity), Convert.ToInt32(item.MeasurementValue)),
+                    UnitPrice = item.Price,
 
-            //});
+                }); 
+                applicationDbContext.ProductStores.Add(new ProductStore()
+                {
+                    ProductID = item.ProductID,
+                    Quantity = CalculateMeasurement(Convert.ToInt32(item.Quantity), Convert.ToInt32(item.MeasurementValue)),
+                    ExpireDate = item.ExpireDate,
+                    Serial = item.ProductSerial,
+                    ProductEnteredIn = DateTime.Now,
+                    StoreID = invoiceData.StoreID,
+                    UnitPrice = item.Price,
+                    InvocieNumber = NewInvoiceNumber
+
+                });
+            }
+           
+            applicationDbContext.supplymentInvoices.Add(invoiceData);
+            applicationDbContext.SaveChanges();
+
             return Ok(invoiceDTO);
+        }
+        private static int CalculateMeasurement(int quantity , int measurementValue)
+        {
+           
+          
+            return quantity * measurementValue;
+
+
         }
 
         

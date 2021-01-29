@@ -12,7 +12,7 @@ namespace RealApplication.Mapper
 {
     public class ProductProfiler:Profile
     {
-        private readonly IWebHostEnvironment environment;
+        //private readonly IWebHostEnvironment environment;
 
         public ProductProfiler()
         {

@@ -25,5 +25,6 @@ namespace RealApplication.Models
        public int Quantity {get;set;}
        public string Serial { get; set; }
 
+        public int InvocieNumber { get; set; }
     }
 }

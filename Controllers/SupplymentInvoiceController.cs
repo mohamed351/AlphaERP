@@ -9,6 +9,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System;
 using System.Collections.Generic;
 using RealApplication.Models.Enum;
+using Microsoft.Data.SqlClient;
+using RealApplication.Models.StoredProcedures;
+using AspNetCore.Reporting;
+using Microsoft.AspNetCore.Hosting;
+using System.Text;
 
 namespace RealApplication.Controllers
 {
@@ -17,10 +22,13 @@ namespace RealApplication.Controllers
     public class SupplymentInvoiceController:ControllerBase
     {
         private readonly ApplicationDbContext applicationDbContext;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
-        public SupplymentInvoiceController(ApplicationDbContext applicationDbContext)
+        public SupplymentInvoiceController(ApplicationDbContext applicationDbContext, IWebHostEnvironment webHostEnvironment)
         {
             this.applicationDbContext = applicationDbContext;
+            this.webHostEnvironment = webHostEnvironment;
+            System.Text.Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
         [HttpGet]
         public IActionResult Get(){
@@ -95,7 +103,19 @@ namespace RealApplication.Controllers
             applicationDbContext.supplymentInvoices.Add(invoiceData);
             applicationDbContext.SaveChanges();
 
-            return Ok(invoiceDTO);
+            return Ok(new {invoice= invoiceDTO , invoiceNumber = NewInvoiceNumber});
+        }
+        [HttpGet("/api/[controller]/GetReport/{InvoiceNumber}")]
+        public IActionResult PurchasingReport(int InvoiceNumber)
+        {
+           
+          var elements =   applicationDbContext.GetSupplierInvoices(InvoiceNumber);
+            LocalReport report = new LocalReport($"{this.webHostEnvironment.WebRootPath}//reports//PurchasingInvoice.rdlc");
+            report.AddDataSource("DataSet1", elements);
+            var dictornay = new Dictionary<string, string>();
+            dictornay.Add("InvoiceNumber", InvoiceNumber.ToString());
+           var result = report.Execute(RenderType.Pdf,1,dictornay,"");
+            return File(result.MainStream,"application/pdf");
         }
         private static int CalculateMeasurement(int quantity , int measurementValue)
         {

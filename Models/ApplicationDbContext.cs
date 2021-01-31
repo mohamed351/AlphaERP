@@ -1,5 +1,9 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using RealApplication.Models.StoredProcedures;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RealApplication.Models
 {
@@ -35,6 +39,9 @@ namespace RealApplication.Models
 
         public DbSet<ProductStore> ProductStores {get;set;}
 
+        [System.Obsolete]
+        public DbQuery<StoredProcedures.Sp_SupplierInvoice> Sp_SupplierInvoices { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -46,6 +53,14 @@ namespace RealApplication.Models
             .HasKey(c =>  new {c.ProductID , c.StoreID, c.ProductEnteredIn});
 
             base.OnModelCreating(builder);
+        }
+
+        public List<Sp_SupplierInvoice> GetSupplierInvoices(int InvoiceNumber)
+        {
+            SqlParameter sqlParameter = new SqlParameter("@InvoiceNumber", InvoiceNumber);
+         
+          return  Sp_SupplierInvoices.FromSqlRaw("execute [sp_supplier_invoice] @InvoiceNumber", sqlParameter).ToList();
+        
         }
 
     }

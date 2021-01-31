@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
 import { NgOption, NgSelectComponent } from '@ng-select/ng-select';
 import { MeasurementDialogComponent, MeasurementInfo } from 'src/app/components/measurement-dialog/measurement-dialog.component';
 import { Supplier } from 'src/app/models/suppliers/supplier';
@@ -14,7 +15,7 @@ import { RestService } from 'src/app/services/rest-service.service';
 })
 export class AddSupplymentInvoiceComponent implements OnInit {
 
-  constructor(private apiService:RestService, private dialog:MatDialog) { }
+  constructor(private apiService:RestService, private dialog:MatDialog, private router:Router) { }
   Suppliers:any[] =[];
   Stores: any[] = [];
   Products: any[] = [];
@@ -132,8 +133,11 @@ export class AddSupplymentInvoiceComponent implements OnInit {
     console.log(JSON.stringify(this.form.value));
     this.apiService.PostData("/api/SupplymentInvoice", this.form.value).subscribe(a => {
       console.log(a);
+      window.open("/api/SupplymentInvoice/GetReport/" + a.invoiceNumber, "_blank");
+      this.router.navigate(['/supplymentInvoice']);
     });
   }
+
 
   }
 

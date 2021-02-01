@@ -28,6 +28,8 @@ namespace RealApplication.Models
 
         public Supplier Supplier { get; set; }
 
+        public string Note { get; set; }
+
         public Store Store {get;set;}
 
         public ICollection<SupplymentDetail> InvoiceDetails { get; set; }

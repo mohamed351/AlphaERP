@@ -21,6 +21,8 @@ namespace RealApplication.Models
 
        public Nullable<DateTime> ExpireDate { get; set; }
 
+        public string Serial { get; set; }
+
 
 
     }

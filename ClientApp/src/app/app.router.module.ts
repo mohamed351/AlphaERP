@@ -16,7 +16,9 @@ const routes:Routes =[
     {path:"measurement", loadChildren:()=>import("./measurement/measurement.module").then(m=>m.MeasurementModule) , canActivate:[AuthGuard]},
     {path:"supplymentInvoice", loadChildren:()=>import("./supplyment-invoice/supplyment-invoice.module").then(m=>m.SupplymentInvoiceModule) , canActivate:[AuthGuard]},
     {path:"login",component:LoginComponent, canActivate:[UnAuthGuardGuard]},
-    {path:"stores",loadChildren:()=>import("./stores/stores.module").then(m=>m.StoresModule), canActivate:[AuthGuard]}
+  { path: "stores", loadChildren: () => import("./stores/stores.module").then(m => m.StoresModule), canActivate: [AuthGuard] },
+  {path:"customerInvoice", loadChildren:()=> import('./customer-invoice/customer-invoice.module').then(m=>m.CustomerInvoiceModule), canActivate:[AuthGuard]}
+
 ]
 @NgModule({
     imports:[RouterModule.forRoot(routes)],
@@ -24,4 +26,4 @@ const routes:Routes =[
 })
 export class AppRouter{
 
-} 
+}

@@ -1,11 +1,11 @@
 <body>
-  
+
   <ng-container *ngIf="auth.IsAuthenticated() then Authorized else NotAuthorized ">
 
   </ng-container>
-  
 
-    
+
+
 </body>
 
 
@@ -29,10 +29,12 @@
           <a mat-list-item routerLinkActive="active" routerLink="/products"><mat-icon class="nav-bar-color">production_quantity_limits</mat-icon> {{'product'|translate}}</a>
           <a mat-list-item routerLinkActive="active" routerLink="/measurement"><mat-icon class="nav-bar-color">calculate</mat-icon> {{'measurements'|translate}}</a>
           <a mat-list-item routerLinkActive="active" routerLink="/supplymentInvoice"><mat-icon class="nav-bar-color">local_shipping</mat-icon> {{'supplymentInvoice'|translate}}</a>
+          <a mat-list-item routerLinkActive="active" routerLink="/customerInvoice"><mat-icon class="nav-bar-color">people</mat-icon> {{'customerInvoice'|translate}}</a>
+
           <a mat-list-item routerLinkActive="active" routerLink="/stores"><mat-icon class="nav-bar-color">inventory_2</mat-icon> {{'stores'|translate}}</a>
-          </mat-accordion>  
-  
-     
+          </mat-accordion>
+
+
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -46,7 +48,7 @@
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
        <div class="flex-end">
-         
+
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
           <mat-icon>more_vert</mat-icon>
         </button>
@@ -60,15 +62,15 @@
               <button mat-menu-item [ngClass]="{'active-lang':GetLanguage() == 'ar'}" (click)="SetLanguageToArabic()">Arabic</button>
              </mat-menu>
 
-         
-          
+
+
         </mat-menu>
        </div>
       </mat-toolbar>
       <div class="padding-10">
         <router-outlet></router-outlet>
       </div>
-  
+
     </mat-sidenav-content>
   </mat-sidenav-container>
 </ng-template>

@@ -57,5 +57,6 @@
     "cm":"سم",
     "supplymentInvoice":"فواتير الشراء",
     "stores":"مخازن",
-    "createStore":"انشاء مخزن"
+    "createStore":"انشاء مخزن",
+    "customerInvoice":"فواتير البيع"
 }

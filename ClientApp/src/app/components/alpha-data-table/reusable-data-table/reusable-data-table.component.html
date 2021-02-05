@@ -16,14 +16,14 @@
     </button>
   </mat-form-field>
   <mat-table [dataSource]="this.dataTable">
-  
+
     <ng-container *ngFor="let item of columnsName" [matColumnDef]="item.columnName">
-      <mat-header-cell *matHeaderCellDef > 
+      <mat-header-cell *matHeaderCellDef >
         <ng-container *ngIf="item.columnType != ColumnType.Buttons">
          {{item.columnName}}
         </ng-container>
         </mat-header-cell>
-      <mat-cell *matCellDef="let row"> 
+      <mat-cell *matCellDef="let row">
         <ng-container *ngIf="item.columnType === this.ColumnType.None">
         {{row[item.columnName]}}
       </ng-container>
@@ -31,14 +31,24 @@
       <ng-container *ngIf="item.columnType === this.ColumnType.Buttons">
        <a mat-flat-button color="primary" [routerLink]="['edit', row[item.columnName]]" >{{'edit'|translate}}</a> |
        <a mat-flat-button color="accent" [routerLink]="['details' , row[item.columnName]]"> {{'details'|translate}}</a> |
-       <a mat-flat-button color="warn" (click)="OnDeleteClick(row[item.columnName])">{{'delete'|translate}}</a> 
+       <a mat-flat-button color="warn" (click)="OnDeleteClick(row[item.columnName])">{{'delete'|translate}}</a>
       </ng-container>
+
+      <ng-container *ngIf="item.columnType === this.ColumnType.JustDetailsAndPrint">
+        <a mat-flat-button color="accent" [routerLink]="['details' , row[item.columnName]]"> {{'details'|translate}}</a> |
+        <a mat-flat-button color="primary" (click)="ShowReport(row[item.columnName])">{{'print'|translate}}</a>
+       </ng-container>
+
+       <ng-container *ngIf="item.columnType === this.ColumnType.JustDetails">
+        <a mat-flat-button color="accent" [routerLink]="['details' , row[item.columnName]]"> {{'details'|translate}}</a> |
+
+       </ng-container>
       </mat-cell>
-    </ng-container> 
+    </ng-container>
 
-  
 
-    
+
+
     <mat-header-row *matHeaderRowDef="Allcolumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: Allcolumns;">
     </mat-row>
@@ -54,4 +64,4 @@
 [pageSize]="10"
 (page)="GetData($event)"
 >
-</mat-paginator> 
+</mat-paginator>

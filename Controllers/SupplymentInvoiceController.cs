@@ -97,7 +97,7 @@ namespace RealApplication.Controllers
                 {
                     ExpireDate = item.ExpireDate,
                     ProductID = item.ProductID,
-                    Quantity = CalculateMeasurement(Convert.ToInt32(item.Quantity), Convert.ToInt32(item.MeasurementValue)),
+                    Quantity = CalculateMeasurement(item.Quantity, item.MeasurementValue),
                     UnitPrice = item.Price,
 
                 }); 
@@ -132,7 +132,7 @@ namespace RealApplication.Controllers
            var result = report.Execute(RenderType.Pdf,1,dictornay,"");
             return File(result.MainStream,"application/pdf");
         }
-        private static int CalculateMeasurement(int quantity , int measurementValue)
+        private static decimal CalculateMeasurement(decimal quantity , decimal measurementValue)
         {
            
           

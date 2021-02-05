@@ -58,5 +58,6 @@
     "supplymentInvoice":"فواتير الشراء",
     "stores":"مخازن",
     "createStore":"انشاء مخزن",
-    "customerInvoice":"فواتير البيع"
+    "customerInvoice":"فواتير البيع",
+    "print":"طباعة"
 }

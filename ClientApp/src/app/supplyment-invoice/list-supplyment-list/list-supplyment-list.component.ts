@@ -12,7 +12,7 @@ export class ListSupplymentListComponent implements OnInit {
     {columnName:'supplierName', columnType: TypeOfColumn.None},
     { columnName: 'storeName', columnType: TypeOfColumn.None },
     {columnName:'amount',columnType:TypeOfColumn.None},
-    { columnName: 'supplierInvoiceNumber' , columnType:TypeOfColumn.Buttons}
+    { columnName: 'supplierInvoiceNumber' , columnType:TypeOfColumn.JustDetailsAndPrint}
   ]
   constructor() { }
 

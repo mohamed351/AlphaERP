@@ -22,7 +22,7 @@ namespace RealApplication.DTO.SuppliermentInvoiceDTO
     public class CreateSuppliermentInvoiceDetailsDTO
     {
         public string ProductID { get; set; }
-        public string Quantity { get; set; }
+        public decimal Quantity { get; set; }
         public DateTime ExpireDate { get; set; }
         public string BarCode { get; set; }
         public decimal Price { get; set; }

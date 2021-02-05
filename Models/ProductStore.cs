@@ -22,7 +22,7 @@ namespace RealApplication.Models
 
        public Nullable<DateTime> ProductionDate {get;set;}
 
-       public int Quantity {get;set;}
+       public decimal Quantity {get;set;}
        public string Serial { get; set; }
 
         public int InvocieNumber { get; set; }

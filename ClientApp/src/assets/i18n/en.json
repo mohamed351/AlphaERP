@@ -59,6 +59,7 @@
      "supplymentInvoice":"Supplyment Invoice",
      "stores":"Stores",
      "createStore":"Create Store",
-     "customerInvoice":"Customer Invoice"
+     "customerInvoice":"Customer Invoice",
+     "print":"Print"
 
 }

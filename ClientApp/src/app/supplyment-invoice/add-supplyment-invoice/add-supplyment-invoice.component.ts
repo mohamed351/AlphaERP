@@ -132,7 +132,7 @@ export class AddSupplymentInvoiceComponent implements OnInit {
     console.log("form Element", this.form);
     console.log(JSON.stringify(this.form.value));
     this.apiService.PostData("/api/SupplymentInvoice", this.form.value).subscribe(a => {
-      console.log(a);
+
       window.open("/api/SupplymentInvoice/GetReport/" + a.invoiceNumber, "_blank");
       this.router.navigate(['/supplymentInvoice']);
     });

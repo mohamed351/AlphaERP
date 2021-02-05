@@ -5,6 +5,7 @@ namespace RealApplication.MeasurementDTO{
      
       public string Name { get; set; }
       public TypeOfMeasurements MainType { get; set; }
-      
-  }
+        public int Value { get; set; }
+
+    }
 }

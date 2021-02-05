@@ -11,8 +11,9 @@ import { RestService } from 'src/app/services/rest-service.service';
 })
 export class CreateMeasurementComponent implements OnInit {
   form = new FormGroup({
-    name:new FormControl('',[Validators.required]),
-    mainType:new FormControl('',[Validators.required])
+    name: new FormControl('', [Validators.required]),
+    mainType: new FormControl('', [Validators.required]),
+    value: new FormControl(0, [Validators.required])
   })
 
 
@@ -23,7 +24,7 @@ export class CreateMeasurementComponent implements OnInit {
   get MainType(){
     return this.form.get("mainType");
   }
-  constructor(private router:Router, private apiService:RestService , private toastr: ToastrService) { 
+  constructor(private router:Router, private apiService:RestService , private toastr: ToastrService) {
 
   }
 

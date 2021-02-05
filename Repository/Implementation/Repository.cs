@@ -49,7 +49,7 @@ namespace RealApplication.Repository.Implementation
             return dbContext.Set<TEntity>().Where(Condtion).Count();
         }
 
-        public IEnumerable<TEntity> GetEntityDataTable(int PageStart,int PageSize , Func<TEntity,bool> condition ,Func<TEntity,TKey> orderBy)
+        public virtual IEnumerable<TEntity> GetEntityDataTable(int PageStart,int PageSize , Func<TEntity,bool> condition ,Func<TEntity,TKey> orderBy)
         {
            return dbContext.Set<TEntity>()
            .Where(condition)

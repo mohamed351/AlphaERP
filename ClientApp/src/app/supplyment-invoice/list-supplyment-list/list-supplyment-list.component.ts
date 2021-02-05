@@ -1,3 +1,4 @@
+import { ColumnType, TypeOfColumn } from 'src/app/components/alpha-data-table/reusable-data-table/columnType';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-supplyment-list.component.css']
 })
 export class ListSupplymentListComponent implements OnInit {
-
+  columnNames: ColumnType[] = [
+    { columnName: 'invoiceNumber', columnType: TypeOfColumn.None },
+    {columnName:'supplierName', columnType: TypeOfColumn.None},
+    { columnName: 'storeName', columnType: TypeOfColumn.None },
+    {columnName:'amount',columnType:TypeOfColumn.None},
+    { columnName: 'supplierInvoiceNumber' , columnType:TypeOfColumn.Buttons}
+  ]
   constructor() { }
 
   ngOnInit() {
+  }
+  OnCustomerDelete(data) {
+
   }
 
 }

@@ -14,6 +14,9 @@ using RealApplication.Models.StoredProcedures;
 using AspNetCore.Reporting;
 using Microsoft.AspNetCore.Hosting;
 using System.Text;
+using RealApplication.Repository.UnitOfWork;
+using RealApplication.DTO;
+using AutoMapper;
 
 namespace RealApplication.Controllers
 {
@@ -23,16 +26,28 @@ namespace RealApplication.Controllers
     {
         private readonly ApplicationDbContext applicationDbContext;
         private readonly IWebHostEnvironment webHostEnvironment;
+        private readonly IUnitOfWork unitOfWork;
+        private readonly IMapper mapper;
 
-        public SupplymentInvoiceController(ApplicationDbContext applicationDbContext, IWebHostEnvironment webHostEnvironment)
+        public SupplymentInvoiceController(ApplicationDbContext applicationDbContext, IWebHostEnvironment webHostEnvironment, IUnitOfWork unitOfWork, IMapper mapper)
         {
             this.applicationDbContext = applicationDbContext;
             this.webHostEnvironment = webHostEnvironment;
+            this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
             System.Text.Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
         [HttpGet]
-        public IActionResult Get(){
-          return Ok();
+        public IActionResult Get([FromQuery] int pageSize, [FromQuery] int start, [FromQuery] string search = "")
+        {
+            search = search == null ? "" : search.Trim();
+           var invoiceQuery  =  this.unitOfWork.SupplierInvoice.GetEntityDataTable(start, pageSize, a => a.InvoiceNumber.ToString().Contains(search), a => a.InvoiceNumber);
+            var model = new DataTableDTO<SelectSuppliementInvoiceDTO>()
+            {
+                     Data = mapper.Map<IEnumerable<SelectSuppliementInvoiceDTO>>(invoiceQuery),
+                    TotalCount= unitOfWork.SupplierInvoice.GetCount(a=>a.InvoiceNumber.ToString().Contains(search))
+            };
+          return Ok(model);
         }
         [HttpGet(template:"/api/[controller]/GetByBarCode/{barcode}")]
         public IActionResult GetProductsByMainBarCode(string barcode)

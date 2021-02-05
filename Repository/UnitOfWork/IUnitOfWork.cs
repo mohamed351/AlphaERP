@@ -14,6 +14,8 @@ namespace RealApplication.Repository.UnitOfWork
         public IStoreRepository Stores {get;}
 
         public IMeasurementRepository Measurement{get;}
+
+        public ISupplymentInvoiceRepository SupplierInvoice { get; }
         int Complete();
     }
 }

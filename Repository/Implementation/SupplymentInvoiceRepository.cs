@@ -1,10 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using RealApplication.Models;
+using RealApplication.Repository.interfaces;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RealApplication.Repository.Implementation
 {
-    public class SupplymentInvoiceRepository : Repository<SupplymentInvoice, int>
+    public class SupplymentInvoiceRepository : Repository<SupplymentInvoice, int>, ISupplymentInvoiceRepository
     {
         private readonly DbContext dbContext;
 
@@ -14,13 +17,17 @@ namespace RealApplication.Repository.Implementation
             this.dbContext = dbContext;
         }
 
-        public void AddInvoice(int newNumber){
-
-            // this.dbContext.Set<SupplymentInvoice>()
-            // .Add(new SupplymentInvoice(){
-            //     EmployeeID = 
-            // })
-
+        public override IEnumerable<SupplymentInvoice> GetEntityDataTable(int PageStart, int PageSize, Func<SupplymentInvoice, bool> condition, Func<SupplymentInvoice, int> orderBy)
+        {
+            return dbContext.Set<SupplymentInvoice>()
+           .Include(a=>a.InvoiceDetails)
+           .Include(a=>a.Employee)
+           .Include(a=>a.Store)
+           .Include(a=>a.Supplier)
+           .Where(condition)
+           .OrderBy(orderBy)
+           .Skip(PageSize * PageStart)
+            .Take(PageSize).ToList();
         }
     }
     public class SupplymentDTO{

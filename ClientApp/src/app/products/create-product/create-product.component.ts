@@ -30,8 +30,8 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
   public categoryInfo:Category[] =[];
   public mesaurementsSelection:Measurement[] =[]
   @ViewChild("productNumber",{static:false}) productNumber:ElementRef;
-  @ViewChildren("appcaluclator") Calculators:MesurementCalculatorComponent[] =[];
- 
+
+
   imageChangedEvent: any = '';
     croppedImage: any = '';
     IsCropperDivShown:boolean =false;
@@ -55,7 +55,7 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
      private router:Router,
      private  ProductCustomeValidation :ProductCustomeValidation) { }
   ngAfterViewInit(): void {
-   
+
   }
  get ProductName(){
    return this.form.get("productName")
@@ -93,10 +93,10 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
     console.log(this.productNumber);
     console.log(a);
   });
-   
+
   }
 
-  
+
 
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
@@ -117,7 +117,7 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
     this.croppedImage=null;
   }
   handelOkButton(){
- 
+
     document.getElementById("sidevarContainer").style.display= "block";
     this.imageBase64 = this.croppedImage;
     this.IsCropperDivShown= false;
@@ -125,14 +125,14 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
   }
   onSubmitData(){
     console.log(this.form);
-   
+
     this.ProductImage.setValue(this.imageBase64);
     console.log(this.form.value);
     this.restAPI.PostData("/api/products",this.form.value).subscribe(a=>{
         this.router.navigate(["/products"]);
-        
+
     });
-    
+
   }
   seletionChange(event){
     this.restAPI.GetAll<Measurement[]>("/Product/Measurement/?type="+event.value).subscribe(a=>{
@@ -144,31 +144,26 @@ export class CreateProductComponent implements OnInit , AfterViewInit {
             measurementName:new FormControl(c.name,[Validators.required],),
             isKnown: new FormControl(c.isKnown,[Validators.required]),
             value:new FormControl(c.defaultValue,[Validators.required]),
-            barCode :new FormControl('',[Validators.required, 
+            barCode :new FormControl('',[Validators.required,
               this.ProductCustomeValidation.ValidationbarCodeForm(this.Measurements)],
             [this.ProductCustomeValidation.ValidateBarCode(null)]),
             isMain:new FormControl(c.isMain)
            }))
         })
-     
+
     });
   }
   DeleteButton(index){
-    
-    this.Measurements.removeAt(index)
-  
-  }
- 
-  changeText(){
-  
-    for (const iterator of this.Calculators) {
-      iterator.valueChangeOut();
-    }
-  }
-  
-  }
-     
-  
 
-  
+    this.Measurements.removeAt(index)
+
+  }
+
+
+
+  }
+
+
+
+
 

@@ -5,14 +5,14 @@
     <mat-form-field class="full-width">
         <mat-label>Name</mat-label>
         <input formControlName="name" matInput type="text" class="full-width" placeholder="Name">
-        
+
         <mat-error *ngIf="Name.invalid && Name.touched">
             <mat-error *ngIf="Name.errors.required"> The Name is Required</mat-error>
         </mat-error>
     </mat-form-field>
 
 
-    
+
     <mat-form-field class="full-width">
         <mat-label>Type Of Mesurement</mat-label>
         <mat-select formControlName="mainType">
@@ -25,7 +25,16 @@
                 <mat-error *ngIf="MainType.errors.required"> The Measurement Type is Required</mat-error>
         </mat-error>
     </mat-form-field>
-    
+
+<mat-form-field class="full-width">
+    <mat-label>Value</mat-label>
+    <input formControlName="value" matInput type="number" class="full-width" placeholder="Value">
+
+    <mat-error *ngIf="Name.invalid && Name.touched">
+        <mat-error *ngIf="Name.errors.required"> the value is Required</mat-error>
+    </mat-error>
+</mat-form-field>
+
  <button mat-raised-button color="primary">Submit </button>
 </form>
 

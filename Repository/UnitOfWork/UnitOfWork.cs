@@ -17,6 +17,8 @@ namespace RealApplication.Repository.UnitOfWork
             this.Products = new ProductRepository(context);
             this.Measurement = new MeasurementRepository(context);
             this.Stores = new StoreRepository(context);
+            this.SupplierInvoice = new SupplymentInvoiceRepository(context);
+           
         }
         public ISupplierRepository Suppliers { get; }
         public ICustomerRepository Customers { get; }
@@ -27,6 +29,8 @@ namespace RealApplication.Repository.UnitOfWork
         public IMeasurementRepository Measurement {get;}
 
         public IStoreRepository Stores {get;}
+
+        public ISupplymentInvoiceRepository SupplierInvoice { get; }
 
         public int Complete()
         {

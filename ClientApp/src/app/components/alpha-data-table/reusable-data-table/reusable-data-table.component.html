@@ -19,13 +19,17 @@
 
     <ng-container *ngFor="let item of columnsName" [matColumnDef]="item.columnName">
       <mat-header-cell *matHeaderCellDef >
-        <ng-container *ngIf="item.columnType != ColumnType.Buttons">
-         {{item.columnName}}
+        <ng-container *ngIf="item.columnType != ColumnType.Buttons && item.columnType != ColumnType.JustDetails && item.columnType != ColumnType.JustDetailsAndPrint">
+         {{item.columnName|translate}}
         </ng-container>
         </mat-header-cell>
       <mat-cell *matCellDef="let row">
         <ng-container *ngIf="item.columnType === this.ColumnType.None">
         {{row[item.columnName]}}
+      </ng-container>
+
+      <ng-container *ngIf="item.columnType === this.ColumnType.Date">
+        {{row[item.columnName]|date:'mediumDate'|translate}}
       </ng-container>
 
       <ng-container *ngIf="item.columnType === this.ColumnType.Buttons">

@@ -88,6 +88,7 @@ namespace RealApplication.Controllers
                 EmployeeID = UserId,
                 InvoiceNumber = NewInvoiceNumber,
                 IsCancelled = false,
+                SupplymentDate = invoiceDTO.Invoicedate
                 
 
             };

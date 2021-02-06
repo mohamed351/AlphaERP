@@ -9,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class ListSupplymentListComponent implements OnInit {
   columnNames: ColumnType[] = [
     { columnName: 'invoiceNumber', columnType: TypeOfColumn.None },
+    {columnName:'invoiceDate',columnType:TypeOfColumn.Date},
     {columnName:'supplierName', columnType: TypeOfColumn.None},
     { columnName: 'storeName', columnType: TypeOfColumn.None },
-    {columnName:'amount',columnType:TypeOfColumn.None},
+    { columnName: 'amount', columnType: TypeOfColumn.None },
     { columnName: 'supplierInvoiceNumber' , columnType:TypeOfColumn.JustDetailsAndPrint}
   ]
   constructor() { }

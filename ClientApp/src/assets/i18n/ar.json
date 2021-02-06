@@ -59,5 +59,10 @@
     "stores":"مخازن",
     "createStore":"انشاء مخزن",
     "customerInvoice":"فواتير البيع",
-    "print":"طباعة"
+    "print":"طباعة",
+    "name":"الأسم",
+    "invoiceNumber":"رقم الفاتورة",
+    "storeName":"اسم المخزن",
+    "amount":"السعر الكلي",
+    "PurchasingInvoice":"فاتورة شراء"
 }

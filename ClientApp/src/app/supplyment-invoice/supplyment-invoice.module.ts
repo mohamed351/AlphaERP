@@ -18,6 +18,7 @@ import { MeasurementPipePipe } from './pipes/measurement-pipe.pipe';
 import { MeasurementTextPipe } from './pipes/measurement-text.pipe';
 import { AlphaDataTableModule } from '../components/alpha-data-table/alpha-data-table.module';
 import { MatDialogModule} from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [ListSupplymentListComponent, AddSupplymentInvoiceComponent, MeasurementPipePipe, MeasurementTextPipe],
   imports: [
@@ -34,7 +35,8 @@ import { MatDialogModule} from '@angular/material/dialog';
     NgSelectModule,
     ReactiveFormsModule,
     AlphaDataTableModule,
-    MatDialogModule
+    MatDialogModule,
+    TranslateModule
   ]
 })
 export class SupplymentInvoiceModule { }

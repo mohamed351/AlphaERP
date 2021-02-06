@@ -60,6 +60,11 @@
      "stores":"Stores",
      "createStore":"Create Store",
      "customerInvoice":"Customer Invoice",
-     "print":"Print"
+     "print":"Print",
+     "name":"Name",
+     "invoiceNumber":"Invoice Number",
+     "storeName":"Store Name",
+     "amount":"Amount",
+     "PurchasingInvoice":"Purchasing Invoice"
 
 }

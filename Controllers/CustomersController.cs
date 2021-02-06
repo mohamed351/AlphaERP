@@ -8,6 +8,7 @@ using RealApplication.Models;
 using RealApplication.Repository.UnitOfWork;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNet.OData;
 
 namespace RealApplication.Controllers
 {
@@ -22,6 +23,12 @@ namespace RealApplication.Controllers
         {
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
+        }
+        [EnableQuery()]
+        [HttpGet("dataO")]
+        public IQueryable GetCustomerOData()
+        {
+            return unitOfWork.Customers.GetIQueryableData();
         }
     
         [HttpGet]

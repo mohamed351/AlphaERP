@@ -10,9 +10,10 @@ namespace RealApplication.Models
     {
         public CustomerInvoice()
         {
-            this.Customer = new Customer();
-            this.Employee = new Employee();
-            this.Store = new Store();
+            //this.Customer = new Customer();
+            //this.Employee = new Employee();
+            //this.Store = new Store();
+            this.CustomerInvoiceDetails = new  HashSet<CustomerInvoiceDetails>();
         }
         public int ID { get; set; }
         [ForeignKey(nameof(Customer))]

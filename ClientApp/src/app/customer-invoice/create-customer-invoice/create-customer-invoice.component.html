@@ -11,14 +11,14 @@
                   <mat-label>Customers</mat-label>
                   <mat-select formControlName="customerID">
                     <mat-option  *ngFor="let customer of Customers" [value]="customer.ID">
-                      {{customer.Name}}
+                      {{customer.CustomerName}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
 
                 <mat-form-field class="ml-5 halfwidth">
                   <mat-label>Invoice Date</mat-label>
-                  <input formControlName="Invoicedate" matInput [matDatepicker]="picker">
+                  <input formControlName="invoiceDate" matInput [matDatepicker]="picker">
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>

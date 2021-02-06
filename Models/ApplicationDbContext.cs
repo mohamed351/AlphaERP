@@ -39,6 +39,10 @@ namespace RealApplication.Models
 
         public DbSet<ProductStore> ProductStores {get;set;}
 
+        public DbSet<CustomerInvoice> CustomerInvoice { get; set; }
+
+        public DbSet<CustomerInvoiceDetails> CustomerInvoiceDetails { get; set; }
+
         [System.Obsolete]
         public DbQuery<StoredProcedures.Sp_SupplierInvoice> Sp_SupplierInvoices { get; set; }
 

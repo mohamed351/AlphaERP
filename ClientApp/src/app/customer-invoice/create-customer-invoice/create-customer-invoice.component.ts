@@ -42,10 +42,28 @@ export class CreateCustomerInvoiceComponent implements OnInit {
   constructor(private apiService:RestService, private dialog:MatDialog, private router:Router ) { }
 
   AddInvoiceDetails() {
+    this.InvoiceDetails.push( new FormGroup({
+      productID:new FormControl('',[Validators.required]),
+      quantity: new FormControl('', [Validators.required]),
+      barCode:new FormControl('',[Validators.required]),
+      expireDate: new FormControl(''),
+      measurementName:new FormControl(''),
+      typeOfMeasurement: new FormControl(''),
+      measurementValue:new FormControl(''),
+      price:new FormControl(''),
+      productSerial:new FormControl('')
 
+    }))
   }
 
   ngOnInit() {
+    this.apiService.GetAll<any[]>("/api/Customers/dataO?$select=id,customerName").subscribe(a => {
+      this.Customers = a;
+    });
+
+    this.apiService.GetAll<any[]>("/api/stores?$select=ID,Name").subscribe(a=>{
+      this.Stores =a;
+    });
   }
 
   GetQuantityDialog(index) {
@@ -109,10 +127,10 @@ export class CreateCustomerInvoiceComponent implements OnInit {
     console.log( "IsForm Valid",this.form.valid);
     console.log("form Element", this.form);
     console.log(JSON.stringify(this.form.value));
-    this.apiService.PostData("/api/SupplymentInvoice", this.form.value).subscribe(a => {
-      console.log(a);
-      window.open("/api/SupplymentInvoice/GetReport/" + a.invoiceNumber, "_blank");
-      this.router.navigate(['/supplymentInvoice']);
+    this.apiService.PostData("/api/CustomerInvoice", this.form.value).subscribe(a => {
+      // console.log(a);
+      // window.open("/api/SupplymentInvoice/GetReport/" + a.invoiceNumber, "_blank");
+      this.router.navigate(['/customerInvoice']);
     });
   }
 

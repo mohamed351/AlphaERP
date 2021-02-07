@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RealApplication.Models;
 
 namespace RealApplication.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210207160414_AddReturnedInvoice")]
+    partial class AddReturnedInvoice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -492,64 +494,6 @@ namespace RealApplication.Migrations
                     b.ToTable("ProductStores");
                 });
 
-            modelBuilder.Entity("RealApplication.Models.ReturnSupplymentInvoice", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("InvoiceDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("InvoiceReferenceID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("InvoiceReferenceID")
-                        .IsUnique();
-
-                    b.ToTable("ReturnSupplymentInvoices");
-                });
-
-            modelBuilder.Entity("RealApplication.Models.ReturnSupplymentInvoiceDetails", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime?>("ExpireDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("ProductID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<decimal>("Quantity")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("ReturnSupplymentInvoiceID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Serial")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ProductID");
-
-                    b.HasIndex("ReturnSupplymentInvoiceID");
-
-                    b.ToTable("ReturnSupplymentInvoiceDetails");
-                });
-
             modelBuilder.Entity("RealApplication.Models.ReturnedCustomerInvoice", b =>
                 {
                     b.Property<int>("ID")
@@ -571,44 +515,9 @@ namespace RealApplication.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("InvoiceReferenceID")
-                        .IsUnique();
+                    b.HasIndex("InvoiceReferenceID");
 
-                    b.ToTable("ReturnedCustomerInvoices");
-                });
-
-            modelBuilder.Entity("RealApplication.Models.ReturnedCustomerInvoiceDetails", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime?>("ExpireDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("InvoiceID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProductID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<decimal>("Quantity")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Serial")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("InvoiceID");
-
-                    b.HasIndex("ProductID");
-
-                    b.ToTable("ReturnedCustomerInvoiceDetails");
+                    b.ToTable("ReturnedCustomerInvoice");
                 });
 
             modelBuilder.Entity("RealApplication.Models.Store", b =>
@@ -931,26 +840,6 @@ namespace RealApplication.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("RealApplication.Models.ReturnSupplymentInvoice", b =>
-                {
-                    b.HasOne("RealApplication.Models.SupplymentInvoice", "SupplymentInvoice")
-                        .WithMany()
-                        .HasForeignKey("InvoiceReferenceID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("RealApplication.Models.ReturnSupplymentInvoiceDetails", b =>
-                {
-                    b.HasOne("RealApplication.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductID");
-
-                    b.HasOne("RealApplication.Models.ReturnSupplymentInvoice", null)
-                        .WithMany("ReturnSupplymentInvoiceDetails")
-                        .HasForeignKey("ReturnSupplymentInvoiceID");
-                });
-
             modelBuilder.Entity("RealApplication.Models.ReturnedCustomerInvoice", b =>
                 {
                     b.HasOne("RealApplication.Models.CustomerInvoice", "CustomerInvoice")
@@ -958,19 +847,6 @@ namespace RealApplication.Migrations
                         .HasForeignKey("InvoiceReferenceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("RealApplication.Models.ReturnedCustomerInvoiceDetails", b =>
-                {
-                    b.HasOne("RealApplication.Models.ReturnedCustomerInvoice", "ReturnedCustomerInvoice")
-                        .WithMany("ReturnedCustomerInvoiceDetails")
-                        .HasForeignKey("InvoiceID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RealApplication.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductID");
                 });
 
             modelBuilder.Entity("RealApplication.Models.SupplierAddress", b =>

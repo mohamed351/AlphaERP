@@ -10,10 +10,9 @@ namespace RealApplication.Models
     {
         public CustomerInvoice()
         {
-            //this.Customer = new Customer();
-            //this.Employee = new Employee();
-            //this.Store = new Store();
+           
             this.CustomerInvoiceDetails = new  HashSet<CustomerInvoiceDetails>();
+            this.ReturnedCustomerInvoices = new HashSet<ReturnedCustomerInvoice>();
         }
         public int ID { get; set; }
         [ForeignKey(nameof(Customer))]
@@ -34,6 +33,7 @@ namespace RealApplication.Models
         public Store Store { get; set; }
 
         public ICollection<CustomerInvoiceDetails> CustomerInvoiceDetails { get; set; }
+        public ICollection<ReturnedCustomerInvoice> ReturnedCustomerInvoices { get; set; }
 
     }
 }

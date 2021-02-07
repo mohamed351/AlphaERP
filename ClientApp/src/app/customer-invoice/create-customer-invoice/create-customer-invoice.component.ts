@@ -26,7 +26,7 @@ export class CreateCustomerInvoiceComponent implements OnInit {
         quantity:new FormControl('',[Validators.required]),
         expireDate: new FormControl(''),
         barCode: new FormControl('', [Validators.required]),
-        price: new FormControl(''),
+        price: new FormControl('',[Validators.required]),
         measurementName:new FormControl(''),
         productSerial:new FormControl(''),
         typeOfMeasurement: new FormControl(''),
@@ -128,8 +128,7 @@ export class CreateCustomerInvoiceComponent implements OnInit {
     console.log("form Element", this.form);
     console.log(JSON.stringify(this.form.value));
     this.apiService.PostData("/api/CustomerInvoice", this.form.value).subscribe(a => {
-      // console.log(a);
-      // window.open("/api/SupplymentInvoice/GetReport/" + a.invoiceNumber, "_blank");
+
       this.router.navigate(['/customerInvoice']);
     });
   }

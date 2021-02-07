@@ -56,15 +56,19 @@
      "measurements":"AnotherMeasurement",
      "milliliter":"milliliter",
      "cm":"cm",
-     "supplymentInvoice":"Supplyment Invoice",
+     "supplymentInvoice":"Purchasing invoice",
      "stores":"Stores",
      "createStore":"Create Store",
-     "customerInvoice":"Customer Invoice",
+     "customerInvoice":"Selling Invoice",
      "print":"Print",
      "name":"Name",
      "invoiceNumber":"Invoice Number",
      "storeName":"Store Name",
      "amount":"Amount",
-     "PurchasingInvoice":"Purchasing Invoice"
+     "PurchasingInvoice":"Purchasing Invoice",
+     "employeeName":"Employee Name",
+     "invoiceDate":"Invoice Date",
+     "createcustomerInvoice":"Create Selling Invoice"
+
 
 }

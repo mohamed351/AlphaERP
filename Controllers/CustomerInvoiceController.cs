@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 using RealApplication.DTO;
 using RealApplication.Models;
 using RealApplication.Extensions;
+using RealApplication.Repository.UnitOfWork;
+using AutoMapper;
+using RealApplication.DTO.CustomerInvoiceDTOS;
 
 namespace RealApplication.Controllers
 {
@@ -18,10 +21,28 @@ namespace RealApplication.Controllers
     public class CustomerInvoiceController : ControllerBase
     {
         private readonly ApplicationDbContext context;
+        private readonly IUnitOfWork unitOfWork;
+        private readonly IMapper mapper;
 
-        public CustomerInvoiceController(ApplicationDbContext context)
+        public CustomerInvoiceController(ApplicationDbContext context, IUnitOfWork unitOfWork , IMapper mapper)
         {
             this.context = context;
+            this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
+        }
+
+
+        [HttpGet]
+        public IActionResult Get([FromQuery] int pageSize, [FromQuery] int start, [FromQuery] string search = "")
+        {
+            search = search == null ? "" : search.Trim();
+            var invoiceQuery = this.unitOfWork.CustomerInvoice.GetEntityDataTable(start, pageSize, a => a.InvoiceNumber.ToString().Contains(search), a => a.InvoiceNumber);
+            var model = new DataTableDTO<SelectCustomerInvoiceDTOS>()
+            {
+                Data = mapper.Map<IEnumerable<SelectCustomerInvoiceDTOS>>(invoiceQuery),
+                TotalCount = unitOfWork.CustomerInvoice.GetCount(a => a.InvoiceNumber.ToString().Contains(search))
+            };
+            return Ok(model);
         }
 
 

@@ -19,7 +19,8 @@ namespace RealApplication.Repository.UnitOfWork
             this.Measurement = new MeasurementRepository(context);
             this.Stores = new StoreRepository(context);
             this.SupplierInvoice = new SupplymentInvoiceRepository(context);
-           
+            this.CustomerInvoice = new CustomerInvoiceRepository(context);
+
         }
 
         public UnitOfWork(DbContext context)
@@ -32,6 +33,7 @@ namespace RealApplication.Repository.UnitOfWork
             this.Measurement = new MeasurementRepository(context);
             this.Stores = new StoreRepository(context);
             this.SupplierInvoice = new SupplymentInvoiceRepository(context);
+            this.CustomerInvoice = new CustomerInvoiceRepository(context);
 
         }
         public ISupplierRepository Suppliers { get; }
@@ -45,6 +47,8 @@ namespace RealApplication.Repository.UnitOfWork
         public IStoreRepository Stores {get;}
 
         public ISupplymentInvoiceRepository SupplierInvoice { get; }
+
+        public ICustomerInvoiceRepository CustomerInvoice { get; }
 
         public int Complete()
         {

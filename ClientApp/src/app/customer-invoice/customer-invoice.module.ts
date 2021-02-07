@@ -1,3 +1,5 @@
+import { TranslateModule } from '@ngx-translate/core';
+import { AlphaDataTableModule } from './../components/alpha-data-table/alpha-data-table.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateCustomerInvoiceComponent } from './create-customer-invoice/create-customer-invoice.component';
@@ -30,7 +32,9 @@ import { MatDialogModule} from '@angular/material/dialog';
     MatSelectModule,
     MatDatepickerModule,
     MatDialogModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    AlphaDataTableModule,
+    TranslateModule
   ]
 })
 export class CustomerInvoiceModule { }

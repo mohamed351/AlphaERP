@@ -64,5 +64,8 @@
     "invoiceNumber":"رقم الفاتورة",
     "storeName":"اسم المخزن",
     "amount":"السعر الكلي",
-    "PurchasingInvoice":"فاتورة شراء"
+    "PurchasingInvoice":"فاتورة شراء",
+    "employeeName":"اسم العميل",
+    "invoiceDate":"تاريخ الفاتورة",
+    "createcustomerInvoice":"انشاء فاتورة مبيعات"
 }

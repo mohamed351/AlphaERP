@@ -11,10 +11,19 @@ namespace RealApplication.Repository.Implementation
     {
         private readonly DbContext dbContext;
 
+      
         public SupplymentInvoiceRepository(DbContext dbContext) 
         : base(dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        public override SupplymentInvoice GetByID(int key)
+        {
+            return dbContext.Set<SupplymentInvoice>()
+                .Include(a => a.InvoiceDetails)
+                .FirstOrDefault(a => a.ID == key);
+                
         }
 
         public override IEnumerable<SupplymentInvoice> GetEntityDataTable(int PageStart, int PageSize, Func<SupplymentInvoice, bool> condition, Func<SupplymentInvoice, int> orderBy)

@@ -10,5 +10,6 @@ export enum TypeOfColumn{
   ImageBase64 = 3,
   JustDetailsAndPrint = 4,
   JustDetails =5,
-  Date =6
+  Date = 6,
+  DetailsWithReturnedInvoiceAndPrint =7
 }

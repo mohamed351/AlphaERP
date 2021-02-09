@@ -68,7 +68,8 @@
      "PurchasingInvoice":"Purchasing Invoice",
      "employeeName":"Employee Name",
      "invoiceDate":"Invoice Date",
-     "createcustomerInvoice":"Create Selling Invoice"
+     "createcustomerInvoice":"Create Selling Invoice",
+     "refund":"Refund"
 
 
 }

@@ -15,7 +15,7 @@ namespace RealApplication.Repository.Implementation
         {
             this.dbContext = dbContext;
         }
-        public void Add(TEntity entity)
+        public  void Add(TEntity entity)
         {
             dbContext.Add(entity);
         }
@@ -39,7 +39,7 @@ namespace RealApplication.Repository.Implementation
            return   dbContext.Set<TEntity>().Where(func).ToList();
         }
 
-        public TEntity GetByID(TKey key)
+        public virtual TEntity GetByID(TKey key)
         {
             return dbContext.Set<TEntity>().Find(key);
         }

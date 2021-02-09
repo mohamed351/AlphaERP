@@ -19,7 +19,7 @@
 
     <ng-container *ngFor="let item of columnsName" [matColumnDef]="item.columnName">
       <mat-header-cell *matHeaderCellDef >
-        <ng-container *ngIf="item.columnType != ColumnType.Buttons && item.columnType != ColumnType.JustDetails && item.columnType != ColumnType.JustDetailsAndPrint">
+        <ng-container *ngIf="item.columnType != ColumnType.Buttons && item.columnType != ColumnType.JustDetails && item.columnType != ColumnType.JustDetailsAndPrint && item.columnType != ColumnType.DetailsWithReturnedInvoiceAndPrint ">
          {{item.columnName|translate}}
         </ng-container>
         </mat-header-cell>
@@ -37,6 +37,12 @@
        <a mat-flat-button color="accent" [routerLink]="['details' , row[item.columnName]]"> {{'details'|translate}}</a> |
        <a mat-flat-button color="warn" (click)="OnDeleteClick(row[item.columnName])">{{'delete'|translate}}</a>
       </ng-container>
+
+      <ng-container *ngIf="item.columnType === this.ColumnType.DetailsWithReturnedInvoiceAndPrint">
+        <a mat-flat-button color="warn" [routerLink]="['refund' , row[item.columnName]]"> {{'refund'|translate}}</a> |
+        <a mat-flat-button color="accent" [routerLink]="['details' , row[item.columnName]]"> {{'details'|translate}}</a> |
+        <a mat-flat-button color="primary" (click)="ShowReport(row[item.columnName])">{{'print'|translate}}</a>
+       </ng-container>
 
       <ng-container *ngIf="item.columnType === this.ColumnType.JustDetailsAndPrint">
         <a mat-flat-button color="accent" [routerLink]="['details' , row[item.columnName]]"> {{'details'|translate}}</a> |

@@ -67,5 +67,6 @@
     "PurchasingInvoice":"فاتورة شراء",
     "employeeName":"اسم العميل",
     "invoiceDate":"تاريخ الفاتورة",
-    "createcustomerInvoice":"انشاء فاتورة مبيعات"
+    "createcustomerInvoice":"انشاء فاتورة مبيعات",
+    "refund":"ارتجاع"
 }

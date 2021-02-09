@@ -19,8 +19,9 @@ import { MeasurementTextPipe } from './pipes/measurement-text.pipe';
 import { AlphaDataTableModule } from '../components/alpha-data-table/alpha-data-table.module';
 import { MatDialogModule} from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
+import { SupplierRefundComponent } from './supplier-refund/supplier-refund.component';
 @NgModule({
-  declarations: [ListSupplymentListComponent, AddSupplymentInvoiceComponent, MeasurementPipePipe, MeasurementTextPipe],
+  declarations: [ListSupplymentListComponent, AddSupplymentInvoiceComponent, MeasurementPipePipe, MeasurementTextPipe, SupplierRefundComponent],
   imports: [
     CommonModule,
     ProductRoutingModule,

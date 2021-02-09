@@ -17,6 +17,7 @@ using System.Text;
 using RealApplication.Repository.UnitOfWork;
 using RealApplication.DTO;
 using AutoMapper;
+using Microsoft.AspNet.OData;
 
 namespace RealApplication.Controllers
 {
@@ -62,6 +63,13 @@ namespace RealApplication.Controllers
 
             return Ok(query);
         }
+        [EnableQuery()]
+        [HttpGet(template:"DataO")]
+        public IActionResult GetSupplierInvoice()
+        {
+            return Ok(unitOfWork.SupplierInvoice.GetIQueryableData());
+        }
+
         [HttpGet(template: "/api/[controller]/GetByProductName/{productName}")]
         public IActionResult GetProductByName(string productName)
         {
@@ -75,6 +83,8 @@ namespace RealApplication.Controllers
 
             return Ok(query);
         }
+
+       
         [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult Post([FromBody]CreateSuppliermentInvoiceDTO invoiceDTO)

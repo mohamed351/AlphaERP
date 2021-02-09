@@ -40,13 +40,13 @@
           <tr *ngFor="let item of this.InvoiceInfo.InvoiceDetails">
             <td>{{item.Product.ProductName}}</td>
             <td>{{item.UnitPrice}}</td>
-            <td>{{item.Quantity}}</td>
+            <td>{{item.Quantity }} {{item.Product.TypeOfMeasurement|measurementText|translate}}</td>
             <td>{{(item.UnitPrice * item.Quantity)}}</td>
             <td>
-              <mat-form-field>
+              <mat-form-field >
                 <label>Returned Quantity</label>
-                <input type="number" matInput  />
-                <mat-hint>{{item.Product.TypeOfMeasurement|measurementPipe|async}}</mat-hint>
+                <input (dblclick)="OpenDialog(item.Product.TypeOfMeasurement,item,InputValue)" #InputValue type="number" matInput  />
+                <mat-hint >{{item.Product.TypeOfMeasurement|measurementPipe|async}}</mat-hint>
               </mat-form-field>
             </td>
 

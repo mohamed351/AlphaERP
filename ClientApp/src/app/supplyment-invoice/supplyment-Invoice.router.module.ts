@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AddSupplymentInvoiceComponent} from './add-supplyment-invoice/add-supplyment-invoice.component';
 import {ListSupplymentListComponent} from './list-supplyment-list/list-supplyment-list.component';
-
+import { SupplymentInvoiceDetailsComponent} from './supplyment-invoice-details/supplyment-invoice-details.component';
 
 const routes: Routes = [
   {
@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: "refund/:id",
     component:SupplierRefundComponent
+  },
+  {
+    path: "details/:id",
+    component:SupplymentInvoiceDetailsComponent
   }
 
 

@@ -31,29 +31,54 @@
               <th>ProductName</th>
               <th>UnitPrice</th>
               <th>Quantity</th>
+              <th>Quantity Type </th>
               <th>OldPrice</th>
               <th>Returned Quantity</th>
               <th>NewPrice</th>
+
             </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of this.InvoiceInfo.InvoiceDetails">
+          <tr *ngFor="let item of this.InvoiceInfo.InvoiceDetails; let i=index">
             <td>{{item.Product.ProductName}}</td>
-            <td>{{item.UnitPrice}}</td>
-            <td>{{item.Quantity }} {{item.Product.TypeOfMeasurement|measurementText|translate}}</td>
+            <td>{{item.UnitPrice|currency}}</td>
+
+            <td>{{item.Quantity }}</td>
+            <td>  {{item.Product.TypeOfMeasurement|measurementPipe|async}} </td>
             <td>{{(item.UnitPrice * item.Quantity)}}</td>
             <td>
               <mat-form-field >
                 <label>Returned Quantity</label>
-                <input (dblclick)="OpenDialog(item.Product.TypeOfMeasurement,item,InputValue)" #InputValue type="number" matInput  />
+                <input (dblclick)="OpenDialog(item.Product.TypeOfMeasurement,item,InputValue)"
+                 #InputValue="ngModel"
+                 [name]="'returnedQuantity['+i+']'"
+                 ngModel
+                  (change)="NewQuantityOnChange(InputValue,item.Quantity, item)"
+                 [max]="item.Quantity"
+                  type="number"
+                   matInput  />
                 <mat-hint >{{item.Product.TypeOfMeasurement|measurementPipe|async}}</mat-hint>
               </mat-form-field>
             </td>
 
-            <td></td>
-
+            <td>
+                {{(((-item.NewQuantity) * item.UnitPrice )+((item.Quantity) * item.UnitPrice ))|currency}}
+            </td>
           </tr>
+
+
         </tbody>
+        <tfoot>
+             <tr>
+               <th></th>
+               <th>{{CalculateTotalPrice()|currency}}</th>
+               <th></th>
+               <th></th>
+               <th>{{CalculateTotal()|currency}}</th>
+               <th></th>
+               <th> {{CalculateNewTotalPrice()|currency}}</th>
+             </tr>
+        </tfoot>
       </table>
  </mat-card>
 </ng-template>

@@ -20,9 +20,11 @@ import { AlphaDataTableModule } from '../components/alpha-data-table/alpha-data-
 import { MatDialogModule} from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { SupplierRefundComponent } from './supplier-refund/supplier-refund.component';
+import { FormsModule} from '@angular/forms';
+import { SupplymentInvoiceDetailsComponent } from './supplyment-invoice-details/supplyment-invoice-details.component';
 
 @NgModule({
-  declarations: [ListSupplymentListComponent, AddSupplymentInvoiceComponent, MeasurementPipePipe, MeasurementTextPipe, SupplierRefundComponent],
+  declarations: [ListSupplymentListComponent, AddSupplymentInvoiceComponent, MeasurementPipePipe, MeasurementTextPipe, SupplierRefundComponent, SupplymentInvoiceDetailsComponent],
   imports: [
     CommonModule,
     ProductRoutingModule,
@@ -38,7 +40,8 @@ import { SupplierRefundComponent } from './supplier-refund/supplier-refund.compo
     ReactiveFormsModule,
     AlphaDataTableModule,
     MatDialogModule,
-    TranslateModule
+    TranslateModule,
+    FormsModule
   ]
 })
 export class SupplymentInvoiceModule { }

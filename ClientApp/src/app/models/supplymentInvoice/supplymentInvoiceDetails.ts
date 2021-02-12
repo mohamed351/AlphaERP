@@ -20,6 +20,8 @@ export interface InvoiceDetail {
   Quantity: number;
   ExpireDate: string;
   Serial?: any;
+  NewUnitPrice: number;
+  NewQuantity: number;
 }
 
 export interface Store {

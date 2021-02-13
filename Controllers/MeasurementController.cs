@@ -97,8 +97,20 @@ namespace RealApplication.Controllers
             return Ok(new { measurementText = result});
         }
 
+        [HttpGet(), Route(template: "/Product/MainTypeOnly/")]
+        public IActionResult GetMesurementByMainTypeOnly([FromQuery] TypeOfMeasurements type)
+        {
+            var measurement = unitOfWork.Measurement.GetByCondititon(async => async.MainType == type)
+                .FirstOrDefault(a=>a.IsMain == true);
+            return Ok(measurement);
+        }
 
-       
-        
+
+
+
+
+
+
+
     }
 }

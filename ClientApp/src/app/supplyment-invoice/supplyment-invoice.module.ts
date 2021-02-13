@@ -22,6 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SupplierRefundComponent } from './supplier-refund/supplier-refund.component';
 import { FormsModule} from '@angular/forms';
 import { SupplymentInvoiceDetailsComponent } from './supplyment-invoice-details/supplyment-invoice-details.component';
+import { CustomFormsModule } from 'ng2-validation';
 
 @NgModule({
   declarations: [ListSupplymentListComponent, AddSupplymentInvoiceComponent, MeasurementPipePipe, MeasurementTextPipe, SupplierRefundComponent, SupplymentInvoiceDetailsComponent],
@@ -41,7 +42,8 @@ import { SupplymentInvoiceDetailsComponent } from './supplyment-invoice-details/
     AlphaDataTableModule,
     MatDialogModule,
     TranslateModule,
-    FormsModule
+    FormsModule,
+    CustomFormsModule
   ]
 })
 export class SupplymentInvoiceModule { }

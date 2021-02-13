@@ -75,6 +75,7 @@ export class AddSupplymentInvoiceComponent implements OnInit {
       MeasurementType: this.InvoiceDetails.controls[index].get("typeOfMeasurement").value,
       MeasurementValue:this.InvoiceDetails.controls[index].get("measurementValue").value
     }
+    console.log(measurementInfo);
     const dialogRef = this.dialog.open(MeasurementDialogComponent, {
       width: '250px',
       data: measurementInfo

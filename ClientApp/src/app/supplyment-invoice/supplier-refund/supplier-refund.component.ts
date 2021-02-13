@@ -1,7 +1,7 @@
 import { MeasurementInfo } from './../../components/measurement-dialog/measurement-dialog.component';
 import { MatDialog } from '@angular/material';
 import { Invoice, InvoiceDetail, Product } from './../../models/supplymentInvoice/supplymentInvoiceDetails';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from './../../services/rest-service.service';
 import { Component, OnInit, NgModule } from '@angular/core';
 import {  MeasurementDialogComponent} from '../../components/measurement-dialog/measurement-dialog.component';
@@ -16,7 +16,8 @@ export class SupplierRefundComponent implements OnInit {
  public InvoiceInfo: Invoice = null;
   constructor(private apiService: RestService,
     private activeRouter: ActivatedRoute,
-    private MatDialog:MatDialog) { }
+    private MatDialog: MatDialog,
+  private router:Router) { }
 
   ngOnInit() {
    let paramsData = this.activeRouter.snapshot.params["id"];
@@ -28,15 +29,26 @@ export class SupplierRefundComponent implements OnInit {
 
     });
   }
-  OpenDialog(data:TypeOfMeasurements, invoice:InvoiceDetail, InputElement:HTMLInputElement) {
-   let MeasurementInfo: MeasurementInfo = {
-     MainMeasurementName: '',
-     MeasurementType: data,
-     MeasurementValue:1
-    }
-    this.MatDialog.open(MeasurementDialogComponent, { width: '250px', data: MeasurementInfo }).afterClosed().subscribe(a => {
-     console.log(a);
+  OpenDialog(data: TypeOfMeasurements, invoice: InvoiceDetail, InputElement: HTMLInputElement) {
+
+    this.apiService.GetAll<any>(`/Product/MainTypeOnly?type=${data}`).subscribe(a => {
+      let MeasurementInfo: MeasurementInfo = {
+        MainMeasurementName: a.name,
+        MeasurementType: data,
+        MeasurementValue:a.defaultValue
+      }
+      console.log(MeasurementInfo);
+      this.MatDialog.open(MeasurementDialogComponent, { width: '250px', data: MeasurementInfo }).afterClosed().subscribe(a => {
+        if (invoice.Quantity >= a) {
+          invoice.NewQuantity = a;
+          console.log(invoice.NewQuantity);
+        }
+        else {
+          console.log(a);
+        }
+       });
     });
+
   }
   ValueChanged(event,InputElement:HTMLInputElement) {
     console.log(event);
@@ -71,6 +83,15 @@ export class SupplierRefundComponent implements OnInit {
       totalPrice += (((-iterator.NewQuantity) * iterator.UnitPrice) + ((iterator.Quantity) * iterator.UnitPrice));
     }
     return totalPrice;
+  }
+  SubmitInvoice() {
+    console.log(this.InvoiceInfo);
+    console.log(JSON.stringify(this.InvoiceInfo));
+    this.apiService.PostData("/api/ReturnSupplymentInvoice", this.InvoiceInfo).subscribe(a => {
+      console.log(a);
+      this.router.navigate(["/supplymentInvoice"]);
+
+    });
   }
 
 }

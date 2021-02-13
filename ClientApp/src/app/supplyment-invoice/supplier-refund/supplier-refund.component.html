@@ -6,6 +6,7 @@
 </ng-template>
 
 <ng-template #data>
+  <form  #form="ngForm" ngForm (ngSubmit)="SubmitInvoice()">
  <mat-card>
       <dl class="row">
 
@@ -49,14 +50,16 @@
             <td>
               <mat-form-field >
                 <label>Returned Quantity</label>
-                <input (dblclick)="OpenDialog(item.Product.TypeOfMeasurement,item,InputValue)"
+                <input  (dblclick)="OpenDialog(item.Product.TypeOfMeasurement,item,InputValue)"
                  #InputValue="ngModel"
                  [name]="'returnedQuantity['+i+']'"
-                 ngModel
+                 [(ngModel)]="item.NewQuantity"
                   (change)="NewQuantityOnChange(InputValue,item.Quantity, item)"
-                 [max]="item.Quantity"
                   type="number"
-                   matInput  />
+                   matInput
+                   [min]="0.1111"
+                   [max]="item.Quantity"
+                 />
                 <mat-hint >{{item.Product.TypeOfMeasurement|measurementPipe|async}}</mat-hint>
               </mat-form-field>
             </td>
@@ -80,5 +83,7 @@
              </tr>
         </tfoot>
       </table>
+    <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" >Submit Refund Invoice</button>
  </mat-card>
+</form>
 </ng-template>

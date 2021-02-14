@@ -9,6 +9,7 @@ namespace RealApplication.Models
         public SupplymentInvoice()
         {
             this.InvoiceDetails = new List<SupplymentDetail>();
+            this.ReturnSupplymentInvoices = new List<ReturnSupplymentInvoice>();
         }
         public int ID { get; set; }
         [ForeignKey(nameof(Supplier))]
@@ -33,8 +34,9 @@ namespace RealApplication.Models
         public Store Store {get;set;}
 
         public ICollection<SupplymentDetail> InvoiceDetails { get; set; }
+        public ICollection<ReturnSupplymentInvoice> ReturnSupplymentInvoices { get; set; }
 
-      
+
 
     }
 }

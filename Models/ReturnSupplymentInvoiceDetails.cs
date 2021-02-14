@@ -9,6 +9,10 @@ namespace RealApplication.Models
 
         [ForeignKey(nameof(Product))]
         public string ProductID { get; set; }
+        [ForeignKey(nameof(ReturendSupplymentInvoice))]
+        public int InvoiceID { get; set; }
+        
+        public ReturnSupplymentInvoice ReturendSupplymentInvoice { get; set; }
 
         public Product Product { get; set; }
 
@@ -19,6 +23,10 @@ namespace RealApplication.Models
         public DateTime? ExpireDate { get; set; }
 
         public string Serial { get; set; }
+        /// <summary>
+        /// The ID of Invoice Details because i want to get that ID  for quantity calculation 
+        /// </summary>
+        public int DetailReference { get; set; }
 
     }
 }

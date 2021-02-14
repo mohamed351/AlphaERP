@@ -1,3 +1,4 @@
+import { ReturnedInvoice, ReferneceDetails } from './../../models/returnedInvoices/returnedInvoice';
 import { MeasurementInfo } from './../../components/measurement-dialog/measurement-dialog.component';
 import { MatDialog } from '@angular/material';
 import { Invoice, InvoiceDetail, Product } from './../../models/supplymentInvoice/supplymentInvoiceDetails';
@@ -22,13 +23,43 @@ export class SupplierRefundComponent implements OnInit {
   ngOnInit() {
    let paramsData = this.activeRouter.snapshot.params["id"];
     this.apiService.GetAll<Invoice[]>(`/api/SupplymentInvoice/DataO?$expand=employee($select=id,userName),supplier($select=id,name),store($select=id,name),invoiceDetails($expand=Product($select=id,ProductName,TypeOfMeasurement))&$select=ID,InvoiceDetails,Store,InvoiceNumber,Employee&$filter=InvoiceNumber eq ${paramsData}`).subscribe(a => {
-      this.InvoiceInfo = a[0];
-      for (const iterator of this.InvoiceInfo.InvoiceDetails) {
-        iterator.NewQuantity = 0;
-      }
+      this.apiService.GetAll<ReferneceDetails[]>(`/api/ReturnSupplymentInvoice/${paramsData}`).subscribe(c => {
+        this.InvoiceInfo = a[0];
+        this.calculateQuantities(this.InvoiceInfo, c);
+      });
+    });
 
+  }
+
+  calculateQuantities(Invoice:Invoice, ReferneceDetails:ReferneceDetails[]) {
+    Invoice.InvoiceDetails.map(c => {
+      let qtu = ReferneceDetails.find(a => a.detailReference == c.ID).quantity;
+      c.Quantity = c.Quantity - qtu;
     });
   }
+
+
+
+    // Invoice.InvoiceDetails.forEach(a => {
+
+    //   // ReturnedInvoice.deatils.reduce((accumulator,currentValue) => {
+    //   //   accumulator.quantity += currentValue.quantity;
+    //   // });
+
+
+    // });
+    // Invoice.InvoiceDetails.map(a => {
+    //   let invoiceData = ReturnedInvoice.deatils.filter(c => c.detailReference == a.ID );
+    //   let qtu = 0;
+    //   for (const iterator of invoiceData) {
+    //     qtu += iterator.quantity;
+    //   }
+    //   alert(qtu);
+    //   a.Quantity = a.Quantity - qtu;
+    //   return a;
+    // });
+  // }
+
   OpenDialog(data: TypeOfMeasurements, invoice: InvoiceDetail, InputElement: HTMLInputElement) {
 
     this.apiService.GetAll<any>(`/Product/MainTypeOnly?type=${data}`).subscribe(a => {

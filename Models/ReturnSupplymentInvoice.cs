@@ -10,7 +10,7 @@ namespace RealApplication.Models
     {
         public ReturnSupplymentInvoice()
         {
-            this.ReturnSupplymentInvoiceDetails = new HashSet<ReturnSupplymentInvoiceDetails>();
+            this.ReturnSupplymentInvoiceDetails = new List<ReturnSupplymentInvoiceDetails>();
         }
         public int ID { get; set; }
         public DateTime InvoiceDate { get; set; }
@@ -19,8 +19,10 @@ namespace RealApplication.Models
 
         public string Note { get; set; }
 
-        public SupplymentInvoice SupplymentInvoice { get; set; }
-
         public ICollection<ReturnSupplymentInvoiceDetails> ReturnSupplymentInvoiceDetails { get; set; }
+        public SupplymentInvoice SupplymentInvoice { get; set; }
+        
+
+       
     }
 }

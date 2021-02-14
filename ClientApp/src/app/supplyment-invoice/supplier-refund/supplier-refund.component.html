@@ -56,9 +56,10 @@
                  [(ngModel)]="item.NewQuantity"
                   (change)="NewQuantityOnChange(InputValue,item.Quantity, item)"
                   type="number"
+
                    matInput
-                   [min]="0.1111"
-                   [max]="item.Quantity"
+
+
                  />
                 <mat-hint >{{item.Product.TypeOfMeasurement|measurementPipe|async}}</mat-hint>
               </mat-form-field>

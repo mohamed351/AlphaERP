@@ -50,14 +50,14 @@ namespace RealApplication.Models
 
             builder.Entity<ProductStore>()
             .HasKey(c =>  new {c.ProductID , c.StoreID, c.ProductEnteredIn});
+            // Change requirements
+            //builder.Entity<ReturnedCustomerInvoice>()
+            //    .HasIndex(a => a.InvoiceReferenceID)
+            //    .IsUnique();
 
-            builder.Entity<ReturnedCustomerInvoice>()
-                .HasIndex(a => a.InvoiceReferenceID)
-                .IsUnique();
-
-            builder.Entity<ReturnSupplymentInvoice>()
-                .HasIndex(a => a.InvoiceReferenceID)
-                .IsUnique();
+            //builder.Entity<ReturnSupplymentInvoice>()
+            //    .HasIndex(a => a.InvoiceReferenceID)
+            //    .IsUnique();
 
 
             base.OnModelCreating(builder);

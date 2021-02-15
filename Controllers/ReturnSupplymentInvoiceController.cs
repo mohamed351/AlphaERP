@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,17 @@ namespace RealApplication.Controllers
             this.dbContext = dbContext;
         }
         /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns> 
+         [EnableQuery()]
+        [HttpGet(template: "DataO")]
+        public IActionResult GetAllReturnedInvoice()
+        {
+            return Ok(dbContext.ReturnSupplymentInvoices);
+        }
+      
+        /// <summary>
         /// Remember> This is Function need to refeactor with same 
         /// </summary>
         /// <param name="ID"></param>
@@ -28,9 +40,7 @@ namespace RealApplication.Controllers
         [HttpGet("{ID}")]
         public IActionResult Get(int ID)
         {
-            //var query = dbContext.ReturnSupplymentInvoices
-            //       .Include(a => a.).Where(a => a.InvoiceReferenceID == ID)
-            //       .Select(a => new { quantity = a.ReturnSupplymentInvoiceDetails.Sum(a => a.Quantity), a. });
+   
 
             var query = dbContext.ReturnSupplymentInvoiceDetails
                          .Include(a => a.ReturendSupplymentInvoice).
@@ -40,11 +50,6 @@ namespace RealApplication.Controllers
                           .Select(a => new { DetailReference= a.Key , Quantity= a.Sum(c=>c.Quantity) });
                         
                        
-                        
-                
-                
-                
-                  
             return Ok(query);
 
         }

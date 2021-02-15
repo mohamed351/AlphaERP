@@ -14,7 +14,9 @@ import { NgModel } from '@angular/forms';
   styleUrls: ['./supplier-refund.component.css']
 })
 export class SupplierRefundComponent implements OnInit {
- public InvoiceInfo: Invoice = null;
+  public InvoiceInfo: Invoice = null;
+
+
   constructor(private apiService: RestService,
     private activeRouter: ActivatedRoute,
     private MatDialog: MatDialog,
@@ -40,25 +42,6 @@ export class SupplierRefundComponent implements OnInit {
 
 
 
-    // Invoice.InvoiceDetails.forEach(a => {
-
-    //   // ReturnedInvoice.deatils.reduce((accumulator,currentValue) => {
-    //   //   accumulator.quantity += currentValue.quantity;
-    //   // });
-
-
-    // });
-    // Invoice.InvoiceDetails.map(a => {
-    //   let invoiceData = ReturnedInvoice.deatils.filter(c => c.detailReference == a.ID );
-    //   let qtu = 0;
-    //   for (const iterator of invoiceData) {
-    //     qtu += iterator.quantity;
-    //   }
-    //   alert(qtu);
-    //   a.Quantity = a.Quantity - qtu;
-    //   return a;
-    // });
-  // }
 
   OpenDialog(data: TypeOfMeasurements, invoice: InvoiceDetail, InputElement: HTMLInputElement) {
 

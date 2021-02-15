@@ -23,9 +23,17 @@ import { SupplierRefundComponent } from './supplier-refund/supplier-refund.compo
 import { FormsModule} from '@angular/forms';
 import { SupplymentInvoiceDetailsComponent } from './supplyment-invoice-details/supplyment-invoice-details.component';
 import { CustomFormsModule } from 'ng2-validation';
+import { AllRefundedSupplymentInvoiceComponent } from './all-refunded-supplyment-invoice/all-refunded-supplyment-invoice.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
-  declarations: [ListSupplymentListComponent, AddSupplymentInvoiceComponent, MeasurementPipePipe, MeasurementTextPipe, SupplierRefundComponent, SupplymentInvoiceDetailsComponent],
+  declarations: [ListSupplymentListComponent,
+    AddSupplymentInvoiceComponent,
+    MeasurementPipePipe,
+    MeasurementTextPipe,
+    SupplierRefundComponent,
+    SupplymentInvoiceDetailsComponent,
+    AllRefundedSupplymentInvoiceComponent ],
   imports: [
     CommonModule,
     ProductRoutingModule,
@@ -43,7 +51,8 @@ import { CustomFormsModule } from 'ng2-validation';
     MatDialogModule,
     TranslateModule,
     FormsModule,
-    CustomFormsModule
+    CustomFormsModule,
+    MatExpansionModule
   ]
 })
 export class SupplymentInvoiceModule { }

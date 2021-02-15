@@ -56,10 +56,7 @@
                  [(ngModel)]="item.NewQuantity"
                   (change)="NewQuantityOnChange(InputValue,item.Quantity, item)"
                   type="number"
-
                    matInput
-
-
                  />
                 <mat-hint >{{item.Product.TypeOfMeasurement|measurementPipe|async}}</mat-hint>
               </mat-form-field>
@@ -85,6 +82,8 @@
         </tfoot>
       </table>
     <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" >Submit Refund Invoice</button>
+    <a class="ml-2" [routerLink]="['/supplymentInvoice/purchasingRefundList',InvoiceInfo.ID]" mat-raised-button color="accent">List Refund Invoice</a>
+
  </mat-card>
 </form>
 </ng-template>

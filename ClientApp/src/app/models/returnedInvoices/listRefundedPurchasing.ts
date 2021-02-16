@@ -6,6 +6,11 @@ export interface ReturendSupplymentInvoice {
   InvoiceReferenceID: number;
   Note: string;
   UserName: string;
+
+}
+export interface Product{
+  ProductID: string;
+  ProductName:string
 }
 
 export interface ReturnSupplymentInvoiceDetail {
@@ -17,4 +22,5 @@ export interface ReturnSupplymentInvoiceDetail {
   ExpireDate: string;
   Serial?: any;
   DetailReference: number;
+  Product: Product;
 }

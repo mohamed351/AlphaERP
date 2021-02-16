@@ -19,6 +19,12 @@ namespace RealApplication.Models
 
         public string Note { get; set; }
 
+        [ForeignKey(nameof(Employee))]
+        public string UserID { get; set; }
+
+
+        public Employee Employee { get; set; }
+
         public ICollection<ReturnSupplymentInvoiceDetails> ReturnSupplymentInvoiceDetails { get; set; }
         public SupplymentInvoice SupplymentInvoice { get; set; }
         

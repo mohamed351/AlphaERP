@@ -16,7 +16,7 @@ export class AllRefundedSupplymentInvoiceComponent implements OnInit {
 
   ngOnInit() {
     let dataParamter = this.activeRouter.snapshot.params["id"];
-    this.apiRest.GetAll<ReturendSupplymentInvoice[]>(`/api/ReturnSupplymentInvoice/DataO?$expand=returnSupplymentInvoiceDetails&$filter=InvoiceReferenceID eq ${dataParamter}`).subscribe(a => {
+    this.apiRest.GetAll<ReturendSupplymentInvoice[]>(`/api/ReturnSupplymentInvoice/DataO?$expand=returnSupplymentInvoiceDetails($expand=Product($select=ID,ProductName))&$filter=InvoiceReferenceID eq ${dataParamter}`).subscribe(a => {
       this.returnedInvoice = a;
     });
   }

@@ -7,6 +7,7 @@ export interface Invoice {
   ID: number;
   InvoiceNumber: number;
   Supplier: Supplier;
+  Note: string;
 
 
 }

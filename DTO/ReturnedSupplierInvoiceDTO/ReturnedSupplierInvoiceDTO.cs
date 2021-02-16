@@ -59,5 +59,6 @@ namespace RealApplication.DTO.ReturnedSupplierInvoiceDTO
         public List<ReturnedInvoiceDetailDTO> InvoiceDetails { get; set; }
         public int ID { get; set; }
         public int InvoiceNumber { get; set; }
+        public string Note { get; set; }
     }
 }

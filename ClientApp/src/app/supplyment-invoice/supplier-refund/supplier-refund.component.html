@@ -23,6 +23,12 @@
         <dt class="col-md-3">Store</dt>
         <dd class="col-md-9"> {{InvoiceInfo.Store.Name}} </dd>
 
+        <dt class="col-md-3">Note</dt>
+        <dd class="col-md-9">
+          <textarea class="form-control" [(ngModel)]="InvoiceInfo.Note" [ngModelOptions]="{standalone: true}">
+
+          </textarea>
+        </dd>
 
       </dl>
 
@@ -56,6 +62,9 @@
                  [(ngModel)]="item.NewQuantity"
                   (change)="NewQuantityOnChange(InputValue,item.Quantity, item)"
                   type="number"
+                  required
+                  [min]="0"
+                  [max]="item.Quantity"
                    matInput
                  />
                 <mat-hint >{{item.Product.TypeOfMeasurement|measurementPipe|async}}</mat-hint>

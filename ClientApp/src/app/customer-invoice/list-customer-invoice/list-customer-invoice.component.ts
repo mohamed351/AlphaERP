@@ -13,9 +13,9 @@ export class ListCustomerInvoiceComponent implements OnInit {
     { columnName: "storeName", columnType: TypeOfColumn.None },
     { columnName: "customerName", columnType: TypeOfColumn.None },
     { columnName: "employeeName", columnType: TypeOfColumn.None },
-    { columnName: "invoiceDate", columnType: TypeOfColumn.None },
+    { columnName: "invoiceDate", columnType: TypeOfColumn.Date },
     { columnName: "amount", columnType: TypeOfColumn.None },
-    {columnName:"CustomerInvoiceNumber",columnType:TypeOfColumn.JustDetailsAndPrint}
+    {columnName:"customerInvoiceNumber",columnType:TypeOfColumn.DetailsWithReturnedInvoiceAndPrint}
 
   ]
   constructor() { }

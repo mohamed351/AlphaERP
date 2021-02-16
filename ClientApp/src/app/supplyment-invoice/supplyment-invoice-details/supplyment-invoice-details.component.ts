@@ -16,7 +16,7 @@ export class SupplymentInvoiceDetailsComponent implements OnInit {
     let paramsData = this.activeRouter.snapshot.params["id"];
     this.apiService.GetAll<Invoice[]>(`/api/SupplymentInvoice/DataO?$expand=employee($select=id,userName),supplier($select=id,name),store($select=id,name),invoiceDetails($expand=Product($select=id,ProductName,TypeOfMeasurement))&$select=ID,InvoiceDetails,Store,InvoiceNumber,Employee&$filter=InvoiceNumber eq ${paramsData}`).subscribe(a => {
       this.Invoice = a[0];
-      console.log(this.Invoice);
+
     });
 
   }

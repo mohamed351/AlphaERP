@@ -1,3 +1,4 @@
+import { RefundMeasurement } from './../../models/returnedInvoices/measurements';
 import { ReturnedInvoice, ReferneceDetails } from './../../models/returnedInvoices/returnedInvoice';
 import { MeasurementInfo } from './../../components/measurement-dialog/measurement-dialog.component';
 import { MatDialog } from '@angular/material';
@@ -15,7 +16,7 @@ import { NgModel } from '@angular/forms';
 })
 export class SupplierRefundComponent implements OnInit {
   public InvoiceInfo: Invoice = null;
-
+  public measurements:RefundMeasurement[] = [];
 
   constructor(private apiService: RestService,
     private activeRouter: ActivatedRoute,
@@ -26,17 +27,35 @@ export class SupplierRefundComponent implements OnInit {
    let paramsData = this.activeRouter.snapshot.params["id"];
     this.apiService.GetAll<Invoice[]>(`/api/SupplymentInvoice/DataO?$expand=employee($select=id,userName),supplier($select=id,name),store($select=id,name),invoiceDetails($expand=Product($select=id,ProductName,TypeOfMeasurement))&$select=ID,InvoiceDetails,Store,InvoiceNumber,Employee&$filter=InvoiceNumber eq ${paramsData}`).subscribe(a => {
       this.apiService.GetAll<ReferneceDetails[]>(`/api/ReturnSupplymentInvoice/${paramsData}`).subscribe(c => {
-        this.InvoiceInfo = a[0];
-        this.calculateQuantities(this.InvoiceInfo, c);
+        this.apiService.GetAll<RefundMeasurement[]>("/api/Measurement/DataO").subscribe(b => {
+          this.measurements = b;
+          this.InvoiceInfo = a[0];
+          this.CalculateQuantities(this.InvoiceInfo, c,b);
+
+
+        });
+
+
       });
     });
 
+
+
+
+
   }
 
-  calculateQuantities(Invoice:Invoice, ReferneceDetails:ReferneceDetails[]) {
+  CalculateQuantities(Invoice:Invoice, ReferneceDetails:ReferneceDetails[],RefundMeasurement:RefundMeasurement[] ) {
     Invoice.InvoiceDetails.map(c => {
-      let qtu = ReferneceDetails.find(a => a.detailReference == c.ID).quantity;
-      c.Quantity = c.Quantity - qtu;
+      let qtu = 0;
+      let oldQuantity = ReferneceDetails.find(a => a.detailReference == c.ID);
+      let refunderMeasurment = RefundMeasurement.find(r => r.isMain && r.mainType == c.Product.TypeOfMeasurement);
+      if (oldQuantity != null) {
+        c.Quantity = (c.Quantity - qtu) / refunderMeasurment.defaultValue;
+      }
+      else {
+        c.Quantity = c.Quantity / refunderMeasurment.defaultValue;
+      }
     });
   }
 

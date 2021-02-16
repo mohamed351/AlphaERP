@@ -37,11 +37,11 @@ namespace RealApplication.DTO.ReturnedSupplierInvoiceDTO
         public int ID { get; set; }
         public int InvoiceID { get; set; }
         public string ProductID { get; set; }
-        public int UnitPrice { get; set; }
-        public int Quantity { get; set; }
-        public DateTime ExpireDate { get; set; }
+        public decimal UnitPrice { get; set; }
+        public decimal Quantity { get; set; }
+        public DateTime? ExpireDate { get; set; }
         public string Serial { get; set; }
-        public int NewQuantity { get; set; }
+        public decimal NewQuantity { get; set; }
     }
 
     public class ReturnedSupplierInvoiceDTO

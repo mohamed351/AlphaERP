@@ -52,6 +52,14 @@ namespace RealApplication.Controllers
             return Ok(model);
             
         }
+
+        [EnableQuery()]
+        [HttpGet(template: "DataO")]
+        public IActionResult GetAll()
+        {
+            return Ok(this.unitOfWork.Measurement.GetIQueryableData());
+        }
+
         [HttpPost]
         public IActionResult Post(CreateMeasurementDTO dto){
             if(!ModelState.IsValid){

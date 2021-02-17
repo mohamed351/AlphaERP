@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using RealApplication.DTO.ReturnedSupplierInvoiceDTO;
 using RealApplication.Models;
 using RealApplication.Extensions;
+using RealApplication.Models.Enum;
 
 namespace RealApplication.Controllers
 {
@@ -61,7 +62,9 @@ namespace RealApplication.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult Post(ReturnedSupplierInvoiceDTO invoiceDTO)
         {
+          
             var userId = User.GetUserId();
+            var allMeasuremnets = dbContext.Measurements.ToList();
             
             var invoice = new ReturnSupplymentInvoice()
             {
@@ -76,9 +79,9 @@ namespace RealApplication.Controllers
             {
                 invoice.ReturnSupplymentInvoiceDetails.Add(new ReturnSupplymentInvoiceDetails()
                 {
-
+                     
                     Price = item.UnitPrice,
-                    Quantity = item.NewQuantity,
+                    Quantity = ConvertMeasurement(allMeasuremnets,item.NewQuantity,item.Product.TypeOfMeasurement),
                     ProductID = item.ProductID,
                     Serial = item.Serial,
                     ExpireDate = item.ExpireDate,
@@ -90,6 +93,15 @@ namespace RealApplication.Controllers
             dbContext.SaveChanges();
             
             return Ok(invoiceDTO);
+        }
+        private decimal ConvertMeasurement(List<Measurement> measurements,decimal qtu,TypeOfMeasurements measurementType)
+        {
+            var mainMeasure = measurements
+                .FirstOrDefault(a => a.IsMain && a.MainType == measurementType);
+            if(mainMeasure == null)
+                return 0;
+
+            return mainMeasure.defaultValue * qtu;
         }
 
     }

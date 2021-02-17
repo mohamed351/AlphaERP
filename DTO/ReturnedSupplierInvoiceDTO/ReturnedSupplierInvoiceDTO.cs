@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RealApplication.Models.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,11 +29,15 @@ namespace RealApplication.DTO.ReturnedSupplierInvoiceDTO
     {
         public string ID { get; set; }
         public string ProductName { get; set; }
-        public int TypeOfMeasurement { get; set; }
+        public TypeOfMeasurements TypeOfMeasurement { get; set; }
     }
 
     public class ReturnedInvoiceDetailDTO
     {
+        public ReturnedInvoiceDetailDTO()
+        {
+            this.Product = new ReturnedProduct();
+        }
         public ReturnedProduct Product { get; set; }
         public int ID { get; set; }
         public int InvoiceID { get; set; }
@@ -43,6 +48,7 @@ namespace RealApplication.DTO.ReturnedSupplierInvoiceDTO
         public string Serial { get; set; }
         public decimal NewQuantity { get; set; }
     }
+    
 
     public class ReturnedSupplierInvoiceDTO
     {

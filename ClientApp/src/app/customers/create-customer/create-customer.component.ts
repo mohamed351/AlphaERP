@@ -3,6 +3,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Customer } from 'src/app/models/customers/customer';
+import { MeasurmentConvertService } from 'src/app/services/measurment-convert.service';
 import { RestService } from 'src/app/services/rest-service.service';
 
 @Component({
@@ -52,10 +53,10 @@ export class CreateCustomerComponent implements OnInit {
     else{
       this.toastr.error("The Address is not valid", "Not valid Input");
     }
-   
+
   }
   RemovePhone(phoneElement){
-    
+
    this.Phones.removeAt(this.Phones.controls.findIndex(a=> a == phoneElement)) ;
   }
   RemoveAddress(AddressElement){
@@ -70,11 +71,11 @@ export class CreateCustomerComponent implements OnInit {
       this.router.navigate(["/customers"]);
       this.toastr.success("Successfull Creating Customers","Create Operation");
      });
-     
+
   }
 
   ngOnInit() {
-  
+
   }
 
 }

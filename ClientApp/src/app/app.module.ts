@@ -34,6 +34,7 @@ import { UnAuthGuardGuard } from './guards/unauth.guard';
 import { ChartModule } from 'angular-highcharts';
 import { TokenInterceptor } from './Interceptors/AuthInterceptor';
 import { APP_BASE_HREF } from '@angular/common';
+import { MeasurmentConvertService } from './services/measurment-convert.service';
 
 
 
@@ -85,7 +86,7 @@ export function createTranslateLoader(http: HttpClient) {
 
 
   ],
-  providers: [AuthGuard, UnAuthGuardGuard, {
+  providers: [AuthGuard, UnAuthGuardGuard,MeasurmentConvertService, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi:true

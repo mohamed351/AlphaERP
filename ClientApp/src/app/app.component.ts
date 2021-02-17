@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from './services/auth.service';
+import { MeasurmentConvertService } from './services/measurment-convert.service';
 
 @Component({
   selector: 'app-root',
@@ -21,11 +22,14 @@ export class AppComponent {
     shareReplay()
   );
 
-  constructor(private breakpointObserver: BreakpointObserver, private translation:TranslateService, public auth:AuthService){
+  constructor(private breakpointObserver: BreakpointObserver,
+    private translation: TranslateService,
+    public auth: AuthService,
+  private measurement:MeasurmentConvertService) {
     this.translation.setDefaultLang("en");
     const language = localStorage.getItem("lang")|| "en";
     this.translation.use(language);
-    document.documentElement.lang =language; 
+    document.documentElement.lang =language;
   }
 
   SetLanguageToArabic(){

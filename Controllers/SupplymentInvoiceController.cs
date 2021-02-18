@@ -73,7 +73,6 @@ namespace RealApplication.Controllers
         [HttpGet(template: "/api/[controller]/GetByProductName/{productName}")]
         public IActionResult GetProductByName(string productName)
         {
-
             var query = applicationDbContext.ProductMeasurements
           .Include(a => a.Product)
           .Include(a => a.Measurement)
@@ -146,7 +145,6 @@ namespace RealApplication.Controllers
         private static decimal CalculateMeasurement(decimal quantity , decimal measurementValue)
         {
            
-          
             return quantity * measurementValue;
 
 

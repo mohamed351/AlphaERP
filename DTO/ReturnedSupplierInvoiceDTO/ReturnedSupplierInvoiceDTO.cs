@@ -47,6 +47,7 @@ namespace RealApplication.DTO.ReturnedSupplierInvoiceDTO
         public DateTime? ExpireDate { get; set; }
         public string Serial { get; set; }
         public decimal NewQuantity { get; set; }
+
     }
     
 

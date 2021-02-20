@@ -10,8 +10,7 @@ export interface ReturendSupplymentInvoice {
 }
 export interface Product{
   ProductID: string;
-  ProductName: string;
-  TypeOfMeasurement: number;
+  ProductName:string
 }
 
 export interface ReturnSupplymentInvoiceDetail {

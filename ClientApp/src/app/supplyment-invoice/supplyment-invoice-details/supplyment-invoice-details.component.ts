@@ -2,6 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RestService } from './../../services/rest-service.service';
 import { Component, OnInit } from '@angular/core';
 import { Invoice } from 'src/app/models/supplymentInvoice/supplymentInvoiceDetails';
+import { MeasurmentConvertService} from '../../services/measurment-convert.service';
 
 @Component({
   selector: 'app-supplyment-invoice-details',
@@ -10,12 +11,15 @@ import { Invoice } from 'src/app/models/supplymentInvoice/supplymentInvoiceDetai
 })
 export class SupplymentInvoiceDetailsComponent implements OnInit {
   Invoice: Invoice = null;
-  constructor(private apiService:RestService, private activeRouter:ActivatedRoute) { }
+  constructor(private apiService:RestService,private converter:MeasurmentConvertService, private activeRouter:ActivatedRoute) { }
 
   ngOnInit() {
     let paramsData = this.activeRouter.snapshot.params["id"];
     this.apiService.GetAll<Invoice[]>(`/api/SupplymentInvoice/DataO?$expand=employee($select=id,userName),supplier($select=id,name),store($select=id,name),invoiceDetails($expand=Product($select=id,ProductName,TypeOfMeasurement))&$select=ID,InvoiceDetails,Store,InvoiceNumber,Employee&$filter=InvoiceNumber eq ${paramsData}`).subscribe(a => {
       this.Invoice = a[0];
+      for (const iterator of this.Invoice.InvoiceDetails) {
+        iterator.Quantity = this.converter.ConvertToMain(iterator.Quantity, iterator.Product.TypeOfMeasurement);
+      }
 
     });
 

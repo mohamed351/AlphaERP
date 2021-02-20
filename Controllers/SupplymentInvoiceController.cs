@@ -89,15 +89,19 @@ namespace RealApplication.Controllers
         public IActionResult Post([FromBody]CreateSuppliermentInvoiceDTO invoiceDTO)
         {
           string UserId =   User.GetUserId();
-            int NewInvoiceNumber = applicationDbContext.supplymentInvoices.Max(a => a.InvoiceNumber) + 1;
+            int? NewInvoiceNumber = applicationDbContext.supplymentInvoices.Max(a =>(int?)a.InvoiceNumber);
+             NewInvoiceNumber = NewInvoiceNumber == null?  0 :NewInvoiceNumber.Value;
+            NewInvoiceNumber++;
             var invoiceData = new SupplymentInvoice()
             {
                 SupplierID = invoiceDTO.SupplierId,
                 StoreID = invoiceDTO.StoreId,
                 EmployeeID = UserId,
-                InvoiceNumber = NewInvoiceNumber,
+                InvoiceNumber = NewInvoiceNumber.Value,
                 IsCancelled = false,
-                SupplymentDate = invoiceDTO.Invoicedate
+                SupplymentDate = invoiceDTO.Invoicedate,
+                Note = invoiceDTO.Note
+                
                 
 
             };
@@ -120,7 +124,7 @@ namespace RealApplication.Controllers
                     ProductEnteredIn = DateTime.Now,
                     StoreID = invoiceData.StoreID,
                     UnitPrice = item.Price,
-                    InvocieNumber = NewInvoiceNumber
+                    InvocieNumber = NewInvoiceNumber.Value
 
                 });
             }

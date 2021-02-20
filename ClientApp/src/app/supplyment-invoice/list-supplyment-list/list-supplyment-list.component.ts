@@ -12,7 +12,6 @@ export class ListSupplymentListComponent implements OnInit {
     {columnName:'invoiceDate',columnType:TypeOfColumn.Date},
     {columnName:'supplierName', columnType: TypeOfColumn.None},
     { columnName: 'storeName', columnType: TypeOfColumn.None },
-    { columnName: 'amount', columnType: TypeOfColumn.None },
     { columnName: 'supplierInvoiceNumber' , columnType:TypeOfColumn.DetailsWithReturnedInvoiceAndPrint}
   ]
   constructor() { }

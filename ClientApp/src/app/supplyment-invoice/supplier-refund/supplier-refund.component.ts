@@ -48,11 +48,13 @@ export class SupplierRefundComponent implements OnInit {
   CalculateQuantities(Invoice:Invoice, ReferneceDetails:ReferneceDetails[],RefundMeasurement:RefundMeasurement[] ) {
     Invoice.InvoiceDetails.map(c => {
       let qtu = 0;
+      console.log(ReferneceDetails);
+      console.log(c);
       let oldQuantity = ReferneceDetails.find(a => a.detailReference == c.ID);
       console.log(oldQuantity);
       let refunderMeasurment = RefundMeasurement.find(r => r.isMain && r.mainType == c.Product.TypeOfMeasurement);
       if (oldQuantity != null) {
-        c.Quantity = ((c.Quantity - qtu) / refunderMeasurment.defaultValue) - oldQuantity.quantity;
+        c.Quantity = ((c.Quantity - qtu) / refunderMeasurment.defaultValue) - (oldQuantity.quantity/ refunderMeasurment.defaultValue);
       }
       else {
         c.Quantity = c.Quantity / refunderMeasurment.defaultValue;

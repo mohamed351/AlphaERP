@@ -48,7 +48,8 @@ namespace RealApplication.Controllers
 
             var query = dbContext.ReturnSupplymentInvoiceDetails
                          .Include(a => a.ReturendSupplymentInvoice).
-                          Where(async => async.ReturendSupplymentInvoice.InvoiceReferenceID == ID)
+                          ThenInclude(a=>a.SupplymentInvoice).
+                          Where(async => async.ReturendSupplymentInvoice.SupplymentInvoice.InvoiceNumber == ID)
                           .ToList()
                           .GroupBy(a => a.DetailReference)
                           .Select(a => new { DetailReference= a.Key , Quantity= a.Sum(c=>c.Quantity) });

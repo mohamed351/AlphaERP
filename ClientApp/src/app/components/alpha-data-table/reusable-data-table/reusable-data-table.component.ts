@@ -17,8 +17,8 @@ import { TranslateService } from '@ngx-translate/core';
 
 })
 export class ReusableDataTableComponent implements OnInit , AfterViewInit  {
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  @ViewChild(MatTable, {static: false}) table: MatTable<any>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatTable) table: MatTable<any>;
   @Input("endPoint") endPoint:string;
   @Input("columnsName") columnsName:ColumnType[];
   @Input("componentName") compoentName:string;

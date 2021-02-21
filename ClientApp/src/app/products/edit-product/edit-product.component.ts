@@ -35,7 +35,7 @@ export class EditProductComponent implements OnInit {
   public mesaurementsSelection:Measurement[] =[]
    @ViewChildren("appcaluclator") Calculators:MesurementCalculatorComponent[] =[];
    productNumber:ElementRef;
-  @ViewChild("productNumber",{static:false}) set content(content: ElementRef) {
+  @ViewChild("productNumber") set content(content: ElementRef) {
     if(content) { // initially setter gets called with undefined
         this.productNumber = content;
     }

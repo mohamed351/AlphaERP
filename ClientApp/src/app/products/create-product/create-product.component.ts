@@ -29,7 +29,7 @@ import {ProductCustomeValidation} from '../product.custome.validation';
 export class CreateProductComponent implements OnInit , AfterViewInit {
   public categoryInfo:Category[] =[];
   public mesaurementsSelection:Measurement[] =[]
-  @ViewChild("productNumber",{static:false}) productNumber:ElementRef;
+  @ViewChild("productNumber") productNumber:ElementRef;
 
 
   imageChangedEvent: any = '';

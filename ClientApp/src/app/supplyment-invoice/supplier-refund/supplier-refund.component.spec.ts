@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SupplierRefundComponent } from './supplier-refund.component';
 
@@ -6,7 +6,7 @@ describe('SupplierRefundComponent', () => {
   let component: SupplierRefundComponent;
   let fixture: ComponentFixture<SupplierRefundComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ SupplierRefundComponent ]
     })

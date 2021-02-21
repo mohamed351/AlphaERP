@@ -1,1 +1,11 @@
-<p>customer-invoice-details works!</p>
+<ng-container *ngIf="this.InvoiceDetail == null then  loading else data"></ng-container>
+<ng-template #data>
+  <dl>
+
+  </dl>
+</ng-template>
+<ng-template #loading>
+  loading ...
+</ng-template>
+
+

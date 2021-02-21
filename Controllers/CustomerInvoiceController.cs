@@ -14,6 +14,7 @@ using RealApplication.Repository.UnitOfWork;
 using AutoMapper;
 using RealApplication.DTO.CustomerInvoiceDTOS;
 using RealApplication.Models.Enum;
+using Microsoft.AspNet.OData;
 
 namespace RealApplication.Controllers
 {
@@ -32,6 +33,12 @@ namespace RealApplication.Controllers
             this.mapper = mapper;
         }
 
+        [EnableQuery()]
+        [HttpGet(template:"OData")]
+        public IActionResult GetData()
+        {
+            return Ok(this.unitOfWork.CustomerInvoice.GetIQueryableData());
+        }
 
         [HttpGet]
         public IActionResult Get([FromQuery] int pageSize, [FromQuery] int start, [FromQuery] string search = "")

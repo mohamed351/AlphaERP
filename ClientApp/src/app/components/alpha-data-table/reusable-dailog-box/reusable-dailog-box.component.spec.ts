@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ReusableDailogBoxComponent } from './reusable-dailog-box.component';
 
@@ -6,7 +6,7 @@ describe('ReusableDailogBoxComponent', () => {
   let component: ReusableDailogBoxComponent;
   let fixture: ComponentFixture<ReusableDailogBoxComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ReusableDailogBoxComponent ]
     })

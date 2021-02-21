@@ -35,7 +35,7 @@
         <mat-form-field class="button-text">
           <mat-label>{{'supplierAddress'|translate}}</mat-label>
           <input matInput placeholder="{{'supplierAddress'|translate}} Address" #supplierAddress  required >
-       
+
         </mat-form-field>
         <button type="button" (click)="AddAddress(supplierAddress)" mat-mini-fab color="primary" aria-label="Example icon button with a filter list icon">
             <mat-icon>add_to_photos</mat-icon>
@@ -50,7 +50,7 @@
         </mat-card>
       </div>
 
-      
+
 
    <button mat-flat-button color="primary"  [disabled]="!forms.valid" class="mt-2">{{'submit'|translate}}</button>
 </form>

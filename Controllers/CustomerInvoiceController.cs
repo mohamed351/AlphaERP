@@ -13,6 +13,7 @@ using RealApplication.Extensions;
 using RealApplication.Repository.UnitOfWork;
 using AutoMapper;
 using RealApplication.DTO.CustomerInvoiceDTOS;
+using RealApplication.Models.Enum;
 
 namespace RealApplication.Controllers
 {
@@ -51,6 +52,7 @@ namespace RealApplication.Controllers
         public IActionResult Post(CustomerInvocieDto customerInvocieDto)
         {
             string userID = User.GetUserId();
+            var measurements =  context.Measurements.ToList();
             CustomerInvoice invoice = new CustomerInvoice()
             {
                 CustomerID = customerInvocieDto.CustomerID,
@@ -67,10 +69,10 @@ namespace RealApplication.Controllers
                 {
                     ProductID = item.ProductID,
                     Price = item.Price,
-                    Quantity = item.Quantity,
+                    Quantity = unitOfWork.Measurement.ConvertToMainMeasurement(measurements, item.Quantity,(TypeOfMeasurements) item.TypeOfMeasurement),
                     ExpireDate = item.ExpireDate,
-                    
-                });
+
+                }); ;
             }
             context.CustomerInvoice.Add(invoice);
             context.SaveChanges();

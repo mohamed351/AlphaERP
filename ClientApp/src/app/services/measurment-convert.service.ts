@@ -14,7 +14,10 @@ export class MeasurmentConvertService {
     });
 
   }
-
+  public converMeasurement(qtu:number, measurementType:number) {
+   let measurement = this.Measurement.find(a => a.isMain && a.mainType == measurementType);
+    return  qtu/measurement.defaultValue
+  }
 
 
 }

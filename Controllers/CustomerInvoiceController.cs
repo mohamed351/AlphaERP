@@ -15,6 +15,12 @@ using AutoMapper;
 using RealApplication.DTO.CustomerInvoiceDTOS;
 using RealApplication.Models.Enum;
 using Microsoft.AspNet.OData;
+using System.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using System.Data;
+using AspNetCore.Reporting;
+using Microsoft.AspNetCore.Hosting;
+using System.Text;
 
 namespace RealApplication.Controllers
 {
@@ -25,12 +31,21 @@ namespace RealApplication.Controllers
         private readonly ApplicationDbContext context;
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
+        private readonly IConfiguration configuration;
+        private readonly IWebHostEnvironment iwebHostConfiguration;
 
-        public CustomerInvoiceController(ApplicationDbContext context, IUnitOfWork unitOfWork , IMapper mapper)
+        public CustomerInvoiceController(ApplicationDbContext context,
+            IUnitOfWork unitOfWork ,
+            IMapper mapper,
+            IConfiguration configuration,
+            IWebHostEnvironment iwebHostConfiguration)
         {
             this.context = context;
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
+            this.configuration = configuration;
+            this.iwebHostConfiguration = iwebHostConfiguration;
+            System.Text.Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
 
         [EnableQuery()]
@@ -84,6 +99,29 @@ namespace RealApplication.Controllers
             context.CustomerInvoice.Add(invoice);
             context.SaveChanges();
             return Ok(customerInvocieDto);
+        }
+
+        [HttpGet("/api/[controller]/GetReport/{ID}")]
+        public IActionResult CustomerInvoiceReport(int ID)
+        {
+            using (SqlConnection connection = new SqlConnection(configuration.GetConnectionString("con")))
+            {
+                connection.Open();
+                SqlCommand sqlCommand = new SqlCommand("sp_customer_invoice", connection);
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                sqlCommand.Parameters.Add(new SqlParameter("@InvoiceID",ID));
+               SqlDataReader reader = sqlCommand.ExecuteReader();
+                DataTable table = new DataTable();
+                table.Load(reader);
+               
+                LocalReport report = new LocalReport($"{this.iwebHostConfiguration.WebRootPath}//reports//sellingInvoice.rdlc");
+                report.AddDataSource("DataSet1", table);
+                //var dictornay = new Dictionary<string, string>();
+                //dictornay.Add("InvoiceNumber", ID.ToString());
+                var result = report.Execute(RenderType.Pdf, 1,null, "");
+                return File(result.MainStream, "application/pdf");
+            }
+           
         }
 
         private int GetInvoiceNumber()

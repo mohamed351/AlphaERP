@@ -1,8 +1,42 @@
 <ng-container *ngIf="this.InvoiceDetail == null then  loading else data"></ng-container>
 <ng-template #data>
+  <mat-card>
   <dl>
+    <dt>Invoice Number</dt>
+    <dd>{{this.InvoiceDetail.InvoiceNumber}}</dd>
+    <dt>Customer Name</dt>
+    <dd>{{this.InvoiceDetail.Customer.CustomerName}}</dd>
+    <dt>Employee Name</dt>
+    <dd>{{this.InvoiceDetail.Employee.UserName}}</dd>
 
   </dl>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ProductName</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+       <tr *ngFor="let item of this.InvoiceDetail.CustomerInvoiceDetails">
+          <td>{{item.Product.ProductName}}</td>
+          <td>{{item.Quantity}}</td>
+          <td>{{item.Price}}</td>
+          <td>{{item.Price * item.Quantity}}</td>
+
+       </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Total Invoice</th>
+        <th colspan="3" class="text-right">{{TotalInvoiceDetails()}} </th>
+
+      </tr>
+    </tfoot>
+  </table>
+</mat-card>
 </ng-template>
 <ng-template #loading>
   loading ...

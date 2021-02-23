@@ -1,3 +1,4 @@
+import { CustomerRefundCompoentComponent } from './customer-refund-compoent/customer-refund-compoent.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: "details/:id",
     component:CustomerInvoiceDetailsComponent
+  },
+  {
+    path:"refund/:id",
+    component:CustomerRefundCompoentComponent
   }
 
 

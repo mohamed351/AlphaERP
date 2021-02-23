@@ -13,18 +13,19 @@ import {MatNativeDateModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { NgSelectModule } from '@ng-select/ng-select';
-import {ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule,FormsModule} from '@angular/forms';
 import { MeasurementPipePipe } from './pipes/measurement-pipe.pipe';
 import { MeasurementTextPipe } from './pipes/measurement-text.pipe';
 import { AlphaDataTableModule } from '../components/alpha-data-table/alpha-data-table.module';
 import { MatDialogModule} from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { SupplierRefundComponent } from './supplier-refund/supplier-refund.component';
-import { FormsModule} from '@angular/forms';
+
 import { SupplymentInvoiceDetailsComponent } from './supplyment-invoice-details/supplyment-invoice-details.component';
 import { CustomFormsModule } from 'ng2-validation';
 import { AllRefundedSupplymentInvoiceComponent } from './all-refunded-supplyment-invoice/all-refunded-supplyment-invoice.component';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 
 @NgModule({
   declarations: [ListSupplymentListComponent,

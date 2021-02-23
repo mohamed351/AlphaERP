@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
-import { RestService } from './../../services/rest-service.service';
+import { RestService } from '../../services/rest-service.service';
 import { CustomerInvoice } from './../../models/customerInvoice/customerInvoice';
 import { Component, OnInit } from '@angular/core';
 import {MeasurmentConvertService } from './../../services/measurment-convert.service';

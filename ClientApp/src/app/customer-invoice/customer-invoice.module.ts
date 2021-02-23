@@ -9,7 +9,7 @@ import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input';
 import { MatCardModule} from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule , FormsModule} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MatSelectModule} from '@angular/material/select';
@@ -17,9 +17,10 @@ import { MatNativeDateModule } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule} from '@angular/material/dialog';
 import { CustomerInvoiceDetailsComponent } from './customer-invoice-details/customer-invoice-details.component';
+import { CustomerRefundCompoentComponent } from './customer-refund-compoent/customer-refund-compoent.component';
 
 @NgModule({
-  declarations: [CreateCustomerInvoiceComponent, ListCustomerInvoiceComponent, CustomerInvoiceDetailsComponent],
+  declarations: [CreateCustomerInvoiceComponent, ListCustomerInvoiceComponent, CustomerInvoiceDetailsComponent, CustomerRefundCompoentComponent],
   imports: [
     CommonModule,
     SuppliersRoutingModule,
@@ -35,7 +36,8 @@ import { CustomerInvoiceDetailsComponent } from './customer-invoice-details/cust
     MatDialogModule,
     MatNativeDateModule,
     AlphaDataTableModule,
-    TranslateModule
+    TranslateModule,
+    FormsModule
   ]
 })
 export class CustomerInvoiceModule { }

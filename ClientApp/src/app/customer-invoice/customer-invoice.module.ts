@@ -18,9 +18,15 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule} from '@angular/material/dialog';
 import { CustomerInvoiceDetailsComponent } from './customer-invoice-details/customer-invoice-details.component';
 import { CustomerRefundCompoentComponent } from './customer-refund-compoent/customer-refund-compoent.component';
-
+import { MeasurementPipePipe } from './pipes/measurement-pipe.pipe';
+import { MeasurementTextPipe} from './pipes/measurement-text.pipe';
 @NgModule({
-  declarations: [CreateCustomerInvoiceComponent, ListCustomerInvoiceComponent, CustomerInvoiceDetailsComponent, CustomerRefundCompoentComponent],
+  declarations: [CreateCustomerInvoiceComponent,
+    ListCustomerInvoiceComponent,
+    CustomerInvoiceDetailsComponent,
+    CustomerRefundCompoentComponent,
+    MeasurementPipePipe,
+    MeasurementTextPipe],
   imports: [
     CommonModule,
     SuppliersRoutingModule,

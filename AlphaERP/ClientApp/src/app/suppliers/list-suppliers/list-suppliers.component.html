@@ -1,7 +1,0 @@
-<a mat-flat-button color="primary" routerLink="/suppliers/create"> {{'createSupplier'|translate}}</a>
-<alpha-dataTable [columnsName]="columnNames" 
-[endPoint]="'/api/Supplier'" 
-[componentName]="'suppliers'"
-[endPointDelete]="'/api/Supplier'" 
- (afterDeleteMethod)="OnDeleteSuccess($event)">
-</alpha-dataTable>

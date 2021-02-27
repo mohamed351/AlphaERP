@@ -1,9 +1,0 @@
-.spinner-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-}
-.category-container{
-    height: 40vh;
-}

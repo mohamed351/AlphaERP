@@ -47,11 +47,11 @@
            <tbody>
              <tr *ngFor="let item of this.InvoiceInfo.CustomerInvoiceDetails; let i=index">
                <td>{{item.Product.ProductName}}</td>
-               <td>{{item.UnitPrice|currency}}</td>
+               <td>{{item.Price|currency}}</td>
 
                <td>{{item.Quantity }}</td>
                <td>  {{item.Product.TypeOfMeasurement|measurementPipe|async}} </td>
-               <td>{{(item.UnitPrice * item.Quantity)}}</td>
+               <td>{{(item.Price * item.Quantity)}}</td>
                <td>
                  <mat-form-field >
                    <label>Returned Quantity</label>
@@ -71,7 +71,7 @@
                </td>
 
                <td>
-                   {{(((-item.NewQuantity) * item.UnitPrice )+((item.Quantity) * item.UnitPrice ))|currency}}
+                   {{(((-item.NewQuantity) * item.Price )+((item.Quantity) * item.Price ))|currency}}
                </td>
              </tr>
 
@@ -84,13 +84,17 @@
                   <th></th>
                   <th></th>
                   <th>{{CalculateTotal()|currency}}</th>
-                  <th></th>
-                  <th> {{CalculateNewTotalPrice()|currency}}</th>
+                  <!-- <th></th>
+
+
+
+                  <th></th> -->
+                  <!-- <th> {{CalculateNewTotalPrice()|currency}}</th> -->
                 </tr>
            </tfoot>
          </table>
-       <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" >Submit Refund Invoice</button>
-       <a class="ml-2" [routerLink]="['/supplymentInvoice/purchasingRefundList',InvoiceInfo.ID]" mat-raised-button color="accent">List Refund Invoice</a>
+       <!-- <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" >Submit Refund Invoice</button> -->
+       <!-- <a class="ml-2" [routerLink]="['/supplymentInvoice/purchasingRefundList',InvoiceInfo.ID]" mat-raised-button color="accent">List Refund Invoice</a> -->
 
     </mat-card>
    </form>

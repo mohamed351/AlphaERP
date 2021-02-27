@@ -19,7 +19,9 @@ import { MatDialogModule} from '@angular/material/dialog';
 import { CustomerInvoiceDetailsComponent } from './customer-invoice-details/customer-invoice-details.component';
 import { CustomerRefundCompoentComponent } from './customer-refund-compoent/customer-refund-compoent.component';
 import { MeasurementPipePipe } from './pipes/measurement-pipe.pipe';
-import { MeasurementTextPipe} from './pipes/measurement-text.pipe';
+import { MeasurementTextPipe } from './pipes/measurement-text.pipe';
+import { CustomFormsModule } from 'ng2-validation';
+
 @NgModule({
   declarations: [CreateCustomerInvoiceComponent,
     ListCustomerInvoiceComponent,
@@ -43,7 +45,8 @@ import { MeasurementTextPipe} from './pipes/measurement-text.pipe';
     MatNativeDateModule,
     AlphaDataTableModule,
     TranslateModule,
-    FormsModule
+    FormsModule,
+    CustomFormsModule
   ]
 })
 export class CustomerInvoiceModule { }

@@ -20,6 +20,7 @@ export interface CustomerInvoiceDetail {
   Price: number;
   Quantity: number;
   ExpireDate: string;
+  NewQuantity: number;
 }
 
 export interface Product {

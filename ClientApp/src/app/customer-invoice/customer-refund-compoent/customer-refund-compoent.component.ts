@@ -52,6 +52,10 @@ export class CustomerRefundCompoentComponent implements OnInit {
     return totalPrice;
   }
 
+  NewQuantityOnChange() {
+
+  }
+
 
 
 

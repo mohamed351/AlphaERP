@@ -1,0 +1,27 @@
+<div class="full-container">
+
+    <div>
+        <h2 class="text-center">Login</h2>
+        <div>
+            <form [formGroup]="form" (ngSubmit)="SubmitData()">
+            <mat-form-field class="full-width">
+                <mat-label>UserName</mat-label>
+                <input type="text" formControlName="userName" matInput placeholder="userName">
+                <mat-error *ngIf="UserName.invalid && UserName.touched">
+                    <mat-error *ngIf="UserName.errors.required"> The userName  is Required</mat-error>
+
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="full-width">
+                <mat-label>password</mat-label>
+                <input type="password" formControlName="password" matInput placeholder="password">
+                <mat-error *ngIf="Password.invalid && Password.touched">
+                    <mat-error *ngIf="Password.errors.required"> The password is Required</mat-error>
+                </mat-error>
+              </mat-form-field>
+              <button mat-raised-button color="primary" class="full-width">Login</button>
+            </form>
+        </div>
+    </div>
+</div>

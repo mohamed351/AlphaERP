@@ -1,0 +1,80 @@
+<body>
+
+  <ng-container *ngIf="auth.IsAuthenticated() then Authorized else NotAuthorized ">
+
+  </ng-container>
+
+
+
+</body>
+
+
+<ng-template #Authorized>
+  <mat-sidenav-container   class="sidenav-container">
+    <mat-sidenav id="sidevarContainer" #drawer class="sidenav" fixedInViewport
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="(isHandset$ | async) === false">
+      <mat-toolbar color="primary">
+        <mat-toolbar-row style="width: 200px;">
+          <img src="../assets/logo.png" width="50" />
+      </mat-toolbar-row>
+      </mat-toolbar>
+      <mat-nav-list>
+        <mat-accordion>
+          <a mat-list-item routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"routerLink="/"> <mat-icon class="nav-bar-color">home</mat-icon> {{'home'|translate}}</a>
+          <a mat-list-item routerLinkActive="active"  routerLink="/customers"> <mat-icon class="nav-bar-color"> people</mat-icon> {{'customers'|translate}}</a>
+          <a mat-list-item routerLinkActive="active" routerLink="/suppliers"><mat-icon class="nav-bar-color">person_pin_circle</mat-icon> {{'suppliers'|translate}}</a>
+          <a mat-list-item routerLinkActive="active" routerLink="/categories"><mat-icon class="nav-bar-color">category</mat-icon> {{'productCategory'|translate}}</a>
+          <a mat-list-item routerLinkActive="active" routerLink="/products"><mat-icon class="nav-bar-color">production_quantity_limits</mat-icon> {{'product'|translate}}</a>
+          <a mat-list-item routerLinkActive="active" routerLink="/measurement"><mat-icon class="nav-bar-color">calculate</mat-icon> {{'measurements'|translate}}</a>
+          <a mat-list-item routerLinkActive="active" routerLink="/supplymentInvoice"><mat-icon class="nav-bar-color">local_shipping</mat-icon> {{'supplymentInvoice'|translate}}</a>
+          <a mat-list-item routerLinkActive="active" routerLink="/customerInvoice"><mat-icon class="nav-bar-color">people</mat-icon> {{'customerInvoice'|translate}}</a>
+
+          <a mat-list-item routerLinkActive="active" routerLink="/stores"><mat-icon class="nav-bar-color">inventory_2</mat-icon> {{'stores'|translate}}</a>
+          </mat-accordion>
+
+
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar  color="primary">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+         >
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+       <div class="flex-end">
+
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item [mat-menu-trigger-for]="lang">
+            <mat-icon>language</mat-icon>
+            <span>Language</span>
+          </button>
+             <mat-menu #lang="matMenu">
+              <button mat-menu-item [ngClass]="{'active-lang':GetLanguage() == 'en'}" (click)="SetLanguageToEnglish()">English</button>
+              <button mat-menu-item [ngClass]="{'active-lang':GetLanguage() == 'ar'}" (click)="SetLanguageToArabic()">Arabic</button>
+             </mat-menu>
+
+
+
+        </mat-menu>
+       </div>
+      </mat-toolbar>
+      <div class="padding-10">
+        <router-outlet></router-outlet>
+      </div>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</ng-template>
+
+<ng-template #NotAuthorized>
+   <router-outlet></router-outlet>
+</ng-template>

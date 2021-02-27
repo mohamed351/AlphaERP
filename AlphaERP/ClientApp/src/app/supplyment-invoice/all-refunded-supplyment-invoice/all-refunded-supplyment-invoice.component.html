@@ -1,0 +1,32 @@
+<mat-expansion-panel hideToggle *ngFor="let item of this.returnedInvoice">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+       {{item.InvoiceDate|date}}
+    </mat-panel-title>
+    <mat-panel-description>
+      {{item.InvoiceReferenceID}}
+    </mat-panel-description>
+
+  </mat-expansion-panel-header>
+  <div >
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ProductName</th>
+        <th>Returned Quantity</th>
+        <th>UnitPrice</th>
+        <th>Total Price</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let item2 of item.ReturnSupplymentInvoiceDetails">
+        <td>{{item2.Product.ProductName}}</td>
+        <td>{{item2.Quantity}}</td>
+        <td>{{item2.Price}}</td>
+        <td>{{(item2.Price * item2.Quantity)|currency}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  </div>
+</mat-expansion-panel>

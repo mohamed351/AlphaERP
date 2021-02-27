@@ -1,0 +1,72 @@
+<mat-card>
+
+    <div [ngClass]="{'d-flex':categoryID == null || CateogryData == null}" class="justify-content-center align-items-center">
+    <p *ngIf="categoryID == null">{{'pleaseSelectCategory'|translate}} </p>
+    <mat-spinner *ngIf="categoryID != null && this.CateogryData== null"></mat-spinner>
+
+
+    <ng-container *ngIf="CateogryData != null">
+        <h4>{{'cateogry'|translate}}</h4>
+        <div>
+           
+            <form [formGroup]="form" (submit)="SubmitMainForm()">
+
+        <mat-form-field class="full-width-control">
+            <mat-label>{{'categoryName'|translate}}</mat-label>
+            <input matInput formControlName="name" placeholder="{{'categoryName'|translate}}" >
+            <mat-error *ngIf="getMainFormName.invalid && getMainFormName.touched">
+              <mat-error *ngIf="getMainFormName.errors.required">{{'TheCategoryNameIsRequired'|translate}}</mat-error>
+            </mat-error>
+           
+          </mat-form-field>
+          <ng-container *ngIf="CateogryData.categoryID != null">
+          <mat-form-field class="full-width-control">
+            <mat-label>{{"subCateogry"|translate}}</mat-label>
+            <mat-select formControlName="categoryID">
+              <mat-option  *ngFor="let item of CategoryList" [value]="item.id">{{item.name}} </mat-option >
+            </mat-select>
+          </mat-form-field>
+        </ng-container>
+
+          <div *ngIf="this.CateogryData.categoryID != null">
+            <button [disabled]="form.invalid" mat-raised-button color="primary">{{"save"|translate}}</button>
+
+          </div>
+          <div class="mt-2">
+          <mat-accordion >
+            <mat-expansion-panel (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{"addChild"|translate}}
+                 
+                </mat-panel-title>
+               
+              </mat-expansion-panel-header>
+              <form [formGroup]="subForm" (submit)="SubmitSubForm()">
+              <mat-form-field class="full-width-control">
+                <mat-label>{{"categoryName"|translate}}</mat-label>
+                <input matInput formControlName="name" placeholder="{{'categoryName'|translate}}" >
+                <mat-error *ngIf="getMainFormName.invalid && getMainFormName.touched">
+                  <mat-error *ngIf="getMainFormName.errors.required">{{"TheCategoryNameIsRequired"|translate}} </mat-error>
+                </mat-error>
+               
+              </mat-form-field>
+              <button [disabled]="subForm.invalid" mat-raised-button color="primary" >{{"add"|translate}} </button>
+            </form>
+            </mat-expansion-panel>
+           
+          </mat-accordion>
+
+        </div>
+        </form>
+        </div>
+    </ng-container>
+    </div>
+
+    
+
+   
+    
+
+</mat-card>

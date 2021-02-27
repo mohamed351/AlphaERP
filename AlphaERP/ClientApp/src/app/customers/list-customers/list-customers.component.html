@@ -1,0 +1,4 @@
+<a mat-raised-button color="primary" routerLink="create">{{'createCustomer'|translate}} </a>
+
+<alpha-dataTable [columnsName]="columnNames" 
+[endPoint]="'/api/customers'" [endPointDelete]="'/api/Customers'" (afterDeleteMethod)="OnCustomerDelete($event)"></alpha-dataTable>

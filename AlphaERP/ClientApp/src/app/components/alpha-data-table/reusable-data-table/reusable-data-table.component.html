@@ -1,0 +1,77 @@
+<ng-container *ngIf="dataTable.data != null then data else loading">
+
+</ng-container>
+
+<ng-template #loading>
+  <div class="mat-spinner-center">
+  <mat-spinner></mat-spinner>
+</div>
+</ng-template>
+<ng-template #data>
+  <mat-form-field class="search-field">
+    <mat-label>{{'search'|translate}}</mat-label>
+    <input matInput type="text" #searchText  (keydown)="Searchbout(searchText)" (change)="Searchbout(searchText)"  >
+    <button mat-button   matSuffix mat-icon-button aria-label="Clear" (click)="searchText.value = '';Searchbout(searchText)">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-table [dataSource]="this.dataTable">
+
+    <ng-container *ngFor="let item of columnsName" [matColumnDef]="item.columnName">
+      <mat-header-cell *matHeaderCellDef >
+        <ng-container *ngIf="item.columnType != ColumnType.Buttons && item.columnType != ColumnType.JustDetails && item.columnType != ColumnType.JustDetailsAndPrint && item.columnType != ColumnType.DetailsWithReturnedInvoiceAndPrint ">
+         {{item.columnName|translate}}
+        </ng-container>
+        </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <ng-container *ngIf="item.columnType === this.ColumnType.None">
+        {{row[item.columnName]}}
+      </ng-container>
+
+      <ng-container *ngIf="item.columnType === this.ColumnType.Date">
+        {{row[item.columnName]|date:'mediumDate'|translate}}
+      </ng-container>
+
+      <ng-container *ngIf="item.columnType === this.ColumnType.Buttons">
+       <a mat-flat-button color="primary" [routerLink]="['edit', row[item.columnName]]" >{{'edit'|translate}}</a> |
+       <a mat-flat-button color="accent" [routerLink]="['details' , row[item.columnName]]"> {{'details'|translate}}</a> |
+       <a mat-flat-button color="warn" (click)="OnDeleteClick(row[item.columnName])">{{'delete'|translate}}</a>
+      </ng-container>
+
+      <ng-container *ngIf="item.columnType === this.ColumnType.DetailsWithReturnedInvoiceAndPrint">
+        <a mat-flat-button color="warn" [routerLink]="['refund' , row[item.columnName]]"> {{'refund'|translate}}</a> |
+        <a mat-flat-button color="accent" [routerLink]="['details' , row[item.columnName]]"> {{'details'|translate}}</a> |
+        <a mat-flat-button color="primary" (click)="ShowReport(row[item.columnName])">{{'print'|translate}}</a>
+       </ng-container>
+
+      <ng-container *ngIf="item.columnType === this.ColumnType.JustDetailsAndPrint">
+        <a mat-flat-button color="accent" [routerLink]="['details' , row[item.columnName]]"> {{'details'|translate}}</a> |
+        <a mat-flat-button color="primary" (click)="ShowReport(row[item.columnName])">{{'print'|translate}}</a>
+       </ng-container>
+
+       <ng-container *ngIf="item.columnType === this.ColumnType.JustDetails">
+        <a mat-flat-button color="accent" [routerLink]="['details' , row[item.columnName]]"> {{'details'|translate}}</a> |
+
+       </ng-container>
+      </mat-cell>
+    </ng-container>
+
+
+
+
+    <mat-header-row *matHeaderRowDef="Allcolumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: Allcolumns;">
+    </mat-row>
+
+</mat-table>
+
+</ng-template>
+
+
+<mat-paginator #paginator
+[length]="this.tableSize"
+[pageIndex]="0"
+[pageSize]="10"
+(page)="GetData($event)"
+>
+</mat-paginator>

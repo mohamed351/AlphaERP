@@ -1,0 +1,73 @@
+
+<ng-container *ngIf="this.supplier != null then data else loading">
+
+
+</ng-container>
+
+<ng-template #loading>
+ <div class="mat-spinner-style">
+  <mat-spinner></mat-spinner>
+ </div>
+</ng-template>
+
+<ng-template #data>
+  <mat-card>
+    <h3 class="display-5"> {{'editSupllier'|translate}}</h3>
+<form [formGroup]="forms" (submit)="OnSubmitForm()">
+    <div class="full-width">
+        <mat-form-field class="full-width">
+          <mat-label>{{'supplierName'|translate}}</mat-label>
+          <input matInput placeholder="SupplierName" formControlName="supplierName" >
+          <mat-error *ngIf="supplierName.invalid">
+              <mat-error *ngIf="supplierName.errors.required"> {{'supplierNameRequired'|translate}}</mat-error>
+            </mat-error>
+        </mat-form-field>
+      </div>
+
+
+      <div class="full-width">
+        <mat-form-field class="button-text">
+          <mat-label>{{'supplierPhone'|translate}}</mat-label>
+          <input matInput placeholder="{{'supplierPhone'|translate}}" #supplierPhone  required minlength="10" maxlength="16" >
+        </mat-form-field>
+        <button type="button" (click)="AddPhone(supplierPhone)" mat-mini-fab color="primary" aria-label="Example icon button with a filter list icon">
+            <mat-icon>add_to_photos</mat-icon>
+          </button>
+      </div>
+      <div class="full-width">
+        <mat-card  *ngFor="let item of Phones.controls;let i = index" class="mb-2 d-flex align-items-center justify-content-between">
+             <span >{{item.value.phone}}</span>
+             <button (click)="RemovePhone(item)" type="button" mat-mini-fab color="primary">
+                 <mat-icon>remove_circle_outline</mat-icon>
+             </button>
+        </mat-card>
+      </div>
+
+
+      <div class="full-width">
+        <mat-form-field class="button-text">
+          <mat-label>{{'supplierAddress'|translate}}</mat-label>
+          <input matInput placeholder="{{'supplierAddress'|translate}}" #supplierAddress  required >
+       
+        </mat-form-field>
+        <button type="button" (click)="AddAddress(supplierAddress)" mat-mini-fab color="primary" aria-label="Example icon button with a filter list icon">
+            <mat-icon>add_to_photos</mat-icon>
+          </button>
+      </div>
+      <div class="full-width">
+        <mat-card *ngFor="let item of Addresses.controls;let i = index" class="mb-2 d-flex align-items-center justify-content-between" >
+             <span >{{item.value.address}}</span>
+             <button type="button" mat-mini-fab color="primary" (click)="RemoveAddress(item)">
+                <mat-icon>remove_circle_outline</mat-icon>
+            </button>
+        </mat-card>
+      </div>
+
+      
+
+   <button mat-flat-button color="primary"  [disabled]="!forms.valid" class="mt-2">{{'submit'|translate}}</button>
+</form>
+
+
+</mat-card>
+</ng-template>

@@ -1,0 +1,13 @@
+@import "~@ng-select/ng-select/themes/material.theme.css";
+
+.halfwidth{
+    width: 40%;
+}
+.margin-rows{
+ margin-left: 0.2rem;
+ margin-right: 0.2rem;
+ width: 13%;
+}
+.select2-rows{
+    width: 50%;
+}

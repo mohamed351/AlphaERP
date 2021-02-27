@@ -1,0 +1,19 @@
+.full-width{
+    width:100%;
+}
+.button-text{
+    width: 90%;
+}
+.button-text ~ button{
+    margin-left: 2.5%;
+}
+.margin-1{
+    margin-bottom: 1px;
+     
+}
+.mat-spinner-style{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}

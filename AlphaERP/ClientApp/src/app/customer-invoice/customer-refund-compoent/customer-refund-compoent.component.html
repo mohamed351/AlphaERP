@@ -1,0 +1,98 @@
+ <ng-container *ngIf="this.InvoiceInfo != null then data else loading">
+
+ </ng-container>
+
+<ng-template #loading> loading ...</ng-template>
+
+ <ng-template #data>
+  <form  #form="ngForm" ngForm (ngSubmit)="SubmitInvoice()">
+    <mat-card>
+         <dl class="row">
+
+
+           <dt class="col-md-3">InvoiceNumber</dt>
+           <dd class="col-md-9"> {{InvoiceInfo.InvoiceNumber}} </dd>
+
+           <dt class="col-md-3">Supplier</dt>
+           <dd class="col-md-9"> {{InvoiceInfo.Customer.CustomerName}} </dd>
+
+           <dt class="col-md-3">Employee</dt>
+           <dd class="col-md-9"> {{InvoiceInfo.Employee.UserName}} </dd>
+
+           <dt class="col-md-3">Store</dt>
+           <dd class="col-md-9"> {{InvoiceInfo.Store.Name}} </dd>
+
+           <dt class="col-md-3">Note</dt>
+           <dd class="col-md-9">
+             <textarea class="form-control" [(ngModel)]="InvoiceInfo.Note" [ngModelOptions]="{standalone: true}">
+
+             </textarea>
+           </dd>
+
+         </dl>
+
+         <table class="table">
+           <thead>
+               <tr>
+                 <th>ProductName</th>
+                 <th>UnitPrice</th>
+                 <th>Quantity</th>
+                 <th>Quantity Type </th>
+                 <th>OldPrice</th>
+                 <th>Returned Quantity</th>
+                 <th>NewPrice</th>
+
+               </tr>
+           </thead>
+           <tbody>
+             <tr *ngFor="let item of this.InvoiceInfo.CustomerInvoiceDetails; let i=index">
+               <td>{{item.Product.ProductName}}</td>
+               <td>{{item.Price|currency}}</td>
+
+               <td>{{item.Quantity }}</td>
+               <td>  {{item.Product.TypeOfMeasurement|measurementPipe|async}} </td>
+               <td>{{(item.Price * item.Quantity)}}</td>
+               <td>
+                 <mat-form-field >
+                   <label>Returned Quantity</label>
+                   <input  (dblclick)="OpenDialog(item.Product.TypeOfMeasurement,item,InputValue)"
+                    #InputValue="ngModel"
+                    [name]="'returnedQuantity['+i+']'"
+                    [(ngModel)]="item.NewQuantity"
+                     (change)="NewQuantityOnChange(InputValue,item.Quantity, item)"
+                     type="number"
+                     required
+                     [min]="0"
+                     [max]="item.Quantity"
+                      matInput
+                    />
+                   <mat-hint >{{item.Product.TypeOfMeasurement|measurementPipe|async}}</mat-hint>
+                 </mat-form-field>
+               </td>
+
+               <td>
+                   {{(((-item.NewQuantity) * item.Price )+((item.Quantity) * item.Price ))|currency}}
+               </td>
+             </tr>
+
+
+           </tbody>
+           <tfoot>
+                <tr>
+                  <th></th>
+                  <th>{{CalculateTotalPrice()|currency}}</th>
+                  <th></th>
+                  <th></th>
+                  <th>{{CalculateTotal()|currency}}</th>
+                  <th></th>
+                  <th> {{CalculateNewTotalPrice()|currency}}</th>
+                </tr>
+           </tfoot>
+         </table>
+       <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" >Submit Refund Invoice</button>
+       <a class="ml-2" [routerLink]="['/supplymentInvoice/purchasingRefundList',InvoiceInfo.ID]" mat-raised-button color="accent">List Refund Invoice</a>
+
+    </mat-card>
+   </form>
+ </ng-template>
+

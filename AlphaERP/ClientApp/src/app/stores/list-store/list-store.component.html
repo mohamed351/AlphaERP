@@ -1,0 +1,4 @@
+<a mat-raised-button color="primary" routerLink="create">{{'createStore'|translate}} </a>
+<br>
+<alpha-dataTable [columnsName]="columnNames" 
+[endPoint]="'/api/Stores/DataTable'" [endPointDelete]="'/api/Stores'" (afterDeleteMethod)="OnStoreDelete($event)"></alpha-dataTable>

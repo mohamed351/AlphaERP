@@ -27,7 +27,7 @@ namespace RealApplication.Controllers
         }
         [HttpGet("{ID}")]
         public IActionResult Get(int ID)
-        {
+        {   
 
 
             var query = context.ReturnedCustomerInvoiceDetails

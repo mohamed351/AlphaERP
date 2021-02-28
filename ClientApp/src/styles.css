@@ -65,7 +65,9 @@ background-size: cover;
   transform: translate3d(100%,0,0);
 }
 .mat-drawer-content:lang(ar){
-  transition: none;
+  transition-duration: none !important;
+  transition-timing-function:none !important;
+  transition-property: none !important;
 
 }
 .mat-toolbar:lang(ar){

@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -11,7 +11,7 @@ import { MeasurmentConvertService } from './services/measurment-convert.service'
   templateUrl: './app.component.html',
   styleUrls:["./app.styles.css"]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'POS Angular Application';
   homePanelOpenState = false;
   financePanelOpenState = false;
@@ -30,6 +30,19 @@ export class AppComponent {
     const language = localStorage.getItem("lang")|| "en";
     this.translation.use(language);
     document.documentElement.lang =language;
+  }
+  ngOnInit(): void {
+
+  }
+  ToggleMenu(data,sideMenu) {
+
+    var language = localStorage.getItem("lang") || "en";
+    if (language == "ar" && !data) {
+      sideMenu.elementRef.nativeElement.classList.remove("mat-sidenav-content");
+    }
+    else {
+      sideMenu.elementRef.nativeElement.classList.add("mat-sidenav-content")
+    }
   }
 
   SetLanguageToArabic(){

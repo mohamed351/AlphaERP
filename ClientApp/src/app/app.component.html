@@ -10,11 +10,12 @@
 
 
 <ng-template #Authorized>
-  <mat-sidenav-container   class="sidenav-container">
+  <mat-sidenav-container  class="sidenav-container">
     <mat-sidenav id="sidevarContainer" #drawer class="sidenav" fixedInViewport
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
-        [opened]="(isHandset$ | async) === false">
+        [opened]="(isHandset$ | async) === false"
+         (openedChange)="ToggleMenu($event,matsideNab)">
       <mat-toolbar color="primary">
         <mat-toolbar-row style="width: 200px;">
           <img src="../assets/logo.png" width="50" />
@@ -37,13 +38,13 @@
 
       </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content class="mat-sidenav-content" #matsideNab>
       <mat-toolbar  color="primary">
         <button
           type="button"
           aria-label="Toggle sidenav"
           mat-icon-button
-          (click)="drawer.toggle()"
+          (click)="drawer.toggle();"
          >
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
@@ -71,7 +72,7 @@
         <router-outlet></router-outlet>
       </div>
 
-    </mat-sidenav-content>
+    </mat-sidenav-content >
   </mat-sidenav-container>
 </ng-template>
 

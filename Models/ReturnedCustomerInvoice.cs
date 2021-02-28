@@ -22,6 +22,10 @@ namespace RealApplication.Models
 
         public ICollection<ReturnedCustomerInvoiceDetails> ReturnedCustomerInvoiceDetails { get; set; }
 
+        public string UserID { get; set; }
+        [ForeignKey(nameof(UserID))]
+        public Employee Employee { get; set; }
+
 
     }
 }

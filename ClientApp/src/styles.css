@@ -54,3 +54,13 @@ background-attachment: fixed;
 background-size: cover;
  min-height: 100vh;
 }
+mat-sidenav-content:lang(ar){
+  margin-left: 0  !important;
+  margin-right: 214px;
+}
+.mat-toolbar:lang(ar){
+  direction: rtl;
+}
+body:lang(ar){
+  direction: rtl;
+}

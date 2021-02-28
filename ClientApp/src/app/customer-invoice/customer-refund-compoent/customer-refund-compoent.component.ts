@@ -27,7 +27,7 @@ export class CustomerRefundCompoentComponent implements OnInit {
     });
   }
   SubmitInvoice() {
-    console.log(this.InvoiceInfo);
+    console.log(JSON.stringify( this.InvoiceInfo));
   }
   CalculateTotal() {
     let total: number = 0;

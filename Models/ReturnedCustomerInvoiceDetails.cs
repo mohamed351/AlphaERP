@@ -20,5 +20,7 @@ namespace RealApplication.Models
         public string Serial { get; set; }
         public ReturnedCustomerInvoice ReturnedCustomerInvoice { get; set; }
 
+        public int DetailReference { get; set; }
+
     }
 }

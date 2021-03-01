@@ -1,1 +1,32 @@
-<p>selling-refund-list works!</p>
+<mat-expansion-panel hideToggle *ngFor="let item of this.returnedInvoice">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+       {{item.InvoiceDate|date}}
+    </mat-panel-title>
+    <mat-panel-description>
+      {{item.ID}}
+    </mat-panel-description>
+
+  </mat-expansion-panel-header>
+  <div >
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ProductName</th>
+        <th>Returned Quantity</th>
+        <th>UnitPrice</th>
+        <th>Total Price</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let item2 of item.ReturnedCustomerInvoiceDetails">
+        <td>{{item2.Product.ProductName}}</td>
+        <td>{{item2.Quantity}}</td>
+        <td>{{item2.UnitPrice}}</td>
+        <td>{{(item2.UnitPrice * item2.Quantity)|currency}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  </div>
+</mat-expansion-panel>

@@ -13,7 +13,7 @@ import { ReactiveFormsModule , FormsModule} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MatSelectModule} from '@angular/material/select';
-import { MatNativeDateModule } from '@angular/material';
+import { MatExpansionModule, MatNativeDateModule } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule} from '@angular/material/dialog';
 import { CustomerInvoiceDetailsComponent } from './customer-invoice-details/customer-invoice-details.component';
@@ -48,7 +48,8 @@ import { SellingRefundListComponent } from './selling-refund-list/selling-refund
     AlphaDataTableModule,
     TranslateModule,
     FormsModule,
-    CustomFormsModule
+    CustomFormsModule,
+    MatExpansionModule
   ]
 })
 export class CustomerInvoiceModule { }

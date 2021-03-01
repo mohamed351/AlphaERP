@@ -22,7 +22,7 @@ import { MeasurementPipePipe } from './pipes/measurement-pipe.pipe';
 import { MeasurementTextPipe } from './pipes/measurement-text.pipe';
 import { CustomFormsModule } from 'ng2-validation';
 import { SellingRefundListComponent } from './selling-refund-list/selling-refund-list.component';
-//sellingRefundList
+
 @NgModule({
   declarations: [CreateCustomerInvoiceComponent,
     ListCustomerInvoiceComponent,

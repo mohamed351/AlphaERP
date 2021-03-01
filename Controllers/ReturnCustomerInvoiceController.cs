@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNet.OData;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,14 @@ namespace RealApplication.Controllers
         {
             this.context = context;
         }
+
+        [EnableQuery()]
+        [HttpGet(template: "DataO")]
+        public IActionResult GetAllReturnedInvoice()
+        {
+            return Ok(context.ReturnedCustomerInvoices);
+        }
+
         [HttpGet("{ID}")]
         public IActionResult Get(int ID)
         {   

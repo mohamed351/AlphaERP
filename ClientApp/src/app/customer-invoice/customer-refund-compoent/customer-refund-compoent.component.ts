@@ -28,19 +28,17 @@ export class CustomerRefundCompoentComponent implements OnInit {
           iterator.Quantity = this.conveter.converMeasurement(iterator.Quantity, iterator.Product.TypeOfMeasurement);
 
         }
-       // this.CalculateQuantities(this.InvoiceInfo, c);
+        this.CalculateQuantities(this.InvoiceInfo, c);
       });
     });
   }
   CalculateQuantities(Invoice:CustomerInvoice, ReferneceDetails:ReferneceDetails[] ) {
     Invoice.CustomerInvoiceDetails.map(c => {
       let qtu = 0;
-      console.log(ReferneceDetails);
-      console.log(c);
       let oldQuantity = ReferneceDetails.find(a => a.detailReference == c.ID);
       console.log(oldQuantity);
       if (oldQuantity != null) {
-        c.Quantity = ((c.Quantity - qtu) - (oldQuantity.quantity));
+        c.Quantity = c.Quantity - this.conveter.converMeasurement(oldQuantity.quantity, c.Product.TypeOfMeasurement);
       }
       else {
         c.Quantity = c.Quantity;

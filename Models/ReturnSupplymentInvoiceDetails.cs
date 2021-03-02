@@ -13,6 +13,8 @@ namespace RealApplication.Models
         public int InvoiceID { get; set; }
         
         public ReturnSupplymentInvoice ReturendSupplymentInvoice { get; set; }
+        
+
 
         public Product Product { get; set; }
 

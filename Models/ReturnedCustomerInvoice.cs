@@ -19,6 +19,7 @@ namespace RealApplication.Models
         public string Note { get; set; }
         public CustomerInvoice CustomerInvoice { get; set; }
         public DateTime? InvoiceDate { get; set; }
+        
 
         public ICollection<ReturnedCustomerInvoiceDetails> ReturnedCustomerInvoiceDetails { get; set; }
 

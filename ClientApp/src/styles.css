@@ -57,6 +57,8 @@ background-size: cover;
 .mat-sidenav-content:lang(ar){
   margin-left: 0  !important;
   margin-right: 202px;
+  transition-duration: 0.4;
+  transition-property: all;
 }
 .sidenav :lang(ar){
   position: end !important;
@@ -65,9 +67,8 @@ background-size: cover;
   transform: translate3d(100%,0,0);
 }
 .mat-drawer-content:lang(ar){
-  transition-duration: none !important;
-  transition-timing-function:none !important;
-  transition-property: none !important;
+
+  animation-direction: alternate;
 
 }
 .mat-toolbar:lang(ar){
@@ -76,3 +77,14 @@ background-size: cover;
 body:lang(ar){
   direction: rtl;
 }
+.rtl-right:lang(ar){
+  direction: rtl;
+  flex-direction: row-reverse;
+}
+mat-sidenav-content:lang(ar){
+  direction: rtl;
+}
+mat-sidenav:lang(ar){
+  direction: rtl;
+}
+

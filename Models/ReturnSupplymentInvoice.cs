@@ -22,6 +22,8 @@ namespace RealApplication.Models
         [ForeignKey(nameof(Employee))]
         public string UserID { get; set; }
 
+        
+
 
         public Employee Employee { get; set; }
 

@@ -508,12 +508,17 @@ namespace RealApplication.Migrations
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("StoreID")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserID")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("ID");
 
                     b.HasIndex("InvoiceReferenceID");
+
+                    b.HasIndex("StoreID");
 
                     b.HasIndex("UserID");
 
@@ -576,12 +581,17 @@ namespace RealApplication.Migrations
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("StoreID")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserID")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("ID");
 
                     b.HasIndex("InvoiceReferenceID");
+
+                    b.HasIndex("StoreID");
 
                     b.HasIndex("UserID");
 
@@ -953,6 +963,12 @@ namespace RealApplication.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("RealApplication.Models.Store", "Store")
+                        .WithMany()
+                        .HasForeignKey("StoreID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("RealApplication.Models.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("UserID");
@@ -976,6 +992,12 @@ namespace RealApplication.Migrations
                     b.HasOne("RealApplication.Models.CustomerInvoice", "CustomerInvoice")
                         .WithMany("ReturnedCustomerInvoices")
                         .HasForeignKey("InvoiceReferenceID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RealApplication.Models.Store", "Store")
+                        .WithMany()
+                        .HasForeignKey("StoreID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

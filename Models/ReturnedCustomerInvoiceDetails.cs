@@ -10,7 +10,7 @@ namespace RealApplication.Models
         public string ProductID { get; set; }
         [ForeignKey(nameof(ReturnedCustomerInvoice))]
         public  int InvoiceID { get; set; }
-
+         
 
         public Product Product { get; set; }
 

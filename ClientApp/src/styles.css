@@ -56,7 +56,7 @@ background-size: cover;
 }
 .mat-sidenav-content:lang(ar){
   margin-left: 0  !important;
-  margin-right: 202px;
+  margin-right: 230px;
   transition-duration: 0.4;
   transition-property: all;
 }

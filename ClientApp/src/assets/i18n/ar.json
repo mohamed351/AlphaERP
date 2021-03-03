@@ -68,5 +68,7 @@
     "employeeName":"اسم العميل",
     "invoiceDate":"تاريخ الفاتورة",
     "createcustomerInvoice":"انشاء فاتورة مبيعات",
-    "refund":"ارتجاع"
+    "refund":"ارتجاع",
+    "reports":"التقرير",
+    "Storemovement":"تقرير حركة المخازن"
 }

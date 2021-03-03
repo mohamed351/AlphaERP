@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { CategoriesModule } from './categories/categories.module';
 import { AuthGuard } from './guards/auth.guard';
 import { UnAuthGuardGuard } from './guards/unauth.guard';
@@ -17,8 +17,8 @@ const routes:Routes =[
     {path:"supplymentInvoice", loadChildren:()=>import("./supplyment-invoice/supplyment-invoice.module").then(m=>m.SupplymentInvoiceModule) , canActivate:[AuthGuard]},
     {path:"login",component:LoginComponent, canActivate:[UnAuthGuardGuard]},
   { path: "stores", loadChildren: () => import("./stores/stores.module").then(m => m.StoresModule), canActivate: [AuthGuard] },
-  {path:"customerInvoice", loadChildren:()=> import('./customer-invoice/customer-invoice.module').then(m=>m.CustomerInvoiceModule), canActivate:[AuthGuard]}
-
+  {path:"customerInvoice", loadChildren:()=> import('./customer-invoice/customer-invoice.module').then(m=>m.CustomerInvoiceModule), canActivate:[AuthGuard]},
+  {path:"reports",loadChildren:()=>import('./reports/reports.module').then(m=>m.ReportsModule),canActivate:[AuthGuard]}
 ]
 @NgModule({
     imports:[RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],

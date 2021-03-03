@@ -69,7 +69,9 @@
      "employeeName":"Employee Name",
      "invoiceDate":"Invoice Date",
      "createcustomerInvoice":"Create Selling Invoice",
-     "refund":"Refund"
+     "refund":"Refund",
+     "reports":"Reports",
+     "Storemovement":"Store movement"
 
 
 }

@@ -116,8 +116,7 @@ namespace RealApplication.Controllers
                
                 LocalReport report = new LocalReport($"{this.iwebHostConfiguration.WebRootPath}//reports//sellingInvoice.rdlc");
                 report.AddDataSource("DataSet1", table);
-                //var dictornay = new Dictionary<string, string>();
-                //dictornay.Add("InvoiceNumber", ID.ToString());
+
                 var result = report.Execute(RenderType.Pdf, 1,null, "");
                 return File(result.MainStream, "application/pdf");
             }

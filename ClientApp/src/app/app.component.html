@@ -33,6 +33,17 @@
           <a mat-list-item routerLinkActive="active" routerLink="/customerInvoice"><mat-icon class="nav-bar-color">people</mat-icon> {{'customerInvoice'|translate}}</a>
 
           <a mat-list-item routerLinkActive="active" routerLink="/stores"><mat-icon class="nav-bar-color">inventory_2</mat-icon> {{'stores'|translate}}</a>
+
+          <mat-expansion-panel routerLinkActive #rla="routerLinkActive" [expanded]="rla.isActive" >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{"reports"|translate}}
+              </mat-panel-title>
+
+            </mat-expansion-panel-header>
+            <a mat-list-item routerLinkActive="active" routerLink="/reports/storeMovement"><mat-icon class="nav-bar-color">inventory_2</mat-icon> {{'Storemovement'|translate}}</a>
+
+          </mat-expansion-panel>
           </mat-accordion>
 
 

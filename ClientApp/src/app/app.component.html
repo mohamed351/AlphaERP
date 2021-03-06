@@ -14,7 +14,7 @@
     <mat-sidenav id="sidevarContainer" #drawer class="sidenav" fixedInViewport
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
-        [opened]="(isHandset$ | async) === false"
+        [opened]="(isHandset$ | async) === true"
          (openedChange)="ToggleMenu($event,matsideNab)">
       <mat-toolbar color="primary">
         <mat-toolbar-row style="width: 200px;">
@@ -49,7 +49,7 @@
 
       </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content class="mat-sidenav-content" #matsideNab>
+    <mat-sidenav-content class="mat-sidenav-content" [ngClass]="{marginLeft:true}" #matsideNab>
       <mat-toolbar  color="primary">
         <button
           type="button"

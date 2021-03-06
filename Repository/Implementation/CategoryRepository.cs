@@ -32,15 +32,7 @@ namespace RealApplication.Repository.Implementation
 
            
     }
-    // public IEnumerable<ProductInfoDTO> ProductCategoryDTOs(string cateogryID){
-    //     // return   dbContext.Set<Category>().Include(a=>a.ChildCategory)
-    //     //   .ToList()
-    //     //   .Where(a=>a.CategoryID == cateogryID)
-    //     //   .Select(ent => new ProductInfoDTO{
-           
-    //     //   });
-            
-    // }
+    
 
     private CategoryDTO ListWithUnites_LoadUnites(Category unite)
     {

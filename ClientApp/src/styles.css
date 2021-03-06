@@ -27,7 +27,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 a:hover{
   text-decoration: none;
 }
-a:lang(ar) {
+/* a:lang(ar) {
 
   font-family: 'Cairo', sans-serif;
 }
@@ -87,4 +87,6 @@ mat-sidenav-content:lang(ar){
 mat-sidenav:lang(ar){
   direction: rtl;
 }
+
+ */
 

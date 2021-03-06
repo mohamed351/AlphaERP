@@ -1,24 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { CustomersService } from './../customers.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Customer } from 'src/app/models/customers/customer';
-import { MeasurmentConvertService } from 'src/app/services/measurment-convert.service';
-import { RestService } from 'src/app/services/rest-service.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
+import { switchMap, map, mergeMap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-customer',
   templateUrl: './create-customer.component.html',
   styleUrls: ['./create-customer.component.css']
 })
-export class CreateCustomerComponent implements OnInit {
-
+export class CreateCustomerComponent implements OnInit, OnDestroy {
+  //subscriptions that is going to be destoried after change to another component
+  customerSubscription: Subscription
+  messageSubscription: Subscription;
+  titleSubscription: Subscription;
+  //forms group that is deal with customer create operation
   forms:FormGroup = new FormGroup({
     customerName:new FormControl('',[Validators.required]),
     phone:new FormArray([]),
     address:new FormArray([])
   });
-  constructor(private router:Router, private customerService:RestService , private toastr: ToastrService) { }
+  constructor(private router: Router,
+    private Customer:CustomersService,
+    private toastr: ToastrService,
+    private translate: TranslateService) { }
+
+    ngOnInit() {
+
+    }
+
 
   get CustomerName(){
     return this.forms.get("customerName")
@@ -65,17 +79,26 @@ export class CreateCustomerComponent implements OnInit {
    }
 
 
-  OnSubmitForm(){
-     this.customerService.PostData<Customer>("/api/Customers",this.forms.value).subscribe(a=>{
-      console.log(a);
-      this.router.navigate(["/customers"]);
-      this.toastr.success("Successfull Creating Customers","Create Operation");
-     });
+  OnSubmitForm() {
 
+    this.customerSubscription = this.Customer.CreateCustomer(this.forms.value).subscribe(returnedCustomer => {
+      console.log(returnedCustomer);
+   this.messageSubscription=  this.translate.get("SuccessfullyAddedCustomer").subscribe(message => {
+     this.titleSubscription= this.translate.get("CreateOperation").subscribe(operation => {
+       this.toastr.success(message, operation);
+       this.router.navigate(["/customers"]);
+        });
+      });
+    })
   }
 
-  ngOnInit() {
 
+
+
+  ngOnDestroy(): void {
+    this.customerSubscription.unsubscribe();
+    this.messageSubscription.unsubscribe();
+    this.titleSubscription.unsubscribe();
   }
 
 }

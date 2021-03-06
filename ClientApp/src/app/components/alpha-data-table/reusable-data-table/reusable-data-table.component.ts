@@ -72,7 +72,6 @@ export class ReusableDataTableComponent implements OnInit , AfterViewInit  {
   }
 
   GetData(data: any) {
-    console.log(data);
     this.restAPI.GetDataTable<DataTable<any>>(data.pageSize, data.pageIndex,this.endPoint,"").pipe(
       delay(150)
     ).subscribe(a=>{

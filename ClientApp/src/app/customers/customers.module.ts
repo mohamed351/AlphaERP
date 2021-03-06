@@ -1,3 +1,4 @@
+import { CustomersService } from './customers.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListCustomersComponent } from './list-customers/list-customers.component';
@@ -21,10 +22,10 @@ export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 @NgModule({
-  declarations: [ListCustomersComponent, 
-    CreateCustomerComponent, 
+  declarations: [ListCustomersComponent,
+    CreateCustomerComponent,
     EditCustomerComponent, DetailsCustomerComponent ,
-  
+
    ],
   imports: [
     CommonModule,
@@ -42,7 +43,7 @@ export function createTranslateLoader(http: HttpClient) {
     TranslateModule,
   ],
   providers:[
-   
+   CustomersService
   ]
 })
 export class CustomersModule { }

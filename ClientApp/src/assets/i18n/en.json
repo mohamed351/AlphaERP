@@ -71,7 +71,9 @@
      "createcustomerInvoice":"Create Selling Invoice",
      "refund":"Refund",
      "reports":"Reports",
-     "Storemovement":"Store movement"
+     "Storemovement":"Store movement",
+     "SuccessfullyAddedCustomer":"Successfully Added Customer",
+     "CreateOperation":"Create Operation"
 
 
 }

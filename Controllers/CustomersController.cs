@@ -56,6 +56,7 @@ namespace RealApplication.Controllers
             return Ok(customerDto);
             
         }
+
         [HttpPost]
         public IActionResult Post(CustomerCreateDTO customerCreate){
             if(!ModelState.IsValid){
@@ -67,6 +68,7 @@ namespace RealApplication.Controllers
             var customerDTO = this.mapper.Map<CustomerCreateDTO>(customer);
             return  Ok(customerDTO);
         }
+
         [HttpPut(template:"{ID}")]
         public async Task< IActionResult> Put(string ID , CustomerCreateDTO customerCreateDTO){
             if(!ModelState.IsValid){
@@ -80,6 +82,7 @@ namespace RealApplication.Controllers
             this.mapper.Map<CustomerCreateDTO>(customer);
             return Ok(customer);
         }
+
         [HttpDelete(template:"{ID}")]
         public IActionResult Delete(string ID){
             if(ID == null){

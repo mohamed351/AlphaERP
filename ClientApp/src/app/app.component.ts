@@ -33,16 +33,17 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
 
+
   }
   ToggleMenu(data,sideMenu) {
 
-    var language = localStorage.getItem("lang") || "en";
-    if (language == "ar" && !data) {
-      sideMenu.elementRef.nativeElement.classList.remove("mat-sidenav-content");
-    }
-    else {
-      sideMenu.elementRef.nativeElement.classList.add("mat-sidenav-content")
-    }
+    // var language = localStorage.getItem("lang") || "en";
+    // if (language == "ar" && !data) {
+    //   sideMenu.elementRef.nativeElement.classList.remove("mat-sidenav-content");
+    // }
+    // else {
+    //   sideMenu.elementRef.nativeElement.classList.add("mat-sidenav-content")
+    // }
   }
 
   SetLanguageToArabic(){

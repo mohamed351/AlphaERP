@@ -70,5 +70,7 @@
     "createcustomerInvoice":"انشاء فاتورة مبيعات",
     "refund":"ارتجاع",
     "reports":"التقرير",
-    "Storemovement":"تقرير حركة المخازن"
+    "Storemovement":"تقرير حركة المخازن",
+    "SuccessfullyAddedCustomer":"تم أضافة العميل بنجاح",
+    "CreateOperation":"عملية اضافة"
 }

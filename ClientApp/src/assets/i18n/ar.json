@@ -76,5 +76,16 @@
     "DeleteConfirmation":"تأكيد الغاء",
     "AreYouSureToDelete":"هل انت متأكد من الغاء",
     "OK":"تأكيد",
-    "Cancel":"الغاء"
+    "Cancel":"الغاء",
+    "sellingInvoice":"فاتورة بيع",
+    "customer":"عميل",
+    "store":"مخزن",
+     "note":"بيان",
+     "InvoiceDate":"تاريخ الفاتورة",
+     "addRow":"اضافة سجل",
+     "expireDate":"تاريخ الصلاحية",
+     "serial":"السريال",
+     "totalPrice":"اجمالي السعر",
+     "price":"السعر",
+     "quantity":"الكمية"
 }

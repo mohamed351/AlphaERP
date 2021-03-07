@@ -77,7 +77,19 @@
      "DeleteConfirmation":"Delete Confirmation",
      "AreYouSureToDelete":"Are you sure that you want to Delete ?",
      "OK":"Ok",
-     "Cancel":"Cancel"
+     "Cancel":"Cancel",
+     "sellingInvoice":"Selling Invoice",
+     "customer":"Customer",
+     "store":"Store",
+     "note":"Note",
+     "InvoiceDate":"Invoice Date",
+     "addRow":"Add Row",
+     "expireDate":"Expire Date",
+     "serial":"Serial",
+     "totalPrice":"Total Price",
+     "price":"Price",
+     "quantity":"Quantity"
+
 
 
 }

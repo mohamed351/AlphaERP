@@ -72,5 +72,9 @@
     "reports":"التقرير",
     "Storemovement":"تقرير حركة المخازن",
     "SuccessfullyAddedCustomer":"تم أضافة العميل بنجاح",
-    "CreateOperation":"عملية اضافة"
+    "CreateOperation":"عملية اضافة",
+    "DeleteConfirmation":"تأكيد الغاء",
+    "AreYouSureToDelete":"هل انت متأكد من الغاء",
+    "OK":"تأكيد",
+    "Cancel":"الغاء"
 }

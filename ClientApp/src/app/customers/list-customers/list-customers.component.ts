@@ -17,21 +17,21 @@ export class ListCustomersComponent implements OnInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatTable, {static: false}) table: MatTable<Customer>;
   */
-    
+
     columnNames:ColumnType[] = [
-    {columnName:"customerName",columnType: TypeOfColumn.None}, 
+    {columnName:"customerName",columnType: TypeOfColumn.None},
     {columnName:"id",columnType: TypeOfColumn.Buttons}]
-  constructor(private restAPI:RestService , 
-    private dataTable:DataTableService<Customer> , 
+  constructor(private restAPI:RestService ,
+    private dataTable:DataTableService<Customer> ,
     private toaster:ToastrService,
     private translation:TranslateService) { }
 
- 
+
   ngOnInit() {
-  
-    
+
+
   }
-  OnCustomerDelete(){
+  OnCustomerDelete(data:any){
     this.toaster.success("Successful Delete","Successful Deletion");
   }
 

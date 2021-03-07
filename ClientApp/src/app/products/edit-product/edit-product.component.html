@@ -7,7 +7,7 @@
 
 <div [ngStyle]="{'display': !IsCropperDivShown ? 'none':'block'}" class="client-container">
   <div class="flex-container">
-    <button type="button" mat-flat-button color="warn" (click)="handleCancelButton(input)">Cancel</button>
+    <button type="button" mat-flat-button color="warn" (click)="handleCancelButton()">Cancel</button>
     <button type="button" mat-flat-button color="primary" (click)="handelOkButton()">Ok</button>
 </div>
 <image-cropper
@@ -37,17 +37,17 @@
         <input #productNumber formControlName="productNumber" matInput placeholder="{{'productNumber'|translate}}"  readonly class="full-width">
         <mat-error></mat-error>
       </mat-form-field>
-  
-  
-  
+
+
+
       <mat-form-field class="full-width">
           <mat-label>{{'productName'|translate}}</mat-label>
           <input matInput formControlName="productName" placeholder="{{'productName'|translate}}" class="full-width" required>
-          <mat-error *ngIf="ProductName.invalid && ProductName.touched"> 
+          <mat-error *ngIf="ProductName.invalid && ProductName.touched">
             <mat-error *ngIf="ProductName.errors.required"> {{'productNameRequired'|translate}}</mat-error>
           </mat-error>
         </mat-form-field>
-  
+
         <mat-form-field class="full-width">
           <mat-label>{{'sellingPrice'|translate}}</mat-label>
           <input matInput formControlName="sellingPrice" placeholder="{{'sellingPrice'|translate}}" type="number" class="full-width" required>
@@ -55,8 +55,8 @@
               <mat-error *ngIf="SellingPrice.errors.required">{{'sellingPriceRequired'|translate}}</mat-error>
           </mat-error>
         </mat-form-field>
-  
-  
+
+
         <mat-form-field class="full-width">
           <mat-label>{{'purchasingPrice'|translate}}</mat-label>
           <input matInput formControlName="purchasingPrice" placeholder="{{'purchasingPrice'|translate}}" type="number" class="full-width" required>
@@ -64,8 +64,8 @@
             <mat-error *ngIf="purchasingPrice.errors.required">{{'purchasingPriceRequired'|translate}}</mat-error>
         </mat-error>
         </mat-form-field>
-  
-  
+
+
         <mat-form-field class="full-width">
           <mat-label>{{'cateogry'|translate}}</mat-label>
           <mat-select formControlName="categoryID">
@@ -75,9 +75,9 @@
             <mat-error *ngIf="categoryID.errors.required">{{'TheCategoryNameIsRequired'|translate}}</mat-error>
         </mat-error>
         </mat-form-field>
-  
-  
-   
+
+
+
         <mat-form-field class="full-width">
           <mat-label>{{'measurementType'|translate}}</mat-label>
           <mat-select formControlName="typeOfMeasurements" (selectionChange)="seletionChange($event)">
@@ -90,7 +90,7 @@
             <mat-error *ngIf="TypeOfMeasurements.errors.required">{{'measurementTypeRequired'|translate}}</mat-error>
         </mat-error>
         </mat-form-field>
-  
+
         <div class="measurementContainer">
           <mat-card [@listAdded] *ngFor="let item of Measurements.controls;let i= index;" class="measurement-card">
              <div [formGroup]="item"  >
@@ -99,36 +99,27 @@
                  <mat-label>Measurement Name</mat-label>
               <input matInput formControlName="measurementName"  readonly >
             </mat-form-field>
-  
+
             <mat-form-field class="mr-3">
               <mat-label>Value</mat-label>
-         
+
               <input    matInput type="number"   readonly formControlName="value" >
             </mat-form-field>
-          
-         
-          
-            <app-mesurement-calculator *ngIf="!item.get('isKnown').value"
-            [PurchasingPrice]="purchasingPrice.value"
-            [SellingPrice]="SellingPrice.value"
-             [formControlValue]="item.get('value')" 
-            [measurementValue]="Measurements.value "
-            (valueChanged)="changeText()" 
-            [IDControl]="item.get('id').value"
-            [defaultValue]="item.get('value').value"
-            #appcaluclator ></app-mesurement-calculator>
-        
+
+
+
+
             <mat-form-field class="mr-3">
               <mat-label>BarCode</mat-label>
               <input matInput formControlName="barCode"  >
             </mat-form-field>
-  
+
             <button type="button" (click)="DeleteButton(i)"  *ngIf="!item.get('isKnown').value" mat-raised-button color="warn">Delete</button>
              </div>
           </mat-card>
         </div>
-  
-  
+
+
         <mat-form-field class="full-width">
           <mat-label>{{'barCode'|translate}}</mat-label>
           <input matInput formControlName="barCode" placeholder="{{'barCode'|translate}}" #barcode class="full-width" required>
@@ -138,9 +129,9 @@
         </mat-form-field>
         <div>
           <ngx-barcode [bc-value]="barcode.value" [bc-display-value]="true"></ngx-barcode>
-  
+
         </div>
-  
+
         <div>
         <mat-checkbox formControlName="isValidInPointOfSales" class="example-margin" [color]="'primary'">
        {{"IsValidPointOfSales"|translate}}
@@ -162,7 +153,7 @@
       <img [src]="product.productImage" width="150" height="150" >
       <br/>
       <span>Old Picture</span>
-      
+
    </ng-container> -->
     <ng-container *ngIf="imageBase64 != null">
       <br/>

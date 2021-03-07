@@ -80,7 +80,6 @@ namespace RealApplication.Controllers
         [Route("CreateUser")]
         public async Task<IActionResult> Create([FromBody] CreateUserDTO model)
         {
-            //If the user-entered data is validated, Create the user in the database.
             if (ModelState.IsValid)
             {
                 try

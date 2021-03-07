@@ -73,7 +73,11 @@
      "reports":"Reports",
      "Storemovement":"Store movement",
      "SuccessfullyAddedCustomer":"Successfully Added Customer",
-     "CreateOperation":"Create Operation"
+     "CreateOperation":"Create Operation",
+     "DeleteConfirmation":"Delete Confirmation",
+     "AreYouSureToDelete":"Are you sure that you want to Delete ?",
+     "OK":"Ok",
+     "Cancel":"Cancel"
 
 
 }

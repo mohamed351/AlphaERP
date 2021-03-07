@@ -3,7 +3,6 @@ import { Component, ElementRef, OnInit, ViewChild, ViewChildren } from '@angular
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
-import { MesurementCalculatorComponent } from 'src/app/components/alpha-data-table/mesurement-calculator/mesurement-calculator.component';
 import { Category } from 'src/app/models/categories/category';
 import { Measurement } from 'src/app/models/measurements';
 import { Product } from 'src/app/models/product/product';
@@ -33,7 +32,7 @@ export class EditProductComponent implements OnInit {
   public categoryInfo:Category[] =[];
   public product:Product = null;
   public mesaurementsSelection:Measurement[] =[]
-   @ViewChildren("appcaluclator") Calculators:MesurementCalculatorComponent[] =[];
+  //  @ViewChildren("appcaluclator") Calculators:MesurementCalculatorComponent[] =[];
    productNumber:ElementRef;
   @ViewChild("productNumber") set content(content: ElementRef) {
     if(content) { // initially setter gets called with undefined
@@ -67,7 +66,7 @@ export class EditProductComponent implements OnInit {
       private productValidation:ProductCustomeValidation) { }
   ngAfterViewInit(): void {
     //this.productNumber= ViewChild("productNumber",{static:true});
-    
+
   }
  get ProductName(){
    return this.form.get("productName")
@@ -121,8 +120,8 @@ export class EditProductComponent implements OnInit {
     console.log(this.ProductNumber);
 
   });
- 
-   
+
+
   }
 
   SubmitData(){
@@ -157,32 +156,32 @@ export class EditProductComponent implements OnInit {
             isMain:new FormControl(c.isMain)
            }));
         })
-     
+
     });
   }
 
-  handleCancelButton(input){
+  handleCancelButton(){
     //
     this.IsCropperDivShown = false;
-     input.value = null;
+
      this.imageBase64 = null;
     document.getElementById("sidevarContainer").style.display= "block";
     this.croppedImage=null;
   }
   handelOkButton(){
- 
+
     document.getElementById("sidevarContainer").style.display= "block";
     this.imageBase64 = this.croppedImage;
     this.IsCropperDivShown= false;
     console.log(this.imageBase64 );
   }
   onSubmitData(){
-   
+
     this.ProductImage.setValue(this.imageBase64);
     console.log(this.form.value);
     this.restAPI.PutData("/api/products",this.form.value.id,this.form.value).subscribe(a=>{
         this.router.navigate(["/products"]);
-        
+
     });
   }
 
@@ -209,24 +208,20 @@ export class EditProductComponent implements OnInit {
         isMain:new FormControl(c.isMain)
        }))
     });
-    
-  if(this.Calculators.length != 0){
-   this.changeText();
-  }
-   
+
+
+
   }
 
   DeleteButton(index){
-    
+
     this.Measurements.removeAt(index)
-  
+
   }
- 
+
   changeText(){
-  
-    for (const iterator of this.Calculators) {
-      iterator.valueChangeOut();
-    }
+
+
   }
 
 }

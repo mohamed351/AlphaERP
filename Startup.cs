@@ -68,7 +68,7 @@ namespace RealApplication
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+               
             }
             else
             {
@@ -77,7 +77,7 @@ namespace RealApplication
                 app.UseHsts();
             }
 
-        
+            app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
             if (!env.IsDevelopment())
             {

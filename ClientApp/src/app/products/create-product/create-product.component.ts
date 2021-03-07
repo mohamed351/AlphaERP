@@ -6,7 +6,6 @@ import { Category } from 'src/app/models/categories/category';
 import { Measurement } from 'src/app/models/measurements';
 import { RestService } from 'src/app/services/rest-service.service';
 import {trigger,state, style, transition, animate} from '@angular/animations';
-import { MesurementCalculatorComponent } from 'src/app/components/alpha-data-table/mesurement-calculator/mesurement-calculator.component';
 import {ProductCustomeValidation} from '../product.custome.validation';
 @Component({
   selector: 'app-create-product',

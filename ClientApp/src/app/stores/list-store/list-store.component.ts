@@ -12,7 +12,7 @@ export class ListStoreComponent implements OnInit {
 
   ngOnInit() {
   }
-  OnStoreDelete(){
+  OnStoreDelete(data:any){
 
   }
 

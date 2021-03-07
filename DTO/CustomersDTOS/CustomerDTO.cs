@@ -5,7 +5,7 @@ namespace RealApplication.DTO.CustomersDTOS
     public class CustomerDTO
     {
         public string ID{ get; set; }
-       // [Required]
+        [Required]
         public string CustomerName { get; set; }
     }
 }

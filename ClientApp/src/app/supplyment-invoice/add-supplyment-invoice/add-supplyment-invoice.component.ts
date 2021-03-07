@@ -89,16 +89,18 @@ export class AddSupplymentInvoiceComponent implements OnInit {
     this.apiService.GetAll<any>(`/api/SupplymentInvoice/GetByProductName/${productName.term}`).subscribe(a => {
       this.Products = a;
     });
-    // this.apiService.GetAll("/api/SupplymentInvoice/GetByProductName")
+
   }
   productNameChanged(product, index) {
     if (product != undefined) {
+      console.log(product);
       this.selectedProduct = product;
       this.InvoiceDetails.controls[index].get("barCode").setValue(product.barCode);
       this.InvoiceDetails.controls[index].get("productID").setValue(product.productID);
       this.InvoiceDetails.controls[index].get("measurementName").setValue(product.name);
       this.InvoiceDetails.controls[index].get("measurementValue").setValue(product.value);
       this.InvoiceDetails.controls[index].get("typeOfMeasurement").setValue(product.mainType);
+      this.InvoiceDetails.controls[index].get("price").setValue(product.purchasingPrice);
     }
   }
   searchBarCode(barCode) {
@@ -115,6 +117,7 @@ export class AddSupplymentInvoiceComponent implements OnInit {
     this.InvoiceDetails.controls[index].get("measurementName").setValue("");
     this.InvoiceDetails.controls[index].get("measurementValue").setValue("");
     this.InvoiceDetails.controls[index].get("typeOfMeasurement").setValue("");
+
   }
   deleteRow(index) {
     this.InvoiceDetails.removeAt(index);

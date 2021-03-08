@@ -35,7 +35,8 @@ import { ChartModule } from 'angular-highcharts';
 import { TokenInterceptor } from './Interceptors/AuthInterceptor';
 import { APP_BASE_HREF } from '@angular/common';
 import { MeasurmentConvertService } from './services/measurment-convert.service';
-
+import { MatProgressBarModule} from '@angular/material/progress-bar';
+import { LoadingInterceptorService } from './services/loading-interceptor.service';
 
 
 
@@ -81,12 +82,12 @@ export function createTranslateLoader(http: HttpClient) {
     MatCardModule,
     MatSelectModule,
     ChartModule,
-
+    MatProgressBarModule
 
 
 
   ],
-  providers: [AuthGuard, UnAuthGuardGuard,MeasurmentConvertService, {
+  providers: [AuthGuard, UnAuthGuardGuard,MeasurmentConvertService,LoadingInterceptorService,  {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi:true

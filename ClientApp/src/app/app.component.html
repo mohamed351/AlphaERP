@@ -9,6 +9,8 @@
 </body>
 
 
+
+
 <ng-template #Authorized>
   <mat-sidenav-container  class="sidenav-container">
     <mat-sidenav id="sidevarContainer" #drawer class="sidenav" fixedInViewport
@@ -79,7 +81,9 @@
         </mat-menu>
        </div>
       </mat-toolbar>
+      <mat-progress-bar *ngIf="showProgress" mode="indeterminate"></mat-progress-bar>
       <div class="padding-10">
+
         <router-outlet></router-outlet>
       </div>
 
@@ -88,5 +92,6 @@
 </ng-template>
 
 <ng-template #NotAuthorized>
+  <mat-progress-bar *ngIf="showProgress" mode="indeterminate"></mat-progress-bar>
    <router-outlet></router-outlet>
 </ng-template>

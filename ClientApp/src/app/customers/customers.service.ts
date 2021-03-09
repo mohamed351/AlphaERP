@@ -1,7 +1,9 @@
-import { CustomerDetail } from './../models/customersModel/customerDetail';
 import { Injectable } from '@angular/core';
-import { CustomerCreate } from '../models/customers/customerCreate';
+
 import { RestService } from '../services/rest-service.service';
+import { CustomerCreate } from '../models/customersModel/customerCreate';
+import { CustomerEdit } from '../models/customersModel/customerEdit';
+import { CustomerDetail } from './../models/customersModel/customerDetail';
 
 @Injectable({
   providedIn: 'root'
@@ -16,4 +18,8 @@ export class CustomersService {
   GetCustomerByID(Id: string) {
     return this.apiService.GetByID<CustomerDetail>("/api/Customers", Id);
   }
+  EditCustomer(CustomerData:CustomerEdit) {
+   return this.apiService.PutData<CustomerEdit>("/api/Customers", CustomerData.id, CustomerData);
+  }
+
 }

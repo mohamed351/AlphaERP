@@ -87,5 +87,9 @@
      "serial":"السريال",
      "totalPrice":"اجمالي السعر",
      "price":"السعر",
-     "quantity":"الكمية"
+     "quantity":"الكمية",
+     "InvalidPhone":"رقم الهاتف غير صحيح",
+     "NotvalidInput":"الحقل غير صحيح",
+     "InvalidAddress":"العنوان غير صحيح"
+
 }

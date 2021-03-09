@@ -3,7 +3,7 @@ import { CustomersService } from './../customers.service';
 import { CustomerDetail } from './../../models/customersModel/customerDetail';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CustomerCreate } from 'src/app/models/customers/customerCreate';
+
 import { RestService } from 'src/app/services/rest-service.service';
 
 @Component({

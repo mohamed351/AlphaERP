@@ -78,6 +78,7 @@ export class AppComponent implements OnInit {
   }
 
   LogOut(){
-
+    localStorage.clear();
+    this.Router.navigate(['/login']);
   }
 }

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Customer } from 'src/app/models/customers/customer';
-import { CustomerEdit } from 'src/app/models/customers/customerEdit';
-import { RestService } from 'src/app/services/rest-service.service';
+
+import { CustomerDetail } from './../../models/customersModel/customerDetail';
+import { CustomersService } from './../customers.service';
 
 @Component({
   selector: 'app-edit-customer',
@@ -13,21 +13,22 @@ import { RestService } from 'src/app/services/rest-service.service';
 })
 export class EditCustomerComponent implements OnInit {
 
-  customer:CustomerEdit = null;
+  customer:CustomerDetail = null;
   forms:FormGroup = new FormGroup({
     id:new FormControl('',[Validators.required]),
     customerName:new FormControl('',[Validators.required]),
     phone:new FormArray([]),
     address:new FormArray([])
   });
-  constructor(private router:Router, private activeRouter:ActivatedRoute, private customerService:RestService , private toastr: ToastrService) { }
+  constructor(private router: Router,
+    private activeRouter: ActivatedRoute,
+    private customerService: CustomersService, private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.customerService.GetByID<CustomerEdit>("/api/Customers",this.activeRouter.snapshot.params["id"]).subscribe(a=>{
+    this.customerService.GetCustomerByID(this.activeRouter.snapshot.params["id"]).subscribe(a => {
       this.customer = a;
       this.MapObjectToCustomer();
     });
-      
   }
   get CustomerName(){
     return this.forms.get("customerName")
@@ -65,10 +66,10 @@ export class EditCustomerComponent implements OnInit {
     else{
       this.toastr.error("The Address is not valid", "Not valid Input");
     }
-   
+
   }
   RemovePhone(phoneElement){
-    
+
    this.Phones.removeAt(this.Phones.controls.findIndex(a=> a == phoneElement)) ;
   }
   RemoveAddress(AddressElement){
@@ -78,24 +79,23 @@ export class EditCustomerComponent implements OnInit {
 
 
   OnSubmitForm(){
-     this.customerService.PutData<Customer>("/api/Customers",this.customer.id,this.forms.value).subscribe(a=>{
-  
-      this.router.navigate(["/customers"]);
-      this.toastr.success("Successfull Edit Customers","Edit Operation");
+    this.customerService.EditCustomer(this.forms.value).subscribe(a=>{
+       this.router.navigate(["/customers"]);
+       this.toastr.success("Successfull Edit Customers","Edit Operation");
      });
-     
+
   }
   private MapObjectToCustomer(){
 
     this.ID.setValue(this.customer.id);
     this.CustomerName.setValue(this.customer.customerName);
-    
+
     this.customer.phone.forEach(element => {
       this.Phones.push(new FormGroup({
         phone:new FormControl(element.phone, [Validators.required])
       }));
     });
-  
+
     this.customer.address.forEach(element => {
       this.Addresses.push(new FormGroup({
         address:new FormControl(element.address,[Validators.required])
@@ -103,6 +103,6 @@ export class EditCustomerComponent implements OnInit {
     });
   }
 
- 
+
 
 }

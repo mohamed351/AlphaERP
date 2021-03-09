@@ -75,6 +75,8 @@
               <button mat-menu-item [ngClass]="{'active-lang':GetLanguage() == 'en'}" (click)="SetLanguageToEnglish()">English</button>
               <button mat-menu-item [ngClass]="{'active-lang':GetLanguage() == 'ar'}" (click)="SetLanguageToArabic()">Arabic</button>
              </mat-menu>
+             <button mat-menu-item (click)="LogOut()">
+              <mat-icon>logout</mat-icon> Logout</button>
 
 
 

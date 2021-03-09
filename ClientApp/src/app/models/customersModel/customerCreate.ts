@@ -1,13 +1,9 @@
+import { CustomerAddress } from './customersAddress';
+import { CustomerPhone} from './customersPhones';
 export interface CustomerCreate {
   customerName: string;
-  phone: Phone[];
-  address: Address[];
+  phone: CustomerPhone[];
+  address: CustomerAddress[];
 }
 
-interface Address {
-  address: string;
-}
 
-interface Phone {
-  phone: string;
-}

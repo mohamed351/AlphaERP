@@ -1,7 +1,6 @@
 import { DataSource } from '@angular/cdk/table';
 import { AfterViewInit, Component, Inject, Input, OnInit, Output, ViewChild  , EventEmitter} from '@angular/core';
 import { MatDialog, MatDialogRef, MatPaginator, MatTable, MAT_DIALOG_DATA } from '@angular/material';
-import { Customer } from 'src/app/models/customers/customer';
 import { DataTable } from 'src/app/models/datatable';
 import { DataTableService } from 'src/app/services/data-table.service';
 import { RestService } from 'src/app/services/rest-service.service';
@@ -28,7 +27,7 @@ export class ReusableDataTableComponent implements OnInit , AfterViewInit  {
   displayName= ["customerName"];
 
   constructor(public restAPI:RestService ,
-     public dataTable:DataTableService<Customer>
+     public dataTable:DataTableService<any>
      , public dailog:MatDialog,
      public translate: TranslateService) {
 

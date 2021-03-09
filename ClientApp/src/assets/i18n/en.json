@@ -88,7 +88,11 @@
      "serial":"Serial",
      "totalPrice":"Total Price",
      "price":"Price",
-     "quantity":"Quantity"
+     "quantity":"Quantity",
+     "InvalidPhone":"The Phone is not valid",
+     "NotvalidInput":"Not valid Input",
+     "InvalidAddress":"Not valid Address"
+
 
 
 

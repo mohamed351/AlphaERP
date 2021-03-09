@@ -1,12 +1,12 @@
-import { CustomersService } from './../customers.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { ToastrService } from 'ngx-toastr';
-import { HttpErrorResponse } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
-import { switchMap, map, mergeMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+
+import { CustomersService } from './../customers.service';
 
 @Component({
   selector: 'app-create-customer',
@@ -18,6 +18,10 @@ export class CreateCustomerComponent implements OnInit, OnDestroy {
   customerSubscription: Subscription
   messageSubscription: Subscription;
   titleSubscription: Subscription;
+  InvalidMessagePhone: Subscription;
+  InvalidMessageAddress: Subscription;
+  InvalidTitleAddress: Subscription;
+  InvalidTitlePhone: Subscription;
   //forms group that is deal with customer create operation
   forms:FormGroup = new FormGroup({
     customerName:new FormControl('',[Validators.required]),
@@ -52,8 +56,13 @@ export class CreateCustomerComponent implements OnInit, OnDestroy {
       }));
       customerPhone.value="";
     }
-    else{
-      this.toastr.error("The Phone is not valid", "Not valid Input");
+    else {
+      this.translate.get("InvalidPhone").subscribe(message => {
+        this.translate.get("NotvalidInput").subscribe(title => {
+          this.toastr.error(message, title);
+        })
+      })
+
     }
   }
   AddAddress(customerAddress:HTMLInputElement)
@@ -64,8 +73,13 @@ export class CreateCustomerComponent implements OnInit, OnDestroy {
       }));
       customerAddress.value ="";
     }
-    else{
-      this.toastr.error("The Address is not valid", "Not valid Input");
+    else {
+     this.InvalidMessageAddress= this.translate.get("InvalidAddress").subscribe(message => {
+      this.InvalidTitleAddress =  this.translate.get("NotvalidInput").subscribe(title => {
+          this.toastr.error(message, title);
+        })
+      })
+
     }
 
   }
@@ -82,7 +96,6 @@ export class CreateCustomerComponent implements OnInit, OnDestroy {
   OnSubmitForm() {
 
     this.customerSubscription = this.Customer.CreateCustomer(this.forms.value).subscribe(returnedCustomer => {
-      console.log(returnedCustomer);
    this.messageSubscription=  this.translate.get("SuccessfullyAddedCustomer").subscribe(message => {
      this.titleSubscription= this.translate.get("CreateOperation").subscribe(operation => {
        this.toastr.success(message, operation);
@@ -99,6 +112,8 @@ export class CreateCustomerComponent implements OnInit, OnDestroy {
     this.customerSubscription.unsubscribe();
     this.messageSubscription.unsubscribe();
     this.titleSubscription.unsubscribe();
+    this.InvalidMessageAddress.unsubscribe();
+    this.InvalidTitleAddress.unsubscribe();
   }
 
 }

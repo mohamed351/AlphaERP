@@ -11,19 +11,17 @@ import {map} from 'rxjs/operators';
     providedIn:'root'
 })
 export class StoreCustomValidators {
-    /**
-     *
-     */
+
     constructor(private http:HttpClient) {
-        
-        
+
+
     }
 
    storeNameMustBeUnique = (
        data
       ):AsyncValidatorFn  =>{
           return  (  AbstractControl: AbstractControl):Promise<ValidationErrors | null> | Observable<ValidationErrors | null>  =>{
-        if(data != null){      
+        if(data != null){
         return this.http
           .get<any>("/api/Stores/Verify/" + AbstractControl.value+"?storeID="+data ).pipe(
             map((a) => {
@@ -49,8 +47,8 @@ export class StoreCustomValidators {
             }));
 
         }
-          
+
       };
     }
-  
+
 }

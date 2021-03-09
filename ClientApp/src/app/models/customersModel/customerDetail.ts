@@ -1,4 +1,5 @@
 export interface CustomerDetail {
+  id: string;
   customerName: string;
   phone: Phone[];
   address: Address[];

@@ -45,7 +45,6 @@ namespace RealApplication.Controllers
             this.mapper = mapper;
             this.configuration = configuration;
             this.iwebHostConfiguration = iwebHostConfiguration;
-            System.Text.Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
 
         [EnableQuery()]
@@ -117,7 +116,7 @@ namespace RealApplication.Controllers
                 LocalReport report = new LocalReport($"{this.iwebHostConfiguration.WebRootPath}//reports//sellingInvoice.rdlc");
                 report.AddDataSource("DataSet1", table);
 
-                var result = report.Execute(RenderType.Pdf, 1,null, "");
+                var result = report.Execute(RenderType.Pdf, 1);
                 return File(result.MainStream, "application/pdf");
             }
            

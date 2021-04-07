@@ -18,25 +18,34 @@ using RealApplication.Repository.UnitOfWork;
 using RealApplication.DTO;
 using AutoMapper;
 using Microsoft.AspNet.OData;
+using System.Data;
+using Microsoft.Extensions.Configuration;
 
 namespace RealApplication.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class SupplymentInvoiceController:ControllerBase
+    public class SupplymentInvoiceController:Controller
     {
         private readonly ApplicationDbContext applicationDbContext;
         private readonly IWebHostEnvironment webHostEnvironment;
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
+        private readonly IConfiguration configuration;
 
-        public SupplymentInvoiceController(ApplicationDbContext applicationDbContext, IWebHostEnvironment webHostEnvironment, IUnitOfWork unitOfWork, IMapper mapper)
+        public SupplymentInvoiceController(ApplicationDbContext applicationDbContext, 
+            IWebHostEnvironment webHostEnvironment, 
+            IUnitOfWork unitOfWork,
+            IMapper mapper,
+            IConfiguration  configuration)
         {
+           
             this.applicationDbContext = applicationDbContext;
             this.webHostEnvironment = webHostEnvironment;
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
-            System.Text.Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            this.configuration = configuration;
+          
         }
         [HttpGet]
         public IActionResult Get([FromQuery] int pageSize, [FromQuery] int start, [FromQuery] string search = "")
@@ -134,18 +143,7 @@ namespace RealApplication.Controllers
 
             return Ok(new {invoice= invoiceDTO , invoiceNumber = NewInvoiceNumber});
         }
-        [HttpGet("/api/[controller]/GetReport/{InvoiceNumber}")]
-        public IActionResult PurchasingReport(int InvoiceNumber)
-        {
-           
-          var elements =   applicationDbContext.GetSupplierInvoices(InvoiceNumber);
-            LocalReport report = new LocalReport($"{this.webHostEnvironment.WebRootPath}//reports//PurchasingInvoice.rdlc");
-            report.AddDataSource("DataSet1", elements);
-            var dictornay = new Dictionary<string, string>();
-            dictornay.Add("InvoiceNumber", InvoiceNumber.ToString());
-           var result = report.Execute(RenderType.Pdf,1,dictornay,"");
-            return File(result.MainStream,"application/pdf");
-        }
+      
         private static decimal CalculateMeasurement(decimal quantity , decimal measurementValue)
         {
            
@@ -153,8 +151,14 @@ namespace RealApplication.Controllers
 
 
         }
+        protected override void Dispose(bool disposing)
+        {
+            GC.Collect();
+            base.Dispose(disposing);
+        }
 
-        
-        
+
+
+
     }
 }

@@ -9,6 +9,7 @@
         <ConnectString>Data Source=.;Initial Catalog=POSAlpha</ConnectString>
         <IntegratedSecurity>true</IntegratedSecurity>
       </ConnectionProperties>
+      <rd:SecurityType>Integrated</rd:SecurityType>
       <rd:DataSourceID>cc841780-27d1-4a90-b2e2-732c179a86c3</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -818,7 +819,9 @@
   <ReportParameters>
     <ReportParameter Name="InvoiceNumber">
       <DataType>Integer</DataType>
-      <Prompt>Invoice Number</Prompt>
+      <Nullable>true</Nullable>
+      <Hidden>true</Hidden>
+      <UsedInQuery>True</UsedInQuery>
     </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>

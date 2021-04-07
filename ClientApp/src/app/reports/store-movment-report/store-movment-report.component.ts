@@ -10,7 +10,7 @@ export class StoreMovmentReportComponent implements OnInit {
   constructor(private dom:DomSanitizer) { }
 
   ngOnInit(): void {
-    this.url = this.dom.bypassSecurityTrustResourceUrl("/api/Reports/StoreMovement");
+    this.url = this.dom.bypassSecurityTrustResourceUrl("http://localhost:8195/Default.aspx");
   }
 
 }

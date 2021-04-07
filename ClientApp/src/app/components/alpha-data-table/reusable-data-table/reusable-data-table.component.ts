@@ -113,7 +113,7 @@ export class ReusableDataTableComponent implements OnInit , AfterViewInit  {
    });
   }
   ShowReport(data:any) {
-    window.open(`${this.reportUrl}/${data}`, "_blank");
+    window.open(`${this.reportUrl}${data}`, "_blank");
   }
 
 

@@ -130,6 +130,7 @@ export class CreateCustomerInvoiceComponent implements OnInit {
     this.apiService.PostData("/api/CustomerInvoice", this.form.value).subscribe(a => {
 
       this.router.navigate(['/customerInvoice']);
+
     });
   }
 

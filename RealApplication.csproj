@@ -41,6 +41,50 @@
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\SellingInvoice.mrt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\SellingInvoice.mrt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Stimulsoft.Base">
+      <HintPath>..\..\..\New folder (4)\Stimulsoft.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Data">
+      <HintPath>..\..\..\New folder (4)\Stimulsoft.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Map">
+      <HintPath>..\..\..\New folder (4)\Stimulsoft.Map.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report">
+      <HintPath>..\..\..\New folder (4)\Stimulsoft.Report.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Check">
+      <HintPath>..\..\..\New folder (4)\Stimulsoft.Report.Check.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Helper">
+      <HintPath>..\..\..\New folder (4)\Stimulsoft.Report.Helper.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Mvc.NetCore">
+      <HintPath>..\..\..\New folder (4)\Stimulsoft.Report.Mvc.NetCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Web">
+      <HintPath>..\..\..\New folder (4)\Stimulsoft.Report.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.WebDesign">
+      <HintPath>..\..\..\New folder (4)\Stimulsoft.Report.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.System">
+      <HintPath>..\..\..\New folder (4)\Stimulsoft.System.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.System.Web">
+      <HintPath>..\..\..\New folder (4)\Stimulsoft.System.Web.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">
@@ -67,6 +111,10 @@
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       </ResolvedFileToPublish>
     </ItemGroup>
+  </Target>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /y /d &quot;$(ProjectDir)Packages\*.*&quot; &quot;$(ProjectDir)$(OutDir)&quot;" />
   </Target>
 
 </Project>

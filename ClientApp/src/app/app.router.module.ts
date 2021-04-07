@@ -4,7 +4,8 @@ import { CategoriesModule } from './categories/categories.module';
 import { AuthGuard } from './guards/auth.guard';
 import { UnAuthGuardGuard } from './guards/unauth.guard';
 import { HomeComponent } from './home/home.component';
-import {LoginComponent} from './login/login.component';
+import { LoginComponent } from './login/login.component';
+
 
 
 const routes:Routes =[
@@ -18,7 +19,8 @@ const routes:Routes =[
     {path:"login",component:LoginComponent, canActivate:[UnAuthGuardGuard]},
   { path: "stores", loadChildren: () => import("./stores/stores.module").then(m => m.StoresModule), canActivate: [AuthGuard] },
   {path:"customerInvoice", loadChildren:()=> import('./customer-invoice/customer-invoice.module').then(m=>m.CustomerInvoiceModule), canActivate:[AuthGuard]},
-  {path:"reports",loadChildren:()=>import('./reports/reports.module').then(m=>m.ReportsModule),canActivate:[AuthGuard]}
+  { path: "reports", loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule), canActivate: [AuthGuard] },
+ 
 ]
 @NgModule({
     imports:[RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],

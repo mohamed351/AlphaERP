@@ -32,6 +32,7 @@ namespace RealApplication.Models
         public string Note { get; set; }
 
         public Store Store {get;set;}
+       
 
         public ICollection<SupplymentDetail> InvoiceDetails { get; set; }
         public ICollection<ReturnSupplymentInvoice> ReturnSupplymentInvoices { get; set; }

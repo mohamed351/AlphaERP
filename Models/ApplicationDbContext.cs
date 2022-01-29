@@ -28,7 +28,7 @@ namespace RealApplication.Models
         public DbSet<Measurement> Measurements {get;set;}
         public DbSet<ProductMeasurements>  ProductMeasurements { get; set; }
         public DbSet<SupplymentDetail> SupplymentDetails { get; set; }
-        public DbSet<SupplymentInvoice> supplymentInvoices {get;set;}
+        public DbSet<SupplymentInvoice> SupplymentInvoices {get;set;}
         public DbSet<Store> Stores {get;set;}
         public DbSet<ProductStore> ProductStores {get;set;}
         public DbSet<CustomerInvoice> CustomerInvoice { get; set; }

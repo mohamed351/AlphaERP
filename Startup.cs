@@ -67,6 +67,18 @@ namespace RealApplication
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //using (var x = app.ApplicationServices.CreateScope())
+            //{
+            // var d =   x.ServiceProvider.GetService<UserManager<Employee>>();
+            //    d.CreateAsync(new Employee()
+            //    {
+            //        Email = "mohamed.perry351@gmail.com",
+            //        UserName = "mohamed351",
+            //        PhoneNumber = "01024181643",
+
+
+            //    }, "katy0104859520").Wait();
+            //}
             if (env.IsDevelopment())
             {
                

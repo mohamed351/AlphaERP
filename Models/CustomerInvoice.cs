@@ -27,10 +27,13 @@ namespace RealApplication.Models
         public DateTime InvoiceDate { get; set; }
 
         public string Note { get; set; }
+        public InvoiceType InvoiceType { get; set; }
 
         public Customer Customer { get; set; }
         public Employee Employee { get; set; }
         public Store Store { get; set; }
+
+       
 
         public ICollection<CustomerInvoiceDetails> CustomerInvoiceDetails { get; set; }
         public ICollection<ReturnedCustomerInvoice> ReturnedCustomerInvoices { get; set; }

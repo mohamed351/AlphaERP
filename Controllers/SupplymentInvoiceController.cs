@@ -98,7 +98,7 @@ namespace RealApplication.Controllers
         public IActionResult Post([FromBody]CreateSuppliermentInvoiceDTO invoiceDTO)
         {
           string UserId =   User.GetUserId();
-            int? NewInvoiceNumber = applicationDbContext.supplymentInvoices.Max(a =>(int?)a.InvoiceNumber);
+            int? NewInvoiceNumber = applicationDbContext.SupplymentInvoices.Max(a =>(int?)a.InvoiceNumber);
              NewInvoiceNumber = NewInvoiceNumber == null?  0 :NewInvoiceNumber.Value;
             NewInvoiceNumber++;
             var invoiceData = new SupplymentInvoice()
@@ -138,7 +138,7 @@ namespace RealApplication.Controllers
                 });
             }
            
-            applicationDbContext.supplymentInvoices.Add(invoiceData);
+            applicationDbContext.SupplymentInvoices.Add(invoiceData);
             applicationDbContext.SaveChanges();
 
             return Ok(new {invoice= invoiceDTO , invoiceNumber = NewInvoiceNumber});

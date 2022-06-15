@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-06-15T17:48:36.134Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36" etag="BySJ5pQ_VjqygzEdMDjv" version="20.0.1" type="github">
+<mxfile host="app.diagrams.net" modified="2022-06-15T17:50:49.762Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36" etag="2uZfwBXY3P7uJCUb3Tr_" version="20.0.1" type="github">
   <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
     <mxGraphModel dx="1038" dy="547" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -157,8 +157,32 @@
         <mxCell id="FTFGuDRBSK8k1Kst_V28-57" value="&lt;span style=&quot;border-bottom: 1px dotted&quot;&gt;Name&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;strokeColor=default;" vertex="1" parent="1">
           <mxGeometry x="640" y="460" width="100" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="FTFGuDRBSK8k1Kst_V28-60" value="Entity" style="whiteSpace=wrap;html=1;align=center;strokeColor=default;" vertex="1" parent="1">
-          <mxGeometry x="370" y="400" width="100" height="40" as="geometry" />
+        <mxCell id="FTFGuDRBSK8k1Kst_V28-63" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="FTFGuDRBSK8k1Kst_V28-60" target="FTFGuDRBSK8k1Kst_V28-62">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FTFGuDRBSK8k1Kst_V28-64" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.58;entryY=1.075;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="FTFGuDRBSK8k1Kst_V28-60" target="FTFGuDRBSK8k1Kst_V28-61">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FTFGuDRBSK8k1Kst_V28-60" value="Store" style="whiteSpace=wrap;html=1;align=center;strokeColor=default;" vertex="1" parent="1">
+          <mxGeometry x="670" y="720" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="FTFGuDRBSK8k1Kst_V28-61" value="&lt;span style=&quot;border-bottom: 1px dotted&quot;&gt;Name&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;strokeColor=default;" vertex="1" parent="1">
+          <mxGeometry x="660" y="640" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="FTFGuDRBSK8k1Kst_V28-62" value="&lt;span style=&quot;border-bottom: 1px dotted&quot;&gt;ID&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;strokeColor=default;" vertex="1" parent="1">
+          <mxGeometry x="750" y="670" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="FTFGuDRBSK8k1Kst_V28-65" value="Product" style="whiteSpace=wrap;html=1;align=center;strokeColor=default;" vertex="1" parent="1">
+          <mxGeometry x="560" y="890" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="FTFGuDRBSK8k1Kst_V28-66" value="&lt;span style=&quot;border-bottom: 1px dotted&quot;&gt;ID&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;strokeColor=default;" vertex="1" parent="1">
+          <mxGeometry x="460" y="830" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="FTFGuDRBSK8k1Kst_V28-67" value="&lt;span style=&quot;border-bottom: 1px dotted&quot;&gt;Name&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;strokeColor=default;" vertex="1" parent="1">
+          <mxGeometry x="580" y="820" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="FTFGuDRBSK8k1Kst_V28-68" value="&lt;span style=&quot;border-bottom: 1px dotted&quot;&gt;Price&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;strokeColor=default;" vertex="1" parent="1">
+          <mxGeometry x="700" y="830" width="100" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

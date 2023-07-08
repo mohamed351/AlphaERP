@@ -27,7 +27,7 @@ namespace RealApplication.Models
         public DateTime InvoiceDate { get; set; }
 
         public string Note { get; set; }
-        public InvoiceType InvoiceType { get; set; }
+     
 
         public Customer Customer { get; set; }
         public Employee Employee { get; set; }

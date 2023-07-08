@@ -48,9 +48,16 @@ namespace RealApplication.Controllers
                report.Dictionary.Databases.Add(new StiSqlDatabase("Connection", configuration.GetConnectionString("con")));
                report.Render();
                break;
+          case ReportType.StoreData:
+                    report.Load(this.webHostEnvironment.WebRootPath + "/StoreReport.mrt");
+                    report.Dictionary.Databases.Add(new StiSqlDatabase("Connection", configuration.GetConnectionString("con")));
+                    report.Render();
+                    break;
 
                 default:
                     break;
+
+
                 
                    
             }
@@ -70,7 +77,8 @@ namespace RealApplication.Controllers
         public enum ReportType
         {
           SellingInvoice  =0,
-          PurchasingInvoice =1
+          PurchasingInvoice =1,
+          StoreData =2
         }
 
     }
